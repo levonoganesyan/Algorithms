@@ -18,13 +18,19 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileSearcher.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileProcessor.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Utils.h">
+    <ClInclude Include="FileSearcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.hpp">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="FileProcessor.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
