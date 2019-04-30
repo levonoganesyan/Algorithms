@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Algorithms", "Algorithms\Algorithms.vcxproj", "{8B2C733E-3D87-4AB4-9F08-2DF9102643D7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CCB2C8E4-44A5-4731-9556-79CF4A514A06} = {CCB2C8E4-44A5-4731-9556-79CF4A514A06}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodePreprocessor", "CodePreprocessor\CodePreprocessor.vcxproj", "{CCB2C8E4-44A5-4731-9556-79CF4A514A06}"
 EndProject

@@ -24,7 +24,7 @@ void FileProcessor::Process() const
 
     std::stack<std::wifstream> files_to_process;
     files_to_process.emplace(m_file_path);
-    std::wregex e(L"#include\\s*[<\"](.*)[\">].*");
+    std::wregex reg(L"#include\\s*[<\"](.*)[\">].*");
 
     std::set<std::wstring> processed_files;
     processed_files.insert(m_file_path);
@@ -39,7 +39,7 @@ void FileProcessor::Process() const
             continue;
         }
         std::wsmatch sm;
-        std::regex_match(line, sm, e);
+        std::regex_match(line, sm, reg);
         if (sm.empty())
         {
             out_file << line << std::endl;
@@ -49,7 +49,6 @@ void FileProcessor::Process() const
         std::wstring h_path = mp_file_searcher->CheckForFile(h_name);
         if (!h_path.empty())
         {
-            
             if (h_path.back() == L'h')
             {
                 std::wstring cpp_name = h_name;
@@ -73,6 +72,10 @@ void FileProcessor::Process() const
                 files_to_process.emplace(h_path);
                 processed_files.insert(h_path);
             }
+        }
+        else
+        {
+            out_file << line << std::endl;
         }
     }
 }
