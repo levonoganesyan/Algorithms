@@ -1,5 +1,6 @@
 #include"Dijkstra.h"
 #include"Defines.h"
+
 algo::Dijkstra::ConnectionList
     algo::Dijkstra::ListOfEdgesToConnectionList
         (const algo::Dijkstra::ListOfEdges & list_of_edges)
@@ -18,10 +19,10 @@ algo::Dijkstra::ConnectionList
 }
 
 
-algo::Dijkstra::Dijkstra(const algo::Dijkstra::ConnectionList & graph,
-                        int start_vertex,
-                        algo::ConnectionListTag)
-    : m_start_vertex(start_vertex)
+algo::Dijkstra::Dijkstra
+    (const algo::Dijkstra::ConnectionList & graph,
+     int start_vertex)
+        : m_start_vertex(start_vertex)
 {
     assert(start_vertex < (int)graph.size());
 
@@ -51,21 +52,20 @@ algo::Dijkstra::Dijkstra(const algo::Dijkstra::ConnectionList & graph,
     }
 }
 
-algo::Dijkstra::Dijkstra(const algo::Dijkstra::ConnectionMatrix& graph,
-                        int start_vertex,
-                        algo::ConnectionMatrixTag)
-    : m_start_vertex(start_vertex)
+algo::Dijkstra::Dijkstra
+    (const algo::Dijkstra::ConnectionMatrix& graph,
+     int start_vertex)
+        : m_start_vertex(start_vertex)
 {
     m_distance.resize(graph.size(), Inf);
     // TODO
 }
 
-algo::Dijkstra::Dijkstra(const algo::Dijkstra::ListOfEdges& graph,
-                        int start_vertex,
-                        algo::ListOfEdgesTag)
-    : Dijkstra(ListOfEdgesToConnectionList(graph), 
-                start_vertex, 
-                algo::ConnectionListTag())
+algo::Dijkstra::Dijkstra
+    (const algo::Dijkstra::ListOfEdges& graph,
+     int start_vertex)
+        : Dijkstra(ListOfEdgesToConnectionList(graph),
+                   start_vertex)
 {
 }
 

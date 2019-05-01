@@ -57,10 +57,10 @@ namespace algo
         Graph(const std::vector<std::vector<int>>& graph, )*/
     };
 
-    class GraphTypeTag {};
-    class ConnectionListTag : public GraphTypeTag {};
-    class ConnectionMatrixTag : public GraphTypeTag {};
-    class ListOfEdgesTag : public GraphTypeTag {};
+    //class GraphTypeTag {};
+    //class ConnectionListTag : public GraphTypeTag {};
+    //class ConnectionMatrixTag : public GraphTypeTag {};
+    //class ListOfEdgesTag : public GraphTypeTag {};
 
 };
 
