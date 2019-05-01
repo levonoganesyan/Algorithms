@@ -4,8 +4,15 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<cassert>
+#include<queue>
+#include<set>
+#include<map>
 namespace algo
 {
+    const int Inf = INT_MAX;
+    const long long LInf = LLONG_MAX;
+
     template<typename T, typename... Others>
     T max(T first, Others... others);
 
@@ -31,39 +38,10 @@ namespace algo
     template<typename Container, typename T>
     void sum_container(const Container& container, T& sum);
 
-    
-#define in_vec(in, n, c, t) \
-        int n; \
-        std::vector<t> c; \
-        algo::input_container(in, n, c)
 
-#define cin_vec(n, c, t) \
-        in_vec(std::cin, n, c, t)
+    template <typename T>
+    using Matrix = std::vector<std::vector<T>>;
 
-#define in_vec_int(in, n, c) \
-        in_vec(in, n, c, int)
-
-#define cin_vec_int(n, c) \
-        cin_vec(n, c, int)
-
-#define out_vec_delim(out, c, d) \
-        algo::output_container(out, c, d)
-
-#define out_vec(out, c) \
-        algo::output_container(out, c)
-
-#define cout_vec_delim(c, d) \
-        algo::output_container(std::cout, c, d)
-
-#define cout_vec(c, d) \
-        algo::output_container(std::cout, c)
-
- #define sum_vec(c, s, t) \
-        t s = 0; \
-        algo::sum_container(c, s)
-
-#define all(v) v.begin(), v.end()
-#define rall(v) v.rbegin(), v.rend()
 
 }
 
@@ -131,6 +109,45 @@ namespace algo
 
 
 
+#pragma once
+
+namespace algo
+{
+
+#define in_vec(in, n, c, t) \
+        int n; \
+        std::vector<t> c; \
+        algo::input_container(in, n, c)
+
+#define cin_vec(n, c, t) \
+        in_vec(std::cin, n, c, t)
+
+#define in_vec_int(in, n, c) \
+        in_vec(in, n, c, int)
+
+#define cin_vec_int(n, c) \
+        cin_vec(n, c, int)
+
+#define out_vec_delim(out, c, d) \
+        algo::output_container(out, c, d)
+
+#define out_vec(out, c) \
+        algo::output_container(out, c)
+
+#define cout_vec_delim(c, d) \
+        algo::output_container(std::cout, c, d)
+
+#define cout_vec(c, d) \
+        algo::output_container(std::cout, c)
+
+#define sum_vec(c, s, t) \
+        t s = 0; \
+        algo::sum_container(c, s)
+
+#define all(v) v.begin(), v.end()
+#define rall(v) v.rbegin(), v.rend()
+
+}
 
 bool foo(std::vector<int> vec, bool b)
 {
@@ -141,7 +158,7 @@ bool foo(std::vector<int> vec, bool b)
         std::sort(rall(vec));
 
     int f = -1;
-    for (int i = 0; i < vec.size(); ++i)
+    for (size_t i = 0; i < vec.size(); ++i)
     {
         if (vec[i] != original[i])
         {

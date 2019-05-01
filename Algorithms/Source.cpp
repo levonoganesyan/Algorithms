@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Utils.h"
-
+#include "Defines.h"
 bool foo(std::vector<int> vec, bool b)
 {
     auto original = vec;
@@ -10,7 +10,7 @@ bool foo(std::vector<int> vec, bool b)
         std::sort(rall(vec));
 
     int f = -1;
-    for (int i = 0; i < vec.size(); ++i)
+    for (size_t i = 0; i < vec.size(); ++i)
     {
         if (vec[i] != original[i])
         {
