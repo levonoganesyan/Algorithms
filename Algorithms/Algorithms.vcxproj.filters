@@ -26,5 +26,8 @@
     <ClInclude Include="Utils.hpp">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dijkstra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -100,13 +100,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)$(Platform)/$(Configuration)/CodePreprocessor.exe Source.cpp . </Command>
+      <Command>$(SolutionDir)$(Platform)/$(Configuration)/CodePreprocessor.exe Source.cpp ./include ./src</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,6 +146,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Utils.hpp" />
   </ItemGroup>

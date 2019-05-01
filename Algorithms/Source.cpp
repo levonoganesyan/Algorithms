@@ -1,18 +1,55 @@
 #include <iostream>
 #include "Utils.h"
 
+bool foo(std::vector<int> vec, bool b)
+{
+    auto original = vec;
+    if(b)   
+        std::sort(all(vec));
+    else
+        std::sort(rall(vec));
+
+    int f = -1;
+    for (int i = 0; i < vec.size(); ++i)
+    {
+        if (vec[i] != original[i])
+        {
+            if (f == -1)
+            {
+                f = i;
+            }
+            else
+            {
+                std::swap(vec[i], vec[f]);
+                if (vec == original)
+                {
+                    std::cout << "Yes" << std::endl
+                        << f + 1 << " " << i + 1 << std::endl;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+    }
+    return false;
+}
+
 int main()
 {
     cin_vec_int(n, vec);
-    sum_vec(vec, sum, long long);
-    long long ans = sum * vec[0];
-    sum -= vec[0];
-    for (int i = 1; i < n; ++i)
+    if (std::is_sorted(all(vec)) || std::is_sorted(rall(vec)))
     {
-        ans += sum * (vec[i - 1] + vec[i]);
-        sum -= vec[i];
+        std::cout << "Nothing to do here\n";
+        return 0;
     }
-    std::cout << ans << std::endl;
+    if (foo(vec, true) || foo(vec, !true))
+    {
+        return 0;
+    }
+    std::cout << "No hope\n";
     // cout_vec(vec);
 }
 
