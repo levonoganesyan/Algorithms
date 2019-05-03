@@ -11,6 +11,10 @@ algo::Dijkstra::Dijkstra
     m_distance.resize(graph.size(), Inf);
     m_distance[start_vertex] = 0;
     m_parents.resize(graph.size());
+    for (size_t i = 0; i < m_parents.size(); ++i)
+    {
+        m_parents[i] = (int)i;
+    }
     std::set<std::pair<Graph::WeightType, int>> queue;
     queue.emplace(0, start_vertex);
     while (!queue.empty())
@@ -42,10 +46,14 @@ algo::Dijkstra::Dijkstra
     m_distance.resize(graph.size(), Inf);
     m_distance[start_vertex] = 0;
     m_parents.resize(graph.size());
+    for (size_t i = 0; i < m_parents.size(); ++i)
+    {
+        m_parents[i] = (int)i;
+    }
     std::vector<char> used(graph.size());
     for (size_t i = 0; i < graph.size(); ++i)
     {
-        int v = -1;
+        size_t v = -1;
         for (size_t j = 0; j < graph[i].size(); ++j)
         {
             if(!used[j] && (v == -1 || 
@@ -61,12 +69,12 @@ algo::Dijkstra::Dijkstra
 
         for (size_t j = 0; j < graph[i].size(); ++i)
         {
-            int to = j;
+            size_t to = j;
             Graph::WeightType weight = graph[i][j];
             if (m_distance[to] > m_distance[v] + weight)
             {
                 m_distance[to] = m_distance[v] + weight;
-                m_parents[to] = v;
+                m_parents[to] = (int)v;
             }
         }
     }
@@ -86,14 +94,23 @@ int algo::Dijkstra::GetDistance(int to)
     return m_distance[to];
 }
 
+std::vector<int> algo::Dijkstra::GetDistance()
+{
+    return m_distance;
+}
+
 
 std::vector<int> algo::Dijkstra::GetPath(int to)
 {
-    assert(to < (int)m_distance.size());
+    assert(to < (int)m_parents.size());
     std::vector<int> path;
+    if (to == m_parents[to])
+    {
+        return path;
+    }
     for (int v = to; v != m_start_vertex; v = m_parents[v])
     {
-        path.push_back(to);
+        path.push_back(v);
     }
     path.push_back(m_start_vertex);
     std::reverse(all(path));

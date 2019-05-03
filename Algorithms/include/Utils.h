@@ -44,6 +44,8 @@ namespace algo
 
     template <typename T>
     Matrix<T> createMatrix(size_t n, size_t m, T etalon = T());
+
+    double random(double min, double max);
 }
 
 #include "Utils.hpp"

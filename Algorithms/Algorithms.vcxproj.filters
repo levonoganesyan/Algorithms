@@ -24,6 +24,9 @@
     <ClCompile Include="src\Graph.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\FloydWarshall.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Dijkstra.h">
@@ -38,13 +41,13 @@
     <ClInclude Include="include\Utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FordBellman.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FloydWarshall.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FloydWarshall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FordBellman.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

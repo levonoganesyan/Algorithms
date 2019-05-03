@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -106,6 +106,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>./include</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -114,6 +115,9 @@
     <PreBuildEvent>
       <Command>$(SolutionDir)$(Platform)/$(Configuration)/CodePreprocessor.exe Source.cpp ./include ./src</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>lib /NOLOGO /OUT:"$(TargetPath).lib" "$(ProjectDir)/$(Configuration)*.obj"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -155,13 +159,14 @@
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="src\Dijkstra.cpp" />
+    <ClCompile Include="src\FloydWarshall.cpp" />
     <ClCompile Include="src\Graph.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FloydWarshall.h" />
-    <ClInclude Include="FordBellman.h" />
     <ClInclude Include="include\Defines.h" />
     <ClInclude Include="include\Dijkstra.h" />
+    <ClInclude Include="include\FloydWarshall.h" />
+    <ClInclude Include="include\FordBellman.h" />
     <ClInclude Include="include\Graph.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />

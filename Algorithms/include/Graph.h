@@ -17,6 +17,7 @@ namespace algo
             WeightType weight;
             Edge();
             Edge(int from, int to, int weight);
+            // bool operator==(const Edge& other);
             // Edge(int to, int weight = 1);
         };
 
@@ -35,7 +36,7 @@ namespace algo
 
         static ConnectionList
             ListOfEdgesToConnectionList
-                (const ListOfEdges& list_of_edges, bool oriented = true);
+                (ListOfEdges list_of_edges, bool oriented = true);
 
         static ConnectionList
             ConnectionMatrixToConnectionList
@@ -51,11 +52,20 @@ namespace algo
 
         static ConnectionMatrix
             ListOfEdgesToConnectionMatrix
-                (const ListOfEdges& list_of_edges, bool oriented = false);
+                (const ListOfEdges& list_of_edges, bool oriented = true);
 
         static ConnectionMatrix
             ConnectionListToConnectionMatrix
                 (const ConnectionList& connection_list);
+
+        static ListOfEdges
+            RandomGraph(int number_of_vertices = 1000,
+                        int number_of_edges = 100000,
+                        WeightType weight = 10);
+
+        static void
+            UniqifyListOfEdges
+                (ListOfEdges& list_of_edges);
 
     private:
         /* template<typename EdgeType = int>
@@ -92,7 +102,14 @@ namespace algo
     //class ConnectionListTag : public GraphTypeTag {};
     //class ConnectionMatrixTag : public GraphTypeTag {};
     //class ListOfEdgesTag : public GraphTypeTag {};
-
+    bool operator==(const Graph::Edge& first, const Graph::Edge& second);
+    inline void PrintTo(const Graph::Edge &edge, ::std::ostream *os)
+    {
+        *os << "{" << edge.from 
+            << ", " << edge.to 
+            << ", " << edge.weight
+            << "}";
+    }
 };
 
 

@@ -32,6 +32,7 @@ namespace algo
                 int start_vertex);
 
         int GetDistance(int to);
+        std::vector<int> GetDistance();
         std::vector<int> GetPath(int to);
 
     };

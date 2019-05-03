@@ -8,6 +8,7 @@
 #include<queue>
 #include<set>
 #include<map>
+
 namespace algo
 {
     const int Inf = INT_MAX;
@@ -42,46 +43,64 @@ namespace algo
     template <typename T>
     using Matrix = std::vector<std::vector<T>>;
 
+    template <typename T>
+    Matrix<T> createMatrix(size_t n, size_t m, T etalon = T());
 
+    double random(double min, double max);
 }
 
 #pragma once
 #include<algorithm>
+#include<random>
 namespace algo
 {
     template<typename T, typename... Others>
-    T max(T first, Others... others)
+    inline T max(T first, Others... others)
     {
-        return std::max(first, max(others...));
+        return std::max(first, max<T>(others...));
     }
     template<typename T>
-    T max(T first)
+    inline T max(T first)
     {
         return first;
     }
 
     template<typename T, typename... Others>
-    T min(T first, Others... others)
+    inline T min(T first, Others... others)
     {
         return std::min(first, min(others...));
     }
     template<typename T>
-    T min(T first)
+    inline T min(T first)
     {
         return first;
     }
 
     template<typename Container, typename T>
-    void sum_container(const Container& container, T& sum)
+    inline void sum_container(const Container& container, T& sum)
     {
         for (auto& elem : container)
         {
             sum += elem;
         }
     }
+
+    template<typename T>
+    inline Matrix<T> createMatrix(size_t n, size_t m, T etalon)
+    {
+        return Matrix<T>(n, std::vector<T>(m, etalon));
+    }
+
+    inline double random(double min, double max)
+    {
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_real_distribution<double> dist(min, max);
+        return dist(mt);
+    }
     
     template<typename Container>
-    void input_container(std::istream& in,
+    inline void input_container(std::istream& in,
                          int& n,
                          Container& container)
     {
@@ -94,7 +113,7 @@ namespace algo
     }
     
     template<typename Container>
-    void output_container(std::ostream& out,
+    inline void output_container(std::ostream& out,
                           const Container& container,
                           const std::string& delimiter)
     {
@@ -110,6 +129,7 @@ namespace algo
 
 
 #pragma once
+
 
 namespace algo
 {
@@ -149,58 +169,12 @@ namespace algo
 
 }
 
-bool foo(std::vector<int> vec, bool b)
-{
-    auto original = vec;
-    if(b)   
-        std::sort(all(vec));
-    else
-        std::sort(rall(vec));
 
-    int f = -1;
-    for (size_t i = 0; i < vec.size(); ++i)
-    {
-        if (vec[i] != original[i])
-        {
-            if (f == -1)
-            {
-                f = i;
-            }
-            else
-            {
-                std::swap(vec[i], vec[f]);
-                if (vec == original)
-                {
-                    std::cout << "Yes" << std::endl
-                        << f + 1 << " " << i + 1 << std::endl;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-int main()
-{
-    cin_vec_int(n, vec);
-    if (std::is_sorted(all(vec)) || std::is_sorted(rall(vec)))
-    {
-        std::cout << "Nothing to do here\n";
-        return 0;
-    }
-    if (foo(vec, true) || foo(vec, !true))
-    {
-        return 0;
-    }
-    std::cout << "No hope\n";
-    // cout_vec(vec);
-}
-
-
+//int main()
+//{
+//   
+//}
+//
+//
 
 
