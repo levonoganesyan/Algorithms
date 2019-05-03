@@ -158,7 +158,9 @@
     <ClCompile Include="src\Graph.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Defines.h" />
+    <ClInclude Include="FloydWarshall.h" />
+    <ClInclude Include="FordBellman.h" />
+    <ClInclude Include="include\Defines.h" />
     <ClInclude Include="include\Dijkstra.h" />
     <ClInclude Include="include\Graph.h" />
     <ClInclude Include="include\Utils.h" />

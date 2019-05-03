@@ -1,24 +1,6 @@
 #include"Dijkstra.h"
 #include"Defines.h"
 
-algo::Dijkstra::ConnectionList
-    algo::Dijkstra::ListOfEdgesToConnectionList
-        (const algo::Dijkstra::ListOfEdges & list_of_edges)
-{
-    ConnectionList connection_list;
-    for (const auto& edge : list_of_edges)
-    {
-        int from = edge.from;
-        int to = edge.to;
-        connection_list.resize(algo::max(from, to,
-                                        (int)connection_list.size()));
-        connection_list[from].push_back({ from, to, edge.weight });
-        connection_list[to].push_back({ to, from, edge.weight });
-    }
-    return connection_list;
-}
-
-
 algo::Dijkstra::Dijkstra
     (const algo::Dijkstra::ConnectionList & graph,
      int start_vertex)
@@ -93,7 +75,7 @@ algo::Dijkstra::Dijkstra
 algo::Dijkstra::Dijkstra
     (const algo::Dijkstra::ListOfEdges& graph,
      int start_vertex)
-        : Dijkstra(ListOfEdgesToConnectionList(graph),
+        : Dijkstra(Graph::ListOfEdgesToConnectionList(graph),
                    start_vertex)
 {
 }

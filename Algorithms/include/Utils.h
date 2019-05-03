@@ -7,6 +7,7 @@
 #include<queue>
 #include<set>
 #include<map>
+
 namespace algo
 {
     const int Inf = INT_MAX;
@@ -41,7 +42,8 @@ namespace algo
     template <typename T>
     using Matrix = std::vector<std::vector<T>>;
 
-
+    template <typename T>
+    Matrix<T> createMatrix(size_t n, size_t m, T etalon = T());
 }
 
 #include "Utils.hpp"

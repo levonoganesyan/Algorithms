@@ -38,7 +38,13 @@
     <ClInclude Include="include\Utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Defines.h">
+    <ClInclude Include="FordBellman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FloydWarshall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
