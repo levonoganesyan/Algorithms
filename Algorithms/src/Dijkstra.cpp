@@ -39,7 +39,7 @@ algo::Dijkstra::Dijkstra
         for (size_t i = 0; i < graph[from].size(); ++i)
         {
             int to = graph[from][i].to;
-            int weight = graph[from][i].weight;
+            Graph::WeightType weight = graph[from][i].weight;
 
             if (m_distance[from] + weight < m_distance[to])
             {
@@ -58,7 +58,36 @@ algo::Dijkstra::Dijkstra
         : m_start_vertex(start_vertex)
 {
     m_distance.resize(graph.size(), Inf);
-    // TODO
+    m_distance[start_vertex] = 0;
+    m_parents.resize(graph.size());
+    std::vector<char> used(graph.size());
+    for (size_t i = 0; i < graph.size(); ++i)
+    {
+        int v = -1;
+        for (size_t j = 0; j < graph[i].size(); ++j)
+        {
+            if(!used[j] && (v == -1 || 
+                m_distance[j] < m_distance[v]))
+            {
+                v = j;
+            }
+        }
+        if (m_distance[v] == Inf)
+            break;
+
+        used[v] = true;
+
+        for (size_t j = 0; j < graph[i].size(); ++i)
+        {
+            int to = j;
+            Graph::WeightType weight = graph[i][j];
+            if (m_distance[to] > m_distance[v] + weight)
+            {
+                m_distance[to] = m_distance[v] + weight;
+                m_parents[to] = v;
+            }
+        }
+    }
 }
 
 algo::Dijkstra::Dijkstra
