@@ -14,9 +14,9 @@ algo::FloydWarshall::FloydWarshall
     m_distances = connection_matrix;
     size_t matrix_size = connection_matrix.size();
     m_parents = algo::createMatrix(matrix_size, matrix_size, -1);
-    for (int i = 0; i < matrix_size; ++i)
+    for (size_t i = 0; i < matrix_size; ++i)
     {
-        for (int j = 0; j < matrix_size; ++j)
+        for (size_t j = 0; j < matrix_size; ++j)
         {
             if (connection_matrix[i][j])
             {
@@ -32,11 +32,11 @@ algo::FloydWarshall::FloydWarshall
         }
         m_parents[i][i] = i;
     }
-    for (int k = 0; k < matrix_size; ++k)
+    for (size_t k = 0; k < matrix_size; ++k)
     {
-        for (int i = 0; i < matrix_size; ++i)
+        for (size_t i = 0; i < matrix_size; ++i)
         {
-            for (int j = 0; j < matrix_size; ++j)
+            for (size_t j = 0; j < matrix_size; ++j)
             {
                 if (m_distances[i][k] == Inf || 
                     m_distances[k][j] == Inf)

@@ -1,7 +1,7 @@
 #include"pch.h"
-#include"../Algorithms/include/Graph.h"
-#include"../Algorithms/include/Dijkstra.h"
-#include"../Algorithms/include/FloydWarshall.h"
+#include"Graph.h"
+#include"Dijkstra.h"
+#include"FloydWarshall.h"
 #include<algorithm>
 
 TEST(GraphConvertTest, GraphTest)
@@ -60,7 +60,7 @@ TEST(ShortestPathTest, GraphTest)
         int number_of_path_tests = 20;
         while (number_of_path_tests--)
         {
-            int to = algo::random(0, number_of_vertices);
+            int to = (int)algo::random(0, number_of_vertices);
             EXPECT_EQ(dikstra.GetPath(to), floyd_warshall.GetPath(i, to));
         }
     }

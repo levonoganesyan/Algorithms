@@ -26,9 +26,9 @@ algo::Graph::ConnectionList
         (const ConnectionMatrix & connection_matrix)
 {
     ConnectionList connection_list(connection_matrix.size());
-    for (int i = 0; i < connection_matrix.size(); ++i)
+    for (size_t i = 0; i < connection_matrix.size(); ++i)
     {
-        for (int j = 0; j < connection_matrix[i].size(); ++j)
+        for (size_t j = 0; j < connection_matrix[i].size(); ++j)
         {
             if (connection_matrix[i][j])
             {
@@ -45,9 +45,9 @@ algo::Graph::ListOfEdges
         (const ConnectionList & connection_list)
 {
     ListOfEdges list_of_edges;
-    for (int i = 0; i < connection_list.size(); ++i)
+    for (size_t i = 0; i < connection_list.size(); ++i)
     {
-        for (int j = 0; j < connection_list[i].size(); ++j)
+        for (size_t j = 0; j < connection_list[i].size(); ++j)
         {
             int from = connection_list[i][j].from;
             int to = connection_list[i][j].to;
@@ -63,9 +63,9 @@ algo::Graph::ListOfEdges
         (const ConnectionMatrix & connection_matrix)
 {
     ListOfEdges list_of_edges;
-    for (int i = 0; i < connection_matrix.size(); ++i)
+    for (size_t i = 0; i < connection_matrix.size(); ++i)
     {
-        for (int j = i; j < connection_matrix[i].size(); ++j)
+        for (size_t j = i; j < connection_matrix[i].size(); ++j)
         {
             if (connection_matrix[i][j])
             {
@@ -111,9 +111,9 @@ algo::Graph::ConnectionMatrix
     ConnectionMatrix connection_matrix =
        algo::createMatrix<Graph::WeightType>
           (connection_list.size(), connection_list.size());
-    for (int i = 0; i < connection_list.size(); ++i)
+    for (size_t i = 0; i < connection_list.size(); ++i)
     {
-        for (int j = 0; j < connection_list[i].size(); ++j)
+        for (size_t j = 0; j < connection_list[i].size(); ++j)
         {
             int to = connection_list[i][j].to;
             Graph::WeightType weight = connection_list[i][j].weight;

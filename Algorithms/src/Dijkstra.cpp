@@ -53,13 +53,15 @@ algo::Dijkstra::Dijkstra
     std::vector<char> used(graph.size());
     for (size_t i = 0; i < graph.size(); ++i)
     {
-        size_t v = -1;
+        size_t v = 0;
+        bool first_choose = true;
         for (size_t j = 0; j < graph[i].size(); ++j)
         {
-            if(!used[j] && (v == -1 || 
+            if(!used[j] && (first_choose ||
                 m_distance[j] < m_distance[v]))
             {
                 v = j;
+                first_choose = false;
             }
         }
         if (m_distance[v] == Inf)
