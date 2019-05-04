@@ -20,7 +20,7 @@ algo::FloydWarshall::FloydWarshall
         {
             if (connection_matrix[i][j])
             {
-                m_parents[i][j] = j;
+                m_parents[i][j] = (int)j;
             }
             else
             {
@@ -30,7 +30,7 @@ algo::FloydWarshall::FloydWarshall
                 }
             }
         }
-        m_parents[i][i] = i;
+        m_parents[i][i] = (int)i;
     }
     for (size_t k = 0; k < matrix_size; ++k)
     {

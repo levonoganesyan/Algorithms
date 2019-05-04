@@ -13,6 +13,9 @@ int wmain(int argc, wchar_t** argv)
         }
         FileProcessor file_processor(file_path, folder_paths);
         file_processor.Process();
+        std::cout << "Code preprocessing is "
+                  << "successfully finished!"
+                  << std::endl;
     }
     catch (std::exception ex)
     {
