@@ -164,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="src\Dijkstra.cpp" />
     <ClCompile Include="src\FloydWarshall.cpp" />
+    <ClCompile Include="src\Geometry.cpp" />
     <ClCompile Include="src\Graph.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="include\Dijkstra.h" />
     <ClInclude Include="include\FloydWarshall.h" />
     <ClInclude Include="include\FordBellman.h" />
+    <ClInclude Include="include\Geometry.h" />
     <ClInclude Include="include\Graph.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />

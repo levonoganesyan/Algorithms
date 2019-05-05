@@ -16,6 +16,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AlgorithmTest", "AlgorithmT
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Coding", "Coding\Coding.vcxproj", "{4BB0180F-DDE9-4172-8518-58FDE5F49D2C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8B2C733E-3D87-4AB4-9F08-2DF9102643D7} = {8B2C733E-3D87-4AB4-9F08-2DF9102643D7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
