@@ -19,9 +19,10 @@ namespace algo
         FloydWarshall(const ConnectionList& connection_list);
         FloydWarshall(const ConnectionMatrix& connection_matrix);
         FloydWarshall(const ListOfEdges& list_of_edges);
-        WeightType GetDistance(int from, int to);
-        std::vector<int> GetDistance(int from);
-        std::vector<int> GetPath(int from, int to);
+
+        WeightType GetDistance(int from, int to) const;
+        std::vector<int> GetDistance(int from) const;
+        std::vector<int> GetPath(int from, int to) const;
 
     };
 }

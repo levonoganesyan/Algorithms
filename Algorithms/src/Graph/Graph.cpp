@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "Graph/Graph.h"
 #include "Utils.h"
 #include "Defines.h"
 algo::Graph::ConnectionList

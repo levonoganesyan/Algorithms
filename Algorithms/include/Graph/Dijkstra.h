@@ -31,9 +31,9 @@ namespace algo
         Dijkstra(const ListOfEdges& graph,
                 int start_vertex);
 
-        int GetDistance(int to);
-        std::vector<int> GetDistance();
-        std::vector<int> GetPath(int to);
+        int GetDistance(int to) const;
+        std::vector<int> GetDistance() const;
+        std::vector<int> GetPath(int to) const;
 
     };
 }

@@ -54,6 +54,12 @@
     <ClInclude Include="include\Geometry\Geometry.h">
       <Filter>Header Files\Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="include\Graph\CycleChecker.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graph\Toposort.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -67,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="src\Graph\Graph.cpp">
       <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Graph\CycleChecker.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,6 +21,11 @@ namespace algo
             // Edge(int to, int weight = 1);
         };
 
+        enum class VertexState {
+            NotVisited,
+            Visited,
+            Exited,
+        };
 
         using ConnectionList = Matrix<Edge>;
         using ConnectionMatrix = Matrix<WeightType>;
