@@ -13,45 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Graph">
+      <UniqueIdentifier>{3ab02b56-21e7-4e57-b6e6-e0b5c50e1235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Graph">
+      <UniqueIdentifier>{b9bca163-90bc-4778-86af-ed7d6f16ee10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Geometry">
+      <UniqueIdentifier>{2d803e43-0b94-49f5-9070-3f0233e02202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Geometry">
+      <UniqueIdentifier>{a56662c6-f0fd-40ef-be10-f2f8276a61c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{26bd53f2-f27e-4f28-8c12-8eb2895d5ee9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\FloydWarshall.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
     <ClCompile Include="src\Dijkstra.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Graph</Filter>
     </ClCompile>
     <ClCompile Include="src\Graph.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FloydWarshall.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Graph</Filter>
     </ClCompile>
     <ClCompile Include="src\Geometry.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Dijkstra.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Utils.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Defines.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Graph</Filter>
     </ClInclude>
     <ClInclude Include="include\FloydWarshall.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Graph</Filter>
     </ClInclude>
     <ClInclude Include="include\FordBellman.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graph.h">
+      <Filter>Header Files\Graph</Filter>
     </ClInclude>
     <ClInclude Include="include\Geometry.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utils.hpp">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utils.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
