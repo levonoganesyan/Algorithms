@@ -1,4 +1,5 @@
 #include"pch.h"
+#include"Graph/DSU.h"
 #include"Graph/Graph.h"
 #include"Graph/Dijkstra.h"
 #include"Graph/Toposort.h"
@@ -43,7 +44,6 @@ TEST(GraphConvertTest, GraphTest)
     EXPECT_EQ(list_graph,
         algo::Graph::ConnectionMatrixToConnectionList(matrix_graph));
 }
-
 
 TEST(DijkstraFloydWarshallTest, GraphTest)
 {
@@ -169,7 +169,6 @@ TEST(CycleFindingTest, GraphTest)
     }
 }
 
-
 TEST(ToposortTest, GraphTest)
 {
     {
@@ -197,12 +196,27 @@ TEST(ToposortTest, GraphTest)
         };
         algo::Graph::UniqifyListOfEdges(edges_graph);
         algo::Graph::MakeUndirected(edges_graph);
-        // std::vector<algo::Graph::VertexType> etalon = { 0, 1, 4, 3, 2, 5 };
         // algo::Toposort toposort(edges_graph);
         EXPECT_THROW((algo::Toposort(edges_graph)), std::logic_error);
     }
 }
 
+TEST(DSUTest, GraphTest)
+{
+    algo::DSU dsu(6);
+    dsu.Union(0, 1);
+    EXPECT_EQ(dsu.GetParent(0), dsu.GetParent(1));
+    dsu.Union(1, 3);
+    EXPECT_EQ(dsu.GetParent(3), dsu.GetParent(0));
+    EXPECT_NE(dsu.GetParent(2), dsu.GetParent(3));
+    dsu.Union(3, 2);
+    EXPECT_EQ(dsu.GetParent(2), dsu.GetParent(3));
+    dsu.Union(5, 2);
+    EXPECT_EQ(dsu.GetParent(4), 4);
+    dsu.Union(4, 1);
+    std::vector<algo::Graph::VertexType> etalon = { 0, 1, 2, 3, 4, 5 };
+    EXPECT_EQ(dsu.GetGroup(0), etalon);
+}
 
 
 

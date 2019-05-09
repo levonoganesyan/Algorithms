@@ -487,8 +487,7 @@ namespace algo
         list_of_edges = new_list_of_edges;
     }
 #pragma warning(push)
-#pragma warning(disable: 4244) 
-    // possible loss of data
+#pragma warning(disable: 4244) // possible loss of data
     Graph::ListOfEdges
         Graph::RandomGraph
             (int number_of_vertices, int number_of_edges, WeightType weight)
