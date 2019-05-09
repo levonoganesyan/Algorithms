@@ -1,4 +1,9 @@
 #include <iostream>
+#include <string>
+#include <cmath>
+#include <iomanip>
+#include <algorithm>
+#pragma once
 #pragma once
 
 #include<vector>
@@ -146,10 +151,16 @@ namespace algo
             WeightType weight;
             Edge();
             Edge(int from, int to, int weight);
-            // bool operator==(const Edge& other);
+            bool operator< (const Edge& other);
+            bool operator==(const Edge& other);
             // Edge(int to, int weight = 1);
         };
 
+        enum class VertexState {
+            NotVisited,
+            Visited,
+            Exited,
+        };
 
         using ConnectionList = Matrix<Edge>;
         using ConnectionMatrix = Matrix<WeightType>;
@@ -186,6 +197,18 @@ namespace algo
         static ConnectionMatrix
             ConnectionListToConnectionMatrix
                 (const ConnectionList& connection_list);
+
+        static void
+            MakeUndirected
+            (ConnectionMatrix& connection_matrix);
+
+        static void
+            MakeUndirected
+            (ConnectionList& connection_list);
+
+        static void
+            MakeUndirected
+            (ListOfEdges& list_of_edges);
 
         static ListOfEdges
             RandomGraph(int number_of_vertices = 1000,
@@ -283,211 +306,478 @@ namespace algo
 
 }
 
-algo::Graph::ConnectionList
-    algo::Graph::ListOfEdgesToConnectionList
-        (algo::Graph::ListOfEdges list_of_edges, bool oriented)
+namespace algo
 {
-    ConnectionList connection_list;
-    for (const auto& edge : list_of_edges)
+    Graph::ConnectionList
+        Graph::ListOfEdgesToConnectionList
+        (Graph::ListOfEdges list_of_edges, bool oriented)
     {
-        int from = edge.from;
-        int to = edge.to;
-        connection_list.resize(algo::max<int>(from + 1, to + 1,
+        ConnectionList connection_list;
+        for (const auto& edge : list_of_edges)
+        {
+            int from = edge.from;
+            int to = edge.to;
+            connection_list.resize(max<int>(from + 1, to + 1,
                                     (int)connection_list.size()));
-        connection_list[from].emplace_back(from, to, edge.weight);
-        if (!oriented)
-        {
-            connection_list[to].emplace_back(to, from, edge.weight);
-        }
-    }
-    return connection_list;
-}
-
-algo::Graph::ConnectionList 
-    algo::Graph::ConnectionMatrixToConnectionList
-        (const ConnectionMatrix & connection_matrix)
-{
-    ConnectionList connection_list(connection_matrix.size());
-    for (size_t i = 0; i < connection_matrix.size(); ++i)
-    {
-        for (size_t j = 0; j < connection_matrix[i].size(); ++j)
-        {
-            if (connection_matrix[i][j])
+            connection_list[from].emplace_back(from, to, edge.weight);
+            if (!oriented)
             {
-                Graph::WeightType weight = connection_matrix[i][j];
-                connection_list[i].emplace_back(i, j, weight);
+                connection_list[to].emplace_back(to, from, edge.weight);
             }
         }
+        return connection_list;
     }
-    return connection_list;
-}
 
-algo::Graph::ListOfEdges 
-    algo::Graph::ConnectionListToListOfEdges
+    Graph::ConnectionList
+        Graph::ConnectionMatrixToConnectionList
+        (const ConnectionMatrix & connection_matrix)
+    {
+        ConnectionList connection_list(connection_matrix.size());
+        for (size_t i = 0; i < connection_matrix.size(); ++i)
+        {
+            for (size_t j = 0; j < connection_matrix[i].size(); ++j)
+            {
+                if (connection_matrix[i][j])
+                {
+                    Graph::WeightType weight = connection_matrix[i][j];
+                    connection_list[i].emplace_back(i, j, weight);
+                }
+            }
+        }
+        return connection_list;
+    }
+
+    Graph::ListOfEdges
+        Graph::ConnectionListToListOfEdges
         (const ConnectionList & connection_list)
-{
-    ListOfEdges list_of_edges;
-    for (size_t i = 0; i < connection_list.size(); ++i)
     {
-        for (size_t j = 0; j < connection_list[i].size(); ++j)
+        ListOfEdges list_of_edges;
+        for (size_t i = 0; i < connection_list.size(); ++i)
         {
-            int from = connection_list[i][j].from;
-            int to = connection_list[i][j].to;
-            Graph::WeightType weight = connection_list[i][j].weight;
-            list_of_edges.emplace_back(from, to, weight);
-        }
-    }
-    return list_of_edges;
-}
-
-algo::Graph::ListOfEdges 
-    algo::Graph::ConnectionMatrixToListOfEdges
-        (const ConnectionMatrix & connection_matrix)
-{
-    ListOfEdges list_of_edges;
-    for (size_t i = 0; i < connection_matrix.size(); ++i)
-    {
-        for (size_t j = i; j < connection_matrix[i].size(); ++j)
-        {
-            if (connection_matrix[i][j])
+            for (size_t j = 0; j < connection_list[i].size(); ++j)
             {
-                Graph::WeightType weight = connection_matrix[i][j];
-                list_of_edges.emplace_back(i, j, weight);
+                int from = connection_list[i][j].from;
+                int to = connection_list[i][j].to;
+                Graph::WeightType weight = connection_list[i][j].weight;
+                list_of_edges.emplace_back(from, to, weight);
             }
         }
+        return list_of_edges;
     }
-    return list_of_edges;
-}
 
-algo::Graph::ConnectionMatrix
-    algo::Graph::ListOfEdgesToConnectionMatrix
+    Graph::ListOfEdges
+        Graph::ConnectionMatrixToListOfEdges
+        (const ConnectionMatrix & connection_matrix)
+    {
+        ListOfEdges list_of_edges;
+        for (size_t i = 0; i < connection_matrix.size(); ++i)
+        {
+            for (size_t j = i; j < connection_matrix[i].size(); ++j)
+            {
+                if (connection_matrix[i][j])
+                {
+                    Graph::WeightType weight = connection_matrix[i][j];
+                    list_of_edges.emplace_back(i, j, weight);
+                }
+            }
+        }
+        return list_of_edges;
+    }
+
+    Graph::ConnectionMatrix
+        Graph::ListOfEdgesToConnectionMatrix
         (const ListOfEdges & list_of_edges, bool oriented)
-{
-    size_t max_size = 0;
-    for (const auto& edge : list_of_edges)
     {
-        max_size = algo::max<size_t>(edge.from + 1,
-                                     edge.to + 1,
-                                     max_size);
-    }
-    ConnectionMatrix connection_matrix = 
-                    algo::createMatrix<Graph::WeightType>
-                            (max_size, max_size);
+        size_t max_size = 0;
+        for (const auto& edge : list_of_edges)
+        {
+            max_size = max<size_t>(edge.from + 1,
+                edge.to + 1,
+                max_size);
+        }
+        ConnectionMatrix connection_matrix =
+            createMatrix<Graph::WeightType>
+            (max_size, max_size);
 
-    for (const auto& edge : list_of_edges)
-    {
-        int from = edge.from;
-        int to = edge.to;
-        WeightType w = edge.weight;
-        connection_matrix[from][to] = w;
-        if(!oriented)
-            connection_matrix[to][from] = w;
+        for (const auto& edge : list_of_edges)
+        {
+            int from = edge.from;
+            int to = edge.to;
+            WeightType w = edge.weight;
+            connection_matrix[from][to] = w;
+            if (!oriented)
+                connection_matrix[to][from] = w;
+        }
+        return connection_matrix;
     }
-    return connection_matrix;
-}
 
-algo::Graph::ConnectionMatrix 
-    algo::Graph::ConnectionListToConnectionMatrix
+    Graph::ConnectionMatrix
+        Graph::ConnectionListToConnectionMatrix
         (const ConnectionList & connection_list)
-{
-    ConnectionMatrix connection_matrix =
-       algo::createMatrix<Graph::WeightType>
-          (connection_list.size(), connection_list.size());
-    for (size_t i = 0; i < connection_list.size(); ++i)
     {
-        for (size_t j = 0; j < connection_list[i].size(); ++j)
+        ConnectionMatrix connection_matrix =
+            createMatrix<Graph::WeightType>
+            (connection_list.size(), connection_list.size());
+        for (size_t i = 0; i < connection_list.size(); ++i)
         {
-            int to = connection_list[i][j].to;
-            Graph::WeightType weight = connection_list[i][j].weight;
-            connection_matrix[i][to] = weight;
-        }
-    }
-    return connection_matrix;
-}
-#pragma warning(push)
-#pragma warning(disable: 4244) // possible loss of data
-algo::Graph::ListOfEdges 
-    algo::Graph::RandomGraph
-        (int number_of_vertices, int number_of_edges, WeightType weight)
-{
-    ListOfEdges list_of_edges;
-    for (int i = 0; i < number_of_edges; i++)
-    {
-        Graph::VertexType from = algo::random(0, number_of_vertices);
-        Graph::VertexType to = algo::random(0, number_of_vertices);
-        while (from == to)
-        {
-            to = algo::random(0, number_of_vertices);
-        }
-        if (from > to)
-        {
-            std::swap(from, to);
-        }
-        // change 2-100
-        Graph::WeightType w = algo::random(1, weight);
-        list_of_edges.emplace_back(from, to, w);
-    }
-    return list_of_edges;
-}
-void
-    algo::Graph::UniqifyListOfEdges
-        (ListOfEdges& list_of_edges)
-{
-    std::sort(list_of_edges.begin(), list_of_edges.end(),
-        [](const Edge& first, const Edge& second)
-    {
-        if (first.from != second.from)
-            return first.from < second.from;
-        if (first.to != second.to)
-            return first.to < second.to;
-        return first.weight < second.weight;
-    }
-    );
-    list_of_edges.erase(
-        std::unique(list_of_edges.begin(), list_of_edges.end(),
-            [](const Edge& first, const Edge& second)
+            for (size_t j = 0; j < connection_list[i].size(); ++j)
             {
-                return first.from == second.from &&
-                    first.to == second.to;
+                int to = connection_list[i][j].to;
+                Graph::WeightType weight = connection_list[i][j].weight;
+                connection_matrix[i][to] = weight;
             }
-    ), list_of_edges.end());
+        }
+        return connection_matrix;
+    }
+    void 
+        Graph::MakeUndirected
+            (ConnectionMatrix & connection_matrix)
+    {
+        for (size_t i = 0; i < connection_matrix.size(); ++i)
+        {
+            for (size_t j = 0; j < connection_matrix[i].size(); ++j)
+            {
+                if (connection_matrix[i][j])
+                {
+                    connection_matrix[j][i] = connection_matrix[i][j];
+                }
+            }
+        }
+    }
+    void
+        Graph::MakeUndirected
+            (ConnectionList & connection_list)
+    {
+        ConnectionList new_connection_list = connection_list;
+        for (size_t i = 0; i < connection_list.size(); ++i)
+        {
+            for (size_t j = 0; j < connection_list[i].size(); ++j)
+            {
+                Edge edge;
+                edge.from = connection_list[i][j].to;
+                edge.to = connection_list[i][j].from;
+                edge.weight = connection_list[i][j].weight;
+                new_connection_list[edge.from].push_back(edge);
+            }
+        }
+        for (size_t i = 0; i < new_connection_list.size(); ++i)
+        {
+            std::sort(new_connection_list[i].begin(), 
+                      new_connection_list[i].end());
+
+            auto it = std::unique(new_connection_list[i].begin(),
+                                  new_connection_list[i].end());
+
+            new_connection_list[i].erase(it, new_connection_list[i].end());
+        }
+        connection_list = new_connection_list;
+    }
+    void
+        Graph::MakeUndirected
+            (ListOfEdges & list_of_edges)
+    {
+        ListOfEdges new_list_of_edges = list_of_edges;
+        for (size_t i = 0; i < list_of_edges.size(); ++i)
+        {
+            Edge edge = list_of_edges[i];
+            std::swap(edge.to, edge.from);
+            new_list_of_edges.push_back(edge);
+        }
+        Graph::UniqifyListOfEdges(new_list_of_edges);
+        list_of_edges = new_list_of_edges;
+    }
+#pragma warning(push)
+#pragma warning(disable: 4244) 
+    // possible loss of data
+    Graph::ListOfEdges
+        Graph::RandomGraph
+            (int number_of_vertices, int number_of_edges, WeightType weight)
+    {
+        ListOfEdges list_of_edges;
+        for (int i = 0; i < number_of_edges; i++)
+        {
+            Graph::VertexType from = random(0, number_of_vertices);
+            Graph::VertexType to = random(0, number_of_vertices);
+            while (from == to)
+            {
+                to = random(0, number_of_vertices);
+            }
+            if (from > to)
+            {
+                std::swap(from, to);
+            }
+            // change 2-100
+            Graph::WeightType w = random(1, weight);
+            list_of_edges.emplace_back(from, to, w);
+        }
+        return list_of_edges;
+    }
+    void
+        Graph::UniqifyListOfEdges
+            (ListOfEdges& list_of_edges)
+    {
+        std::sort(list_of_edges.begin(), list_of_edges.end());
+        list_of_edges.erase(
+            std::unique(list_of_edges.begin(), list_of_edges.end()
+        ), list_of_edges.end());
 
 
-}
+    }
 #pragma warning(pop)
 
-algo::Graph::Edge::Edge(int from, int to, int weight)
-    : from(from)
-    , to(to)
-    , weight(weight)
-{}
+    Graph::Edge::Edge(int from, int to, int weight)
+        : from(from)
+        , to(to)
+        , weight(weight)
+    {}
 
-//algo::Graph::Edge::Edge(int to, int weight)
-//    : Edge(-1, to, weight)
-//{
-//}
+    bool Graph::Edge::operator<(const Edge & other)
+    {
+        if (this->from != other.from)
+            return this->from < other.from;
+        if (this->to != other.to)
+            return this->to < other.to;
+        return this->weight < other.weight;
+    }
 
-algo::Graph::Edge::Edge()
-    : Edge(-1,-1,-1)
-{
-}
+    bool Graph::Edge::operator==(const Edge & other)
+    {
+        return this->from == other.from &&
+                this->to == other.to;
+    }
 
-bool 
-    algo::operator==
+    //Graph::Edge::Edge(int to, int weight)
+    //    : Edge(-1, to, weight)
+    //{
+    //}
+
+    Graph::Edge::Edge()
+        : Edge(-1, -1, -1)
+    {
+    }
+
+    bool
+        operator==
         (const Graph::Edge & first, const Graph::Edge & second)
-{
-    return first.from == second.from &&
-        first.to == second.to &&
-        first.weight == second.weight;
+    {
+        return first.from == second.from &&
+            first.to == second.to &&
+            first.weight == second.weight;
+    }
+
+
 }
+
+namespace algo
+{
+
+    class Toposort
+    {
+        using ConnectionList = Graph::ConnectionList;
+        using ConnectionMatrix = Graph::ConnectionMatrix;
+        using ListOfEdges = Graph::ListOfEdges;
+        using VertexType = Graph::VertexType;
+
+        using VertexState = Graph::VertexState;
+
+        std::vector<VertexType> m_sorted_vertices;
+        std::vector<char> m_used;
+
+        void dfs(const ConnectionList & graph, int vertex);
+
+    public:
+        Toposort(const ConnectionList & graph);
+
+        Toposort(const ConnectionMatrix& graph);
+
+        Toposort(const ListOfEdges& graph);
+
+        std::vector<VertexType> GetNewVerticesIndices() const;
+    };
+
+}
+#pragma once
+#include<vector>
+namespace algo
+{
+    class CycleChecker
+    {
+        using ConnectionList = Graph::ConnectionList;
+        using ConnectionMatrix = Graph::ConnectionMatrix;
+        using ListOfEdges = Graph::ListOfEdges;
+        using VertexType = Graph::VertexType;
+
+        using VertexState = Graph::VertexState;
+
+        std::vector<VertexState> m_vertices_state;
+
+        std::vector<VertexType> m_parents;
+        int m_cycle_start, m_cycle_end;
+        
+        
+        bool m_cycle_found;
+        std::vector<VertexType> m_cycle;
+
+    private:
+        bool dfs(const ConnectionList & graph, int vertex);
+    public:
+        CycleChecker(const ConnectionList & graph);
+
+        CycleChecker(const ConnectionMatrix& graph);
+
+        CycleChecker(const ListOfEdges& graph);
+
+        bool HasCycle() const;
+        std::vector<VertexType> GetCycle() const;
+
+
+    };
+}
+#include "..\..\include\Graph\CycleChecker.h"
+#include "..\..\include\Graph\CycleChecker.h"
+#include<algorithm>
+namespace algo
+{
+    bool
+        CycleChecker::dfs
+            (const ConnectionList & graph, int vertex)
+    {
+        m_vertices_state[vertex] = VertexState::Visited;
+        for (size_t i = 0; i < graph[vertex].size(); ++i)
+        {
+            int to = graph[vertex][i].to;
+            if (m_vertices_state[to] == VertexState::NotVisited)
+            {
+                m_parents[to] = vertex;
+                if (dfs(graph, to))
+                {
+                    return true;
+                }
+            }
+            else if (m_vertices_state[to] == VertexState::Visited)
+            {
+                m_cycle_start = to;
+                m_cycle_end = vertex;
+                return true;
+            }
+        }
+        m_vertices_state[vertex] = VertexState::Exited;
+        return false;
+    }
+
+    CycleChecker::CycleChecker
+        (const ConnectionList & graph)
+            : m_vertices_state(graph.size(), VertexState::NotVisited)
+            , m_cycle_start(-1)
+            , m_cycle_end(-1)
+            , m_parents(graph.size(), -1)
+            , m_cycle_found(false)
+            , m_cycle(0)
+    {
+        for (size_t i = 0; i < graph.size(); i++)
+        {
+            if (m_vertices_state[i] == VertexState::NotVisited &&
+                dfs(graph, i))
+            {
+                m_cycle_found = true;
+                for (int v = m_cycle_end; v != m_cycle_start; v = m_parents[v])
+                {
+                    m_cycle.push_back(v);
+                }
+                m_cycle.push_back(m_cycle_start);
+                std::reverse(m_cycle.begin(), m_cycle.end());
+                break;
+            }
+        }
+    }
+
+    CycleChecker::CycleChecker
+        (const ConnectionMatrix & graph)
+            : CycleChecker(Graph::ConnectionMatrixToConnectionList(graph))
+    {
+    }
+
+    CycleChecker::CycleChecker
+        (const ListOfEdges & graph)
+            : CycleChecker(Graph::ListOfEdgesToConnectionList(graph))
+    {
+    }
+
+    bool CycleChecker::HasCycle() const
+    {
+        return m_cycle_found;
+    }
+
+    std::vector<CycleChecker::VertexType> CycleChecker::GetCycle() const
+    {
+        return m_cycle;
+    }
+
+
+}
+
+#include<exception>
+#include<algorithm>
+namespace algo
+{
+    void Toposort::dfs(const ConnectionList & graph, int vertex)
+    {
+        m_used[vertex] = true;
+        for (size_t i = 0; i < graph[vertex].size(); ++i)
+        {
+            int to = graph[vertex][i].to;
+            if (!m_used[to])
+            {
+                dfs(graph, to);
+            }
+        }
+        m_sorted_vertices.push_back(vertex);
+    }
+
+    Toposort::Toposort(const ConnectionList & graph)
+        : m_sorted_vertices(0)
+        , m_used(graph.size())
+    {
+        CycleChecker cycle_checker(graph);
+        if (cycle_checker.HasCycle())
+        {
+            throw std::logic_error("Graph must be acyclic for toposort");
+        }
+        for (int i = 0; i < m_used.size(); ++i)
+        {
+            if (!m_used[i])
+            {
+                dfs(graph, i);
+            }
+        }
+        std::reverse(m_sorted_vertices.begin(), m_sorted_vertices.end());
+    }
+
+    Toposort::Toposort(const ConnectionMatrix & graph)
+        : Toposort(Graph::ConnectionMatrixToConnectionList(graph))
+    {
+    }
+    Toposort::Toposort(const ListOfEdges & graph)
+        : Toposort(Graph::ListOfEdgesToConnectionList(graph))
+    {
+    }
+    std::vector<Graph::VertexType> Toposort::GetNewVerticesIndices() const
+    {
+        return m_sorted_vertices;
+    }
+}
+
+
 
 using namespace std;
+
+
 
 int main()
 {
     int a, b;
     cin >> a >> b;
-    cout << a + b << endl;
+    cout << a + b;
 }
 
 

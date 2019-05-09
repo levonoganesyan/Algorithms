@@ -9,12 +9,12 @@ namespace algo
             (const ConnectionList & graph, int vertex)
     {
         m_vertices_state[vertex] = VertexState::Visited;
-        for (size_t i = 0; i < graph[v].size(); ++i)
+        for (size_t i = 0; i < graph[vertex].size(); ++i)
         {
-            int to = graph[v][i].to;
+            int to = graph[vertex][i].to;
             if (m_vertices_state[to] == VertexState::NotVisited)
             {
-                p[to] = vertex;
+                m_parents[to] = vertex;
                 if (dfs(graph, to))
                 {
                     return true;
@@ -42,7 +42,7 @@ namespace algo
     {
         for (size_t i = 0; i < graph.size(); i++)
         {
-            if (m_vertices_state[i] != VertexState::NotVisited &&
+            if (m_vertices_state[i] == VertexState::NotVisited &&
                 dfs(graph, i))
             {
                 m_cycle_found = true;
@@ -74,7 +74,7 @@ namespace algo
         return m_cycle_found;
     }
 
-    bool CycleChecker::GetCycle() const
+    std::vector<CycleChecker::VertexType> CycleChecker::GetCycle() const
     {
         return m_cycle;
     }

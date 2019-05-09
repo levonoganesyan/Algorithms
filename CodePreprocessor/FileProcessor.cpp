@@ -46,6 +46,9 @@ void FileProcessor::Process() const
             continue;
         }
         std::wstring h_name = sm[1];
+        std::replace(std::begin(h_name),
+                    std::end(h_name),
+                    L'\\', L'/');
         std::wstring h_path = mp_file_searcher->CheckForFile(h_name);
         if (!h_path.empty())
         {

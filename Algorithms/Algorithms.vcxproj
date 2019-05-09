@@ -98,7 +98,8 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)$(Configuration)\CodePreprocessor.exe Source.cpp ./include ./src</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,7 +116,8 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)$(Platform)/$(Configuration)/CodePreprocessor.exe Source.cpp ./include ./src</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>lib /NOLOGO /OUT:"$(TargetPath).lib" "$(ProjectDir)/$(Configuration)*.obj"</Command>
@@ -174,11 +176,12 @@
     <ClInclude Include="include\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\Graph\CycleChecker.cpp" />
     <ClCompile Include="src\Geometry\Geometry.cpp" />
+    <ClCompile Include="src\Graph\CycleChecker.cpp" />
     <ClCompile Include="src\Graph\Dijkstra.cpp" />
     <ClCompile Include="src\Graph\FloydWarshall.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
+    <ClCompile Include="src\Graph\Toposort.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

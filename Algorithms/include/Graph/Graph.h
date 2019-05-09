@@ -17,7 +17,8 @@ namespace algo
             WeightType weight;
             Edge();
             Edge(int from, int to, int weight);
-            // bool operator==(const Edge& other);
+            bool operator< (const Edge& other);
+            bool operator==(const Edge& other);
             // Edge(int to, int weight = 1);
         };
 
@@ -62,6 +63,18 @@ namespace algo
         static ConnectionMatrix
             ConnectionListToConnectionMatrix
                 (const ConnectionList& connection_list);
+
+        static void
+            MakeUndirected
+            (ConnectionMatrix& connection_matrix);
+
+        static void
+            MakeUndirected
+            (ConnectionList& connection_list);
+
+        static void
+            MakeUndirected
+            (ListOfEdges& list_of_edges);
 
         static ListOfEdges
             RandomGraph(int number_of_vertices = 1000,

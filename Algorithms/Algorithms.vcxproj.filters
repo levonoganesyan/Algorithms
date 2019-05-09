@@ -74,8 +74,11 @@
     <ClCompile Include="src\Graph\Graph.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
-    <ClCompile Include="include\Graph\CycleChecker.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Graph\CycleChecker.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\Toposort.cpp">
+      <Filter>Resource Files\Graph</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

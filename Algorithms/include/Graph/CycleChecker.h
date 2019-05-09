@@ -31,7 +31,7 @@ namespace algo
         CycleChecker(const ListOfEdges& graph);
 
         bool HasCycle() const;
-        bool GetCycle() const;
+        std::vector<VertexType> GetCycle() const;
 
 
     };
