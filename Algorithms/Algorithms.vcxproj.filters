@@ -30,35 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\FloydWarshall.cpp">
-      <Filter>Resource Files\Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Dijkstra.cpp">
-      <Filter>Resource Files\Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graph.cpp">
-      <Filter>Resource Files\Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Geometry.cpp">
-      <Filter>Resource Files\Geometry</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\Dijkstra.h">
-      <Filter>Header Files\Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="include\FloydWarshall.h">
-      <Filter>Header Files\Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="include\FordBellman.h">
-      <Filter>Header Files\Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graph.h">
-      <Filter>Header Files\Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Geometry.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
     <ClInclude Include="include\Utils.hpp">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
@@ -68,5 +39,34 @@
     <ClInclude Include="include\Utils.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="include\Graph\Dijkstra.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graph\FloydWarshall.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graph\FordBellman.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graph\Graph.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Geometry\Geometry.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Geometry\Geometry.cpp">
+      <Filter>Resource Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\Dijkstra.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\FloydWarshall.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\Graph.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
