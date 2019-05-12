@@ -76,6 +76,18 @@ namespace algo
             MakeUndirected
             (ListOfEdges& list_of_edges);
 
+        static size_t
+            GetSize
+            (const ConnectionMatrix& connection_matrix);
+
+        static size_t
+            GetSize
+            (const ConnectionList& connection_list);
+
+        static size_t
+            GetSize
+            (const ListOfEdges& list_of_edges);
+
         static ListOfEdges
             RandomGraph(int number_of_vertices = 1000,
                         int number_of_edges = 100000,

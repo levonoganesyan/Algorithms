@@ -181,6 +181,25 @@ namespace algo
         Graph::UniqifyListOfEdges(new_list_of_edges);
         list_of_edges = new_list_of_edges;
     }
+    size_t Graph::GetSize(const ConnectionMatrix & connection_matrix)
+    {
+        return connection_matrix.size();
+    }
+    size_t Graph::GetSize(const ConnectionList & connection_list)
+    {
+        return connection_list.size();
+    }
+    size_t Graph::GetSize(const ListOfEdges & list_of_edges)
+    {
+        size_t list_size = 0;
+        for (size_t i = 0; i < list_of_edges.size(); ++i)
+        {
+            list_size = algo::max<size_t>(list_size,
+                                          list_of_edges[i].to + 1,
+                                          list_of_edges[i].from + 1);
+        }
+        return list_size;
+    }
 #pragma warning(push)
 #pragma warning(disable: 4244) // possible loss of data
     Graph::ListOfEdges

@@ -172,6 +172,7 @@
     <ClInclude Include="include\Graph\FloydWarshall.h" />
     <ClInclude Include="include\Graph\FordBellman.h" />
     <ClInclude Include="include\Graph\Graph.h" />
+    <ClInclude Include="include\Graph\Kruskal.h" />
     <ClInclude Include="include\Graph\Toposort.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="src\Graph\DSU.cpp" />
     <ClCompile Include="src\Graph\FloydWarshall.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
+    <ClCompile Include="src\Graph\Kruskal.cpp" />
     <ClCompile Include="src\Graph\Toposort.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
