@@ -3,6 +3,26 @@
 #include "Defines.h"
 namespace algo
 {
+
+    bool 
+        Graph::WeightLess::operator()
+        (const Edge& first, const Edge& second) const
+    {
+        if (first.weight != second.weight)
+            return first.weight < second.weight;
+        return first < second;
+    }
+    bool 
+        Graph::WeightGreater::operator()
+        (const Edge& first, const Edge& second) const
+    {
+        if (first.weight != second.weight)
+            return first.weight > second.weight;
+        return second < first;
+    }
+    
+
+
     Graph::ConnectionList
         Graph::ListOfEdgesToConnectionList
         (Graph::ListOfEdges list_of_edges, bool oriented)
@@ -143,7 +163,8 @@ namespace algo
         Graph::MakeUndirected
             (ConnectionList & connection_list)
     {
-        ConnectionList new_connection_list = connection_list;
+        std::vector<std::vector<Edge>> new_connection_list = connection_list;
+        
         for (size_t i = 0; i < connection_list.size(); ++i)
         {
             for (size_t j = 0; j < connection_list[i].size(); ++j)
@@ -166,6 +187,7 @@ namespace algo
             new_connection_list[i].erase(it, new_connection_list[i].end());
         }
         connection_list = new_connection_list;
+        
     }
     void
         Graph::MakeUndirected
@@ -238,13 +260,17 @@ namespace algo
     }
 #pragma warning(pop)
 
-    Graph::Edge::Edge(int from, int to, int weight)
+    Graph::Edge::Edge(VertexType from, VertexType to, WeightType weight)
         : from(from)
         , to(to)
         , weight(weight)
     {}
 
-    bool Graph::Edge::operator<(const Edge & other)
+    Graph::Edge::Edge(VertexType from, VertexType to)
+        : Edge(from, to, 1)
+    {}
+
+    bool Graph::Edge::operator<(const Edge & other) const
     {
         if (this->from != other.from)
             return this->from < other.from;
@@ -256,7 +282,7 @@ namespace algo
     bool Graph::Edge::operator==(const Edge & other)
     {
         return this->from == other.from &&
-                this->to == other.to;
+            this->to == other.to;
     }
 
     //Graph::Edge::Edge(int to, int weight)

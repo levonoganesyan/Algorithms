@@ -18,7 +18,7 @@ namespace algo
     public:
         Kruskal(const ConnectionList & graph);
         Kruskal(const ConnectionMatrix& graph);
-        Kruskal(ListOfEdges graph);
+        Kruskal(const ListOfEdges& graph);
 
         std::vector<Graph::Edge> GetTree() const;
         Graph::WeightType GetCost() const;

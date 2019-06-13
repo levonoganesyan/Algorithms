@@ -5,6 +5,7 @@
 #include"Graph/Toposort.h"
 #include"Graph/CycleChecker.h"
 #include"Graph/FloydWarshall.h"
+#include"Graph/Kruskal.h"
 #include<algorithm>
 
 TEST(GraphConvertTest, GraphTest)
@@ -216,6 +217,28 @@ TEST(DSUTest, GraphTest)
     dsu.Union(4, 1);
     std::vector<algo::Graph::VertexType> etalon = { 0, 1, 2, 3, 4, 5 };
     EXPECT_EQ(dsu.GetGroup(0), etalon);
+}
+
+TEST(KruskalTest, GraphTest)
+{
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1, 100},
+            {1, 2, 100},
+            {1, 5, 10},
+            {2, 3, 10},
+            {2, 4, 5},
+            {2, 5, 100},
+            {2, 6, 10},
+            {3, 4, 5},
+            {4, 6, 15},
+            {5, 6, 10},
+        };
+        algo::Graph::MakeUndirected(edges_graph);
+        algo::Kruskal kruskal(edges_graph);
+        EXPECT_EQ(kruskal.GetCost(), 140);
+        
+    }
 }
 
 

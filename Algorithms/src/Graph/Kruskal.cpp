@@ -10,10 +10,11 @@ namespace algo
         : Kruskal(Graph::ConnectionMatrixToConnectionList(graph))
     {
     }
-    Kruskal::Kruskal(ListOfEdges graph)
+    Kruskal::Kruskal(const ListOfEdges& graph)
         : m_dsu(Graph::GetSize(graph))
     {
-        std::set<Graph::Edge> all_edges(graph.begin(), graph.end());
+        std::set<Graph::WeightType, Graph::Edge> all_edges;
+
         size_t number_of_edges = graph.size();
         for (size_t i = 0; i < number_of_edges; ++i)
         {
@@ -25,7 +26,7 @@ namespace algo
 
             if (m_dsu.GetParent(from) != m_dsu.GetParent(to))
             {
-                m_cost + weight;
+                m_cost += weight;
                 m_spanning_tree.push_back(e);
                 m_dsu.Union(from, to);
             }

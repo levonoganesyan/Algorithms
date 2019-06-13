@@ -16,8 +16,11 @@ namespace algo
             VertexType to;
             WeightType weight;
             Edge();
-            Edge(int from, int to, int weight);
-            bool operator< (const Edge& other);
+            Edge(VertexType from, VertexType to, WeightType weight);
+            Edge(VertexType from, VertexType to);
+            bool operator< (const Edge& other) const;
+            // TODO: investigate why adding const to operator==
+            //       cause compile error
             bool operator==(const Edge& other);
             // Edge(int to, int weight = 1);
         };
@@ -38,6 +41,21 @@ namespace algo
             ConnectionMatrix,
             ListOfEdges,
         };*/
+
+        class WeightLess
+        {
+        public:
+            constexpr bool 
+                operator()
+                    (const Edge& first, const Edge& second) const;
+        };
+        class WeightGreater
+        {
+        public:
+            constexpr bool 
+                operator()
+                    (const Edge& first, const Edge& second) const;
+        };
 
 
         static ConnectionList
