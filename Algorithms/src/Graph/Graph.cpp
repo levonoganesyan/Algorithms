@@ -12,7 +12,7 @@ namespace algo
             return first.weight < second.weight;
         return first < second;
     }
-    bool 
+    bool
         Graph::WeightGreater::operator()
         (const Edge& first, const Edge& second) const
     {

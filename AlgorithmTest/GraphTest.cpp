@@ -234,10 +234,18 @@ TEST(KruskalTest, GraphTest)
             {4, 6, 15},
             {5, 6, 10},
         };
-        algo::Graph::MakeUndirected(edges_graph);
+        //algo::Graph::MakeUndirected(edges_graph);
         algo::Kruskal kruskal(edges_graph);
         EXPECT_EQ(kruskal.GetCost(), 140);
-        
+        algo::Graph::ListOfEdges etalon = {
+            {0, 1, 100},
+            {1, 5, 10},
+            {2, 4, 5},
+            {2, 6, 10},
+            {3, 4, 5},
+            {5, 6, 10},
+        };
+        EXPECT_EQ(kruskal.GetTree(), etalon);
     }
 }
 

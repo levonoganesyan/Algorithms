@@ -6,13 +6,15 @@ namespace algo
     class Kruskal
     {
     private:
-        algo::DSU m_dsu;
-        Graph::WeightType m_cost;
-        std::vector<Graph::Edge> m_spanning_tree;
-        
+
         using ConnectionList = Graph::ConnectionList;
         using ConnectionMatrix = Graph::ConnectionMatrix;
         using ListOfEdges = Graph::ListOfEdges;
+
+
+        algo::DSU m_dsu;
+        Graph::WeightType m_cost;
+        ListOfEdges m_spanning_tree;
 
 
     public:

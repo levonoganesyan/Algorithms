@@ -179,6 +179,31 @@ namespace algo
             ListOfEdges,
         };*/
 
+        class WeightLess
+        {
+        public:
+            typedef Edge value_type;
+            typedef Edge first_argument_type;
+            typedef Edge second_argument_type;
+            typedef bool result_type;
+            
+            bool
+                operator()
+                    (const Edge& first, const Edge& second) const;
+        };
+        class WeightGreater
+        {
+        public:
+            typedef Edge value_type;
+            typedef Edge first_argument_type;
+            typedef Edge second_argument_type;
+            typedef bool result_type;
+
+            bool
+                operator()
+                    (const Edge& first, const Edge& second) const;
+        };
+
 
         static ConnectionList
             ListOfEdgesToConnectionList
@@ -326,6 +351,26 @@ namespace algo
 
 namespace algo
 {
+
+    bool 
+        Graph::WeightLess::operator()
+        (const Edge& first, const Edge& second) const
+    {
+        if (first.weight != second.weight)
+            return first.weight < second.weight;
+        return first < second;
+    }
+    bool
+        Graph::WeightGreater::operator()
+        (const Edge& first, const Edge& second) const
+    {
+        if (first.weight != second.weight)
+            return first.weight > second.weight;
+        return second < first;
+    }
+    
+
+
     Graph::ConnectionList
         Graph::ListOfEdgesToConnectionList
         (Graph::ListOfEdges list_of_edges, bool oriented)

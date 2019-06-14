@@ -45,14 +45,24 @@ namespace algo
         class WeightLess
         {
         public:
-            constexpr bool 
+            typedef Edge value_type;
+            typedef Edge first_argument_type;
+            typedef Edge second_argument_type;
+            typedef bool result_type;
+            
+            bool
                 operator()
                     (const Edge& first, const Edge& second) const;
         };
         class WeightGreater
         {
         public:
-            constexpr bool 
+            typedef Edge value_type;
+            typedef Edge first_argument_type;
+            typedef Edge second_argument_type;
+            typedef bool result_type;
+
+            bool
                 operator()
                     (const Edge& first, const Edge& second) const;
         };

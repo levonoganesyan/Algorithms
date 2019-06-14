@@ -12,8 +12,10 @@ namespace algo
     }
     Kruskal::Kruskal(const ListOfEdges& graph)
         : m_dsu(Graph::GetSize(graph))
+        , m_cost(0)
     {
-        std::set<Graph::WeightType, Graph::Edge> all_edges;
+        std::set<Graph::Edge, Graph::WeightLess> 
+                all_edges(graph.begin(), graph.end());
 
         size_t number_of_edges = graph.size();
         for (size_t i = 0; i < number_of_edges; ++i)
@@ -31,6 +33,7 @@ namespace algo
                 m_dsu.Union(from, to);
             }
         }
+        std::sort(m_spanning_tree.begin(), m_spanning_tree.end());
     }
     std::vector<Graph::Edge> Kruskal::GetTree() const
     {
