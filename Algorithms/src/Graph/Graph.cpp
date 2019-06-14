@@ -163,7 +163,7 @@ namespace algo
         Graph::MakeUndirected
             (ConnectionList & connection_list)
     {
-        std::vector<std::vector<Edge>> new_connection_list = connection_list;
+        ConnectionList new_connection_list = connection_list;
         
         for (size_t i = 0; i < connection_list.size(); ++i)
         {

@@ -6,6 +6,7 @@
 #include"Graph/CycleChecker.h"
 #include"Graph/FloydWarshall.h"
 #include"Graph/Kruskal.h"
+#include"Graph/Components.h"
 #include<algorithm>
 
 TEST(GraphConvertTest, GraphTest)
@@ -245,9 +246,51 @@ TEST(KruskalTest, GraphTest)
             {3, 4, 5},
             {5, 6, 10},
         };
+        EXPECT_EQ(algo::Graph::GetSize(kruskal.GetTree()),
+            algo::Graph::GetSize(etalon));
+
         EXPECT_EQ(kruskal.GetTree(), etalon);
     }
 }
+
+TEST(ComponentsTest, GraphTest)
+{
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1, 1},
+            {2, 3, 1},
+        };
+        algo::Graph::MakeUndirected(edges_graph);
+        algo::Components components(edges_graph);
+        EXPECT_EQ(components.GetCount(), 2);
+
+        std::vector<algo::Graph::VertexType> etalon = { 0, 1 };
+        EXPECT_EQ(components.GetComponent(0), etalon);
+        etalon = { 2, 3 };
+        EXPECT_EQ(components.GetComponent(1), etalon);
+    }
+    {
+        algo::Graph::ConnectionList connection_list = {
+            {{0, 1, 1}},
+            {{1, 0, 1}},
+            {{2, 3, 1}},
+            {{3, 2, 1}},
+            {},
+        };
+        algo::Graph::MakeUndirected(connection_list);
+        algo::Components components(connection_list);
+        EXPECT_EQ(components.GetCount(), 3);
+
+        std::vector<algo::Graph::VertexType> etalon = { 0, 1 };
+        EXPECT_EQ(components.GetComponent(0), etalon);
+        etalon = { 2, 3 };
+        EXPECT_EQ(components.GetComponent(1), etalon);
+        etalon = { 4 };
+        EXPECT_EQ(components.GetComponent(2), etalon);
+    }
+}
+
+
 
 
 
