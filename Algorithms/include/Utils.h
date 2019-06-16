@@ -43,7 +43,16 @@ namespace algo
     using Matrix = std::vector<std::vector<T>>;
 
     template <typename T>
-    Matrix<T> createMatrix(size_t n, size_t m, T etalon = T());
+    Matrix<T> CreateMatrix(size_t n, T etalon = T());
+
+    template <typename T>
+    Matrix<T> CreateMatrix(size_t n, size_t m, T etalon = T());
+
+    template <typename T>
+    void CreateMatrix(Matrix<T>& matrix, size_t n, T etalon = T());
+
+    template <typename T>
+    void CreateMatrix(Matrix<T>& matrix, size_t n, size_t m, T etalon = T());
 
     double random(double min, double max);
 }

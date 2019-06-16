@@ -174,7 +174,7 @@
     <ClInclude Include="include\Graph\FordBellman.h" />
     <ClInclude Include="include\Graph\Graph.h" />
     <ClInclude Include="include\Graph\Kruskal.h" />
-    <ClInclude Include="include\Graph\StrongComponent.h" />
+    <ClInclude Include="include\Graph\StrongComponents.h" />
     <ClInclude Include="include\Graph\Toposort.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />
@@ -188,7 +188,7 @@
     <ClCompile Include="src\Graph\FloydWarshall.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
     <ClCompile Include="src\Graph\Kruskal.cpp" />
-    <ClCompile Include="src\Graph\StrongComponent.cpp" />
+    <ClCompile Include="src\Graph\StrongComponents.cpp" />
     <ClCompile Include="src\Graph\Toposort.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -69,7 +69,7 @@
     <ClInclude Include="include\Graph\Components.h">
       <Filter>Header Files\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="include\Graph\StrongComponent.h">
+    <ClInclude Include="include\Graph\StrongComponents.h">
       <Filter>Header Files\Graph</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,7 +101,7 @@
     <ClCompile Include="src\Graph\Components.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graph\StrongComponent.cpp">
+    <ClCompile Include="src\Graph\StrongComponents.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
   </ItemGroup>

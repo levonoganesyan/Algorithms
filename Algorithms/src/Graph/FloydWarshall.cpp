@@ -16,7 +16,7 @@ namespace algo
     {
         m_distances = connection_matrix;
         size_t matrix_size = connection_matrix.size();
-        m_parents = createMatrix(matrix_size, matrix_size, -1);
+        m_parents = CreateMatrix(matrix_size, matrix_size, -1);
         for (size_t i = 0; i < matrix_size; ++i)
         {
             for (size_t j = 0; j < matrix_size; ++j)

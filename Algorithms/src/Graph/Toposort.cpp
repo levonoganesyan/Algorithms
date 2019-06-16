@@ -22,11 +22,11 @@ namespace algo
         : m_sorted_vertices(0)
         , m_used(graph.size())
     {
-        CycleChecker cycle_checker(graph);
+        /*CycleChecker cycle_checker(graph);
         if (cycle_checker.HasCycle())
         {
             throw std::logic_error("Graph must be acyclic for toposort");
-        }
+        }*/
         for (int i = 0; i < m_used.size(); ++i)
         {
             if (!m_used[i])

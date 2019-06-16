@@ -36,9 +36,27 @@ namespace algo
     }
 
     template<typename T>
-    inline Matrix<T> createMatrix(size_t n, size_t m, T etalon)
+    inline Matrix<T> CreateMatrix(size_t n, T etalon)
+    {
+        return Matrix<T>(n, std::vector<T>(n, etalon));
+    }
+
+    template<typename T>
+    inline Matrix<T> CreateMatrix(size_t n, size_t m, T etalon)
     {
         return Matrix<T>(n, std::vector<T>(m, etalon));
+    }
+
+    template<typename T>
+    inline void CreateMatrix(Matrix<T>& matrix, size_t n, T etalon)
+    {
+        matrix = Matrix<T>(n, std::vector<T>(n, etalon));
+    }
+
+    template<typename T>
+    inline void CreateMatrix(Matrix<T>& matrix, size_t n, size_t m, T etalon)
+    {
+        matrix = Matrix<T>(n, std::vector<T>(m, etalon));
     }
 
     inline double random(double min, double max)

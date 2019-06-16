@@ -23,6 +23,35 @@ namespace algo
     
 
 
+    Graph::ConnectionList Graph::Reverse(const ConnectionList& graph)
+    {
+        ConnectionList new_graph(GetSize(graph));
+        for (auto& vertices : graph)
+            for (auto& neighbour : vertices)
+                new_graph[neighbour.to].emplace_back(neighbour.to, neighbour.from, neighbour.weight);
+        return new_graph;
+    }
+
+    Graph::ListOfEdges Graph::Reverse(const ListOfEdges& graph)
+    {
+        ListOfEdges new_graph; 
+        for (size_t i = 0; i < graph.size(); ++i)
+        {
+            new_graph.emplace_back(graph[i].to, graph[i].from, graph[i].weight);
+        }
+        return new_graph;
+    }
+
+    Graph::ConnectionMatrix Graph::Reverse(const ConnectionMatrix& graph)
+    {
+        ConnectionMatrix new_graph;
+        CreateMatrix(new_graph, GetSize(graph));
+        for (size_t i = 0; i < graph.size(); ++i)
+            for (size_t j = 0; j < graph[i].size(); ++j)
+                new_graph[j][i] = graph[i][j];
+        return new_graph;
+    }
+
     Graph::ConnectionList
         Graph::ListOfEdgesToConnectionList
         (Graph::ListOfEdges list_of_edges, bool oriented)
@@ -111,7 +140,7 @@ namespace algo
                 max_size);
         }
         ConnectionMatrix connection_matrix =
-            createMatrix<Graph::WeightType>
+            CreateMatrix<Graph::WeightType>
             (max_size, max_size);
 
         for (const auto& edge : list_of_edges)
@@ -131,7 +160,7 @@ namespace algo
         (const ConnectionList & connection_list)
     {
         ConnectionMatrix connection_matrix =
-            createMatrix<Graph::WeightType>
+            CreateMatrix<Graph::WeightType>
             (connection_list.size(), connection_list.size());
         for (size_t i = 0; i < connection_list.size(); ++i)
         {

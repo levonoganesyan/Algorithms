@@ -67,6 +67,17 @@ namespace algo
                     (const Edge& first, const Edge& second) const;
         };
 
+        static ConnectionList
+            Reverse
+            (const ConnectionList& graph);
+
+        static ListOfEdges
+            Reverse
+            (const ListOfEdges& graph);
+
+        static ConnectionMatrix
+            Reverse
+            (const ConnectionMatrix& graph);
 
         static ConnectionList
             ListOfEdgesToConnectionList

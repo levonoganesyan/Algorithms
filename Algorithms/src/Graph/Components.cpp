@@ -29,6 +29,11 @@ namespace algo
                 dfs(graph, i);
             }
         }
+        for (auto& component : m_components)
+        {
+            std::sort(component.begin(), component.end());
+        }
+        std::sort(m_components.begin(), m_components.end());
     }
 
     Components::Components(const ConnectionMatrix & graph)
