@@ -176,6 +176,15 @@
     <ClInclude Include="include\Graph\Kruskal.h" />
     <ClInclude Include="include\Graph\StrongComponents.h" />
     <ClInclude Include="include\Graph\Toposort.h" />
+    <ClInclude Include="include\Sortings\BubbleSort.h" />
+    <ClInclude Include="include\Sortings\CountingSort.h" />
+    <ClInclude Include="include\Sortings\HeapSort.h" />
+    <ClInclude Include="include\Sortings\InsertionSort.h" />
+    <ClInclude Include="include\Sortings\MergeSort.h" />
+    <ClInclude Include="include\Sortings\QuickSort.h" />
+    <ClInclude Include="include\Sortings\RadixSort.h" />
+    <ClInclude Include="include\Sortings\SelectionSort.h" />
+    <ClInclude Include="include\Sortings\Sorting.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />
   </ItemGroup>

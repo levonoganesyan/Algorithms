@@ -28,6 +28,9 @@
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{26bd53f2-f27e-4f28-8c12-8eb2895d5ee9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Sortings">
+      <UniqueIdentifier>{e4694ef6-26a2-475b-befe-ccf2482c60b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils.hpp">
@@ -71,6 +74,33 @@
     </ClInclude>
     <ClInclude Include="include\Graph\StrongComponents.h">
       <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\BubbleSort.h">
+      <Filter>Header Files\Sortings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\CountingSort.h">
+      <Filter>Header Files\Sortings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\HeapSort.h">
+      <Filter>Header Files\Sortings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\InsertionSort.h">
+      <Filter>Header Files\Sortings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\MergeSort.h">
+      <Filter>Header Files\Sortings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\QuickSort.h">
+      <Filter>Header Files\Sortings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\RadixSort.h">
+      <Filter>Header Files\Sortings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\SelectionSort.h">
+      <Filter>Header Files\Sortings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sortings\Sorting.h">
+      <Filter>Header Files\Sortings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
