@@ -20,9 +20,14 @@ std::vector<int> getRandomVector(int n, int min = -1000, int max = 1000)
 
 TEST(SortingTest, SortingTest)
 {
+	auto origin = getRandomVector(1000);
+	auto sorted_origin = origin;
+	std::sort(sorted_origin.begin(), sorted_origin.end());
+
 	{
-		auto first = getRandomVector(1000);
-		auto second = first;
+		auto copy = origin;
+		algo::BubbleSort(copy.begin(), copy.end());
+		
 
 	}
 }
