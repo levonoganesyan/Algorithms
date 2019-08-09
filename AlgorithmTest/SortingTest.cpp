@@ -20,7 +20,7 @@ std::vector<int> getRandomVector(int n, int min = -1000, int max = 1000)
 
 TEST(SortingTest, SortingTest)
 {
-	auto origin = getRandomVector(1000);
+	auto origin = getRandomVector(6, 0, 9);
 	auto sorted_origin = origin;
 	std::sort(sorted_origin.begin(), sorted_origin.end());
 
