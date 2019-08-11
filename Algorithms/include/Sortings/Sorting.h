@@ -14,6 +14,19 @@ namespace algo
 				if (*i < *j)
 					std::iter_swap(i, j);
 	}
+	template<typename Iter>
+	void SelectionSort(Iter first, Iter last)
+	{
+		for (Iter i = first; i != last; i = std::next(i))
+		{
+			Iter min = first;
+			for (Iter j = i; j < last; j = std::next(j))
+				if (*j < *min)
+					min = j;
+			std::iter_swap(i, min);
+
+		}
+	}
 
 
 
