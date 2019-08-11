@@ -29,4 +29,9 @@ TEST(SortingTest, SortingTest)
 		algo::BubbleSort(copy.begin(), copy.end());
 		EXPECT_EQ(copy, sorted_origin);
 	}
+	{
+		auto copy = origin;
+		algo::SelectionSort(copy.begin(), copy.end());
+		EXPECT_EQ(copy, sorted_origin);
+	}
 }
