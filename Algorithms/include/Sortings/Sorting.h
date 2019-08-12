@@ -37,6 +37,23 @@ namespace algo
 		}
 	}
 
+	template<typename Iter>
+	void InsertionSort(Iter first, Iter last)
+	{
+		for (Iter i = std::next(first); i != last; i = std::next(i))
+		{
+			Iter temp = i;
+			while(temp != first)
+			{
+				if (*temp < *std::prev(temp))
+				{
+					std::iter_swap(temp, std::prev(temp));
+				}
+				temp = std::prev(temp);
+			}
+		}
+	}
+
 
 
 
