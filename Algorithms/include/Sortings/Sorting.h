@@ -1,6 +1,7 @@
 #pragma once
 #include<iterator>
 #include<iostream>
+#include<vector>
 namespace algo
 {
 	//template<typename Iter>
@@ -43,7 +44,7 @@ namespace algo
 		for (Iter i = std::next(first); i != last; i = std::next(i))
 		{
 			Iter temp = i;
-			while(temp != first)
+			while (temp != first)
 			{
 				if (*temp < *std::prev(temp))
 				{
@@ -51,6 +52,19 @@ namespace algo
 				}
 				temp = std::prev(temp);
 			}
+		}
+	}
+
+	template<typename Iter>
+	void RadixSort(Iter first, Iter last)
+		// this sort must work only for ints
+	{
+		std::vector<int> vec(first, last); 
+		int power_of_ten = 1;
+
+		for (Iter i = first; i != last; i = std::next(i))
+		{
+
 		}
 	}
 
