@@ -61,10 +61,14 @@ namespace algo
 	{
 		std::vector<int> vec(first, last); 
 		int power_of_ten = 1;
-
-		for (Iter i = first; i != last; i = std::next(i))
+		std::vector<std::vector<int>> buckets(10);
+		for (int pow = 0; pow < 10; ++pow)
 		{
-
+			for (Iter i = vec.begin(); i != vec.end(); i = std::next(i))
+			{
+				buckets[(*i) / power_of_ten % 10].push_back(*i);
+			}
+			power_of_ten *= 10;
 		}
 	}
 
