@@ -68,6 +68,11 @@ namespace algo
 			{
 				buckets[(*i) / power_of_ten % 10].push_back(*i);
 			}
+			vec.clear();
+			for (int pow = 0; pow < buckets.size(); ++pow)
+			{
+				vec.insert(vec.back(), buckets[i].begin(), buckets[i].end());
+			}
 			power_of_ten *= 10;
 		}
 	}
