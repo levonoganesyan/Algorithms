@@ -39,4 +39,9 @@ TEST(SortingTest, SortingTest)
 		algo::InsertionSort(copy.begin(), copy.end());
 		EXPECT_EQ(copy, sorted_origin);
 	}
+	{
+		auto copy = origin;
+		algo::RadixSort(copy.begin(), copy.end());
+		EXPECT_EQ(copy, sorted_origin);
+	}
 }

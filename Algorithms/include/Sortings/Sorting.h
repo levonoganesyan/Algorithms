@@ -2,6 +2,7 @@
 #include<iterator>
 #include<iostream>
 #include<vector>
+#include<algorithm>
 namespace algo
 {
 	//template<typename Iter>
@@ -69,12 +70,14 @@ namespace algo
 				buckets[(*i) / power_of_ten % 10].push_back(*i);
 			}
 			vec.clear();
-			for (int pow = 0; pow < buckets.size(); ++pow)
+			for (int i = 0; i < buckets.size(); ++i)
 			{
-				vec.insert(vec.back(), buckets[i].begin(), buckets[i].end());
+				vec.insert(vec.end(), buckets[i].begin(), buckets[i].end());
+				buckets[i].clear();
 			}
 			power_of_ten *= 10;
 		}
+		std::copy(vec.begin(), vec.end(), first);
 	}
 
 
