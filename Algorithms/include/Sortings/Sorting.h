@@ -3,6 +3,8 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<queue>
+#include<functional>
 namespace algo
 {
 	//template<typename Iter>
@@ -79,7 +81,20 @@ namespace algo
 		}
 		std::copy(vec.begin(), vec.end(), first);
 	}
-
+	template<typename Iter>
+	void HeapSort(Iter first, Iter last)
+	{
+		using type = Iter::value_type;
+		std::priority_queue<type, 
+							std::vector<type>, 
+							std::greater<type>> pq(first, last);
+		while (!pq.empty())
+		{
+			*first = pq.top();
+			first = std::next(first);
+			pq.pop();
+		}
+	}
 
 
 
