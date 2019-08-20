@@ -54,4 +54,9 @@ TEST(SortingTest, SortingTest)
 		algo::MergeSort(copy.begin(), copy.end());
 		EXPECT_EQ(copy, sorted_origin);
 	}
+	{
+		auto copy = origin;
+		algo::QuickSort(copy.begin(), copy.end());
+		EXPECT_EQ(copy, sorted_origin);
+	}
 }

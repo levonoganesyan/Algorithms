@@ -26,7 +26,7 @@ namespace algo
 
         size_t graph_size = Graph::GetSize(graph);
 
-        for (int i = 0; i < graph_size; i++)
+        for (size_t i = 0; i < graph_size; i++)
         {
             if (!m_used[sorted_vertices[i]])
             {

@@ -27,7 +27,7 @@ namespace algo
         {
             throw std::logic_error("Graph must be acyclic for toposort");
         }*/
-        for (int i = 0; i < m_used.size(); ++i)
+        for (size_t i = 0; i < m_used.size(); ++i)
         {
             if (!m_used[i])
             {

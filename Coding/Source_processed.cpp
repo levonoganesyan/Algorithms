@@ -56,7 +56,16 @@ namespace algo
     using Matrix = std::vector<std::vector<T>>;
 
     template <typename T>
-    Matrix<T> createMatrix(size_t n, size_t m, T etalon = T());
+    Matrix<T> CreateMatrix(size_t n, T etalon = T());
+
+    template <typename T>
+    Matrix<T> CreateMatrix(size_t n, size_t m, T etalon = T());
+
+    template <typename T>
+    void CreateMatrix(Matrix<T>& matrix, size_t n, T etalon = T());
+
+    template <typename T>
+    void CreateMatrix(Matrix<T>& matrix, size_t n, size_t m, T etalon = T());
 
     double random(double min, double max);
 }
@@ -98,9 +107,27 @@ namespace algo
     }
 
     template<typename T>
-    inline Matrix<T> createMatrix(size_t n, size_t m, T etalon)
+    inline Matrix<T> CreateMatrix(size_t n, T etalon)
+    {
+        return Matrix<T>(n, std::vector<T>(n, etalon));
+    }
+
+    template<typename T>
+    inline Matrix<T> CreateMatrix(size_t n, size_t m, T etalon)
     {
         return Matrix<T>(n, std::vector<T>(m, etalon));
+    }
+
+    template<typename T>
+    inline void CreateMatrix(Matrix<T>& matrix, size_t n, T etalon)
+    {
+        matrix = Matrix<T>(n, std::vector<T>(n, etalon));
+    }
+
+    template<typename T>
+    inline void CreateMatrix(Matrix<T>& matrix, size_t n, size_t m, T etalon)
+    {
+        matrix = Matrix<T>(n, std::vector<T>(m, etalon));
     }
 
     inline double random(double min, double max)
@@ -204,6 +231,17 @@ namespace algo
                     (const Edge& first, const Edge& second) const;
         };
 
+        static ConnectionList
+            Reverse
+            (const ConnectionList& graph);
+
+        static ListOfEdges
+            Reverse
+            (const ListOfEdges& graph);
+
+        static ConnectionMatrix
+            Reverse
+            (const ConnectionMatrix& graph);
 
         static ConnectionList
             ListOfEdgesToConnectionList
@@ -371,6 +409,35 @@ namespace algo
     
 
 
+    Graph::ConnectionList Graph::Reverse(const ConnectionList& graph)
+    {
+        ConnectionList new_graph(GetSize(graph));
+        for (auto& vertices : graph)
+            for (auto& neighbour : vertices)
+                new_graph[neighbour.to].emplace_back(neighbour.to, neighbour.from, neighbour.weight);
+        return new_graph;
+    }
+
+    Graph::ListOfEdges Graph::Reverse(const ListOfEdges& graph)
+    {
+        ListOfEdges new_graph; 
+        for (size_t i = 0; i < graph.size(); ++i)
+        {
+            new_graph.emplace_back(graph[i].to, graph[i].from, graph[i].weight);
+        }
+        return new_graph;
+    }
+
+    Graph::ConnectionMatrix Graph::Reverse(const ConnectionMatrix& graph)
+    {
+        ConnectionMatrix new_graph;
+        CreateMatrix(new_graph, GetSize(graph));
+        for (size_t i = 0; i < graph.size(); ++i)
+            for (size_t j = 0; j < graph[i].size(); ++j)
+                new_graph[j][i] = graph[i][j];
+        return new_graph;
+    }
+
     Graph::ConnectionList
         Graph::ListOfEdgesToConnectionList
         (Graph::ListOfEdges list_of_edges, bool oriented)
@@ -459,7 +526,7 @@ namespace algo
                 max_size);
         }
         ConnectionMatrix connection_matrix =
-            createMatrix<Graph::WeightType>
+            CreateMatrix<Graph::WeightType>
             (max_size, max_size);
 
         for (const auto& edge : list_of_edges)
@@ -479,7 +546,7 @@ namespace algo
         (const ConnectionList & connection_list)
     {
         ConnectionMatrix connection_matrix =
-            createMatrix<Graph::WeightType>
+            CreateMatrix<Graph::WeightType>
             (connection_list.size(), connection_list.size());
         for (size_t i = 0; i < connection_list.size(); ++i)
         {
@@ -511,7 +578,7 @@ namespace algo
         Graph::MakeUndirected
             (ConnectionList & connection_list)
     {
-        std::vector<std::vector<Edge>> new_connection_list = connection_list;
+        ConnectionList new_connection_list = connection_list;
         
         for (size_t i = 0; i < connection_list.size(); ++i)
         {
@@ -825,12 +892,12 @@ namespace algo
         : m_sorted_vertices(0)
         , m_used(graph.size())
     {
-        CycleChecker cycle_checker(graph);
+        /*CycleChecker cycle_checker(graph);
         if (cycle_checker.HasCycle())
         {
             throw std::logic_error("Graph must be acyclic for toposort");
-        }
-        for (int i = 0; i < m_used.size(); ++i)
+        }*/
+        for (size_t i = 0; i < m_used.size(); ++i)
         {
             if (!m_used[i])
             {
@@ -856,12 +923,223 @@ namespace algo
 
 
 
+#pragma once
+#include<iterator>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<queue>
+#include<functional>
+namespace algo
+{
+	//template<typename Iter>
+	//void sort(const Iter& first, const Iter& second);
+
+	template<typename Iter>
+	void BubbleSort(Iter first, Iter last)
+	{
+		for (Iter i = first; i != last; i = std::next(i))
+		{
+			for (Iter j = first; j < i; j = std::next(j))
+			{
+				if (*i < *j)
+				{
+					std::iter_swap(i, j);
+				}
+			}
+		}
+	}
+	template<typename Iter>
+	void SelectionSort(Iter first, Iter last)
+	{
+		for (Iter i = first; i != last; i = std::next(i))
+		{
+			Iter min = i;
+			for (Iter j = i; j < last; j = std::next(j))
+			{
+				if (*j < *min)
+				{
+					min = j;
+				}
+			}
+			std::iter_swap(i, min);
+		}
+	}
+
+	template<typename Iter>
+	void InsertionSort(Iter first, Iter last)
+	{
+		for (Iter i = std::next(first); i != last; i = std::next(i))
+		{
+			Iter temp = i;
+			while (temp != first)
+			{
+				if (*temp < *std::prev(temp))
+				{
+					std::iter_swap(temp, std::prev(temp));
+				}
+				temp = std::prev(temp);
+			}
+		}
+	}
+
+	template<typename Iter>
+	void RadixSort(Iter first, Iter last)
+		// this sort must work only for ints
+	{
+		std::vector<int> vec(first, last); 
+		int power_of_ten = 1;
+		std::vector<std::vector<int>> buckets(10);
+		for (int pow = 0; pow < 10; ++pow)
+		{
+			for (Iter i = vec.begin(); i != vec.end(); i = std::next(i))
+			{
+				buckets[(*i) / power_of_ten % 10].push_back(*i);
+			}
+			vec.clear();
+			for (int i = 0; i < buckets.size(); ++i)
+			{
+				vec.insert(vec.end(), buckets[i].begin(), buckets[i].end());
+				buckets[i].clear();
+			}
+			power_of_ten *= 10;
+		}
+		std::copy(vec.begin(), vec.end(), first);
+	}
+	template<typename Iter>
+	void HeapSort(Iter first, Iter last)
+	{
+		using type = typename Iter::value_type;
+		std::priority_queue<type,
+			std::vector<type>,
+			std::greater<type>> pq(first, last);
+		while (!pq.empty())
+		{
+			*first = pq.top();
+			first = std::next(first);
+			pq.pop();
+		}
+	}
+
+	template<typename Iter>
+	void merge(Iter first_begin, Iter first_end,
+				Iter second_begin, Iter second_end, 
+				Iter out_begin)
+	{
+		while (first_begin < first_end && second_begin < second_end)
+		{
+			*out_begin++ = *first_begin < *second_begin ? *first_begin++ : *second_begin++;
+		}
+		while (first_begin < first_end)
+		{
+			*out_begin++ = *first_begin++;
+		}
+		while (second_begin < second_end)
+		{
+			*out_begin++ = *second_begin++;
+		}
+	}
+
+	template<typename Iter>
+	void MergeSort(Iter first, Iter last)
+	{
+		int size = std::distance(first, last);
+		if (size == 1)
+			return;
+		int half = size / 2;
+		using type = typename Iter::value_type;
+		Iter mid = first;
+		std::advance(mid, half);
+		std::vector<type> f_v(first, mid);
+		std::vector<type> s_v(mid, last);
+		MergeSort(f_v.begin(), f_v.end());
+		MergeSort(s_v.begin(), s_v.end());
+		merge(f_v.begin(), f_v.end(), s_v.begin(), s_v.end(), first);
+	}
+
+	
+	/*template<typename itr>
+	itr partition(itr first,itr last)
+	{
+		itr pivot=first-1;
+		
+		for(itr temp = first; temp<last; temp = std::next(temp))
+		{
+			if(*temp<*last)
+			{
+
+				std::next(pivot);
+				std::swap(*pivot,*temp);
+			}
+			
+		}
+		std::swap(*(pivot+1),*last); 
+		std::next(pivot);
+		return pivot;
+	}*/
+	
+
+	template<typename Iter>
+	Iter partition(Iter first, Iter last)
+	{
+		//Iter out = std::prev(last);
+		//Iter pivot = first;
+
+		//for (Iter temp = first; temp != last; temp = std::next(temp))
+		//{
+		//	if (*temp < *pivot)
+		//	{
+		//		std::iter_swap(out, temp);
+		//		out = std::next(out);
+		//	}
+		//}
+		//// std::iter_swap(out, first);
+		//out = std::prev(out);
+		//return out;
+		Iter pivot = first;
+		Iter head = first;
+		Iter tail = std::prev(last);
+		while (head != tail) {
+			while (*head < *pivot) {
+				if (++head == tail) {
+					return head;
+				}
+			}
+			while (*tail >= *pivot) {
+				if (--tail == head) {
+					return head;
+				}
+			}
+			std::iter_swap(head, tail);
+			if (++head == tail--) {
+				return head;
+			}
+		}
+		return head;
+	}
+	
+	template<typename Iter>
+	void QuickSort(Iter first, Iter last)
+	{
+		std::vector<int> to_delete1(first, last);
+		if (std::distance(first, last) > 1)
+		{
+			Iter mid = partition(first, last);
+			std::vector<int> to_delete1(first, last);
+			std::vector<int> to_delete2(first, mid);
+			// std::vector<int> to_delete3(mid + 1, last);
+			QuickSort(first, mid);
+			QuickSort(std::next(mid), last);
+		}
+	}
+}
 
 using namespace std;
 
 int main()
 {
-
+	std::vector<int> vec{ 2,5,6,1,5,2,6,4 };
+	algo::QuickSort(vec.begin(), vec.end());
 }
 
 

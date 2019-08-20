@@ -84,7 +84,7 @@ namespace algo
 	template<typename Iter>
 	void HeapSort(Iter first, Iter last)
 	{
-		using type = Iter::value_type;
+		using type = typename Iter::value_type;
 		std::priority_queue<type,
 			std::vector<type>,
 			std::greater<type>> pq(first, last);
@@ -122,7 +122,7 @@ namespace algo
 		if (size == 1)
 			return;
 		int half = size / 2;
-		using type = Iter::value_type;
+		using type = typename Iter::value_type;
 		Iter mid = first;
 		std::advance(mid, half);
 		std::vector<type> f_v(first, mid);
@@ -131,5 +131,76 @@ namespace algo
 		MergeSort(s_v.begin(), s_v.end());
 		merge(f_v.begin(), f_v.end(), s_v.begin(), s_v.end(), first);
 	}
+
 	
+	/*template<typename itr>
+	itr partition(itr first,itr last)
+	{
+		itr pivot=first-1;
+		
+		for(itr temp = first; temp<last; temp = std::next(temp))
+		{
+			if(*temp<*last)
+			{
+
+				std::next(pivot);
+				std::swap(*pivot,*temp);
+			}
+			
+		}
+		std::swap(*(pivot+1),*last); 
+		std::next(pivot);
+		return pivot;
+	}*/
+	
+
+	template<typename Iter>
+	Iter partition(Iter first, Iter last)
+	{
+		//Iter out = std::prev(last);
+		//Iter pivot = first;
+
+		//for (Iter temp = first; temp != last; temp = std::next(temp))
+		//{
+		//	if (*temp < *pivot)
+		//	{
+		//		std::iter_swap(out, temp);
+		//		out = std::next(out);
+		//	}
+		//}
+		//// std::iter_swap(out, first);
+		//out = std::prev(out);
+		//return out;
+		const typename Iter::value_type pivot = *first;
+		Iter head = first;
+		Iter tail = std::prev(last);
+		while (head != tail) {
+			while (*head < pivot) {
+				if (++head == tail) {
+					return head;
+				}
+			}
+			while (*tail >= pivot) {
+				if (--tail == head) {
+					return head;
+				}
+			}
+			std::iter_swap(head, tail);
+			if (++head == tail--) {
+				return head;
+			}
+		}
+		return head;
+	}
+	
+	template<typename Iter>
+	void QuickSort(Iter first, Iter last)
+	{
+		if (std::distance(first, last) > 1)
+		{
+			Iter mid = partition(first, last);
+			QuickSort(first, mid);
+			QuickSort(std::next(mid), last);
+		}
+	}
 }

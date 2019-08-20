@@ -7,7 +7,7 @@ namespace algo
         : m_parent(number_of_elements)
         , m_size(number_of_elements)
     {
-        for (int i = 0; i < m_parent.size(); ++i)
+        for (size_t i = 0; i < m_parent.size(); ++i)
         {
             m_parent[i] = i;
             m_size[i] = 1;
@@ -48,7 +48,7 @@ namespace algo
     {
         std::vector<DSU::Vertex> group;
         element = GetParent(element);
-        for (int i = 0; i < m_parent.size(); ++i)
+        for (size_t i = 0; i < m_parent.size(); ++i)
         {
             if (GetParent(i) == element)
             {
