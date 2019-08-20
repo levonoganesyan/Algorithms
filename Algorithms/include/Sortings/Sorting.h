@@ -85,9 +85,9 @@ namespace algo
 	void HeapSort(Iter first, Iter last)
 	{
 		using type = Iter::value_type;
-		std::priority_queue<type, 
-							std::vector<type>, 
-							std::greater<type>> pq(first, last);
+		std::priority_queue<type,
+			std::vector<type>,
+			std::greater<type>> pq(first, last);
 		while (!pq.empty())
 		{
 			*first = pq.top();
@@ -96,6 +96,24 @@ namespace algo
 		}
 	}
 
+	template<typename Iter>
+	void merge(Iter first_begin, Iter first_end,
+				Iter second_begin, Iter second_end, 
+				Iter out_begin)
+	{
+		while (first_begin < first_end && second_begin < second_end)
+		{
+			*out_begin++ = *first_begin < *second_begin ? *first_begin++ : *second_begin++;
+		}
+		while (first_begin < first_end)
+		{
+			*out_begin++ = *first_begin++;
+		}
+		while (second_begin < second_end)
+		{
+			*out_begin++ = *second_begin++;
+		}
+	}
 
-
+	
 }
