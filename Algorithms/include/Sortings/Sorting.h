@@ -115,5 +115,21 @@ namespace algo
 		}
 	}
 
+	template<typename Iter>
+	void MergeSort(Iter first, Iter last)
+	{
+		int size = std::distance(first, last);
+		if (size == 1)
+			return;
+		int half = size / 2;
+		using type = Iter::value_type;
+		Iter mid = first;
+		std::advance(mid, half);
+		std::vector<type> f_v(first, mid);
+		std::vector<type> s_v(mid, last);
+		MergeSort(f_v.begin(), f_v.end());
+		MergeSort(s_v.begin(), s_v.end());
+		merge(f_v.begin(), f_v.end(), s_v.begin(), s_v.end(), first);
+	}
 	
 }
