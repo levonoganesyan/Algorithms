@@ -21,7 +21,7 @@ namespace algo
         Components(const ConnectionMatrix& graph);
         Components(const ListOfEdges& graph);
 
-        int GetCount() const;
+        size_t GetCount() const;
         std::vector<Graph::VertexType> GetComponent(int index) const;
         Matrix<Graph::VertexType> GetComponents() const;
     };

@@ -132,65 +132,22 @@ namespace algo
 		merge(f_v.begin(), f_v.end(), s_v.begin(), s_v.end(), first);
 	}
 
-	
-	/*template<typename itr>
-	itr partition(itr first,itr last)
-	{
-		itr pivot=first-1;
-		
-		for(itr temp = first; temp<last; temp = std::next(temp))
-		{
-			if(*temp<*last)
-			{
-
-				std::next(pivot);
-				std::swap(*pivot,*temp);
-			}
-			
-		}
-		std::swap(*(pivot+1),*last); 
-		std::next(pivot);
-		return pivot;
-	}*/
-	
-
 	template<typename Iter>
 	Iter partition(Iter first, Iter last)
 	{
-		//Iter out = std::prev(last);
-		//Iter pivot = first;
+		Iter::value_type pivot = *first;
+		Iter out = first;
 
-		//for (Iter temp = first; temp != last; temp = std::next(temp))
-		//{
-		//	if (*temp < *pivot)
-		//	{
-		//		std::iter_swap(out, temp);
-		//		out = std::next(out);
-		//	}
-		//}
-		//// std::iter_swap(out, first);
-		//out = std::prev(out);
-		//return out;
-		const typename Iter::value_type pivot = *first;
-		Iter head = first;
-		Iter tail = std::prev(last);
-		while (head != tail) {
-			while (*head < pivot) {
-				if (++head == tail) {
-					return head;
-				}
-			}
-			while (*tail >= pivot) {
-				if (--tail == head) {
-					return head;
-				}
-			}
-			std::iter_swap(head, tail);
-			if (++head == tail--) {
-				return head;
+		for (Iter temp = std::next(first); temp != last; temp = std::next(temp))
+		{
+			if (*temp < pivot)
+			{
+				out = std::next(out);
+				std::iter_swap(out, temp);
 			}
 		}
-		return head;
+		std::iter_swap(out, first);
+		return out;
 	}
 	
 	template<typename Iter>

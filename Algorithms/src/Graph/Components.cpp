@@ -26,7 +26,7 @@ namespace algo
             if (!m_used[i])
             {
                 m_components.push_back({});
-                dfs(graph, i);
+                dfs(graph, (int)i);
             }
         }
         for (auto& component : m_components)
@@ -46,7 +46,7 @@ namespace algo
     {
     }
 
-    int Components::GetCount() const
+    size_t Components::GetCount() const
     {
         return m_components.size();
     }
