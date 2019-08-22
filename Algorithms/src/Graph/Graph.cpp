@@ -54,7 +54,7 @@ namespace algo
 
     Graph::ConnectionList
         Graph::ListOfEdgesToConnectionList
-        (Graph::ListOfEdges list_of_edges, bool oriented)
+			(const Graph::ListOfEdges& list_of_edges, bool oriented)
     {
         ConnectionList connection_list;
         for (const auto& edge : list_of_edges)
@@ -71,6 +71,13 @@ namespace algo
         }
         return connection_list;
     }
+
+	Graph::ConnectionList 
+		Graph::LOE2CL
+			(const ListOfEdges& list_of_edges, bool oriented)
+	{
+		return ListOfEdgesToConnectionList(list_of_edges, oriented);
+	}
 
     Graph::ConnectionList
         Graph::ConnectionMatrixToConnectionList
@@ -91,6 +98,13 @@ namespace algo
         return connection_list;
     }
 
+	Graph::ConnectionList 
+		Graph::CM2CL
+		(const ConnectionMatrix& connection_matrix)
+	{
+		return ConnectionMatrixToConnectionList(connection_matrix);
+	}
+
     Graph::ListOfEdges
         Graph::ConnectionListToListOfEdges
         (const ConnectionList & connection_list)
@@ -108,6 +122,11 @@ namespace algo
         }
         return list_of_edges;
     }
+
+	Graph::ListOfEdges Graph::CL2LOE(const ConnectionList& connection_list)
+	{
+		return ConnectionListToListOfEdges(connection_list);
+	}
 
     Graph::ListOfEdges
         Graph::ConnectionMatrixToListOfEdges
@@ -127,6 +146,13 @@ namespace algo
         }
         return list_of_edges;
     }
+
+	Graph::ListOfEdges 
+		Graph::CM2LOE
+		(const ConnectionMatrix& connection_matrix)
+	{
+		return ConnectionMatrixToListOfEdges(connection_matrix);
+	}
 
     Graph::ConnectionMatrix
         Graph::ListOfEdgesToConnectionMatrix
@@ -155,6 +181,13 @@ namespace algo
         return connection_matrix;
     }
 
+	Graph::ConnectionMatrix 
+		Graph::LOE2CM
+		(const ListOfEdges& list_of_edges, bool oriented)
+	{
+		return ListOfEdgesToConnectionMatrix(list_of_edges, oriented);
+	}
+
     Graph::ConnectionMatrix
         Graph::ConnectionListToConnectionMatrix
         (const ConnectionList & connection_list)
@@ -173,6 +206,10 @@ namespace algo
         }
         return connection_matrix;
     }
+	Graph::ConnectionMatrix Graph::CL2CM(const ConnectionList& connection_list)
+	{
+		return ConnectionListToConnectionMatrix(connection_list);
+	}
     void 
         Graph::MakeUndirected
             (ConnectionMatrix & connection_matrix)
@@ -287,6 +324,63 @@ namespace algo
 
 
     }
+	Graph::Graph(const ConnectionList& connection_list)
+		: m_connection_list(connection_list)
+	{
+	}
+	Graph::Graph(const ConnectionMatrix& connection_matrix)
+		: m_connection_matrix(connection_matrix)
+	{
+	}
+	Graph::Graph(const ListOfEdges& list_of_edges)
+		: m_list_of_edges(list_of_edges)
+	{
+	}
+	Graph::ConnectionList Graph::AsConnectionList() const
+	{
+		if (m_connection_list.empty())
+		{
+			if (!m_connection_matrix.empty())
+			{
+				m_connection_list = Graph::CM2CL(m_connection_matrix);
+			}
+			else
+			{
+				m_connection_list = Graph::LOE2CL(m_list_of_edges);
+			}
+		}
+		return m_connection_list;
+	}
+	Graph::ConnectionMatrix Graph::AsConnectionMatrix() const
+	{
+		if (m_connection_matrix.empty())
+		{
+			if (!m_connection_list.empty())
+			{
+				m_connection_matrix = Graph::CL2CM(m_connection_list);
+			}
+			else
+			{
+				m_connection_matrix = Graph::LOE2CM(m_list_of_edges);
+			}
+		}
+		return m_connection_matrix;
+	}
+	Graph::ListOfEdges Graph::AsListOfEdges() const
+	{
+		if (m_list_of_edges.empty())
+		{
+			if (!m_connection_list.empty())
+			{
+				m_list_of_edges = Graph::CL2LOE(m_connection_list);
+			}
+			else
+			{
+				m_list_of_edges = Graph::CM2LOE(m_connection_matrix);
+			}
+		}
+		return m_list_of_edges;
+	}
 #pragma warning(pop)
 
     Graph::Edge::Edge(VertexType from, VertexType to, WeightType weight)

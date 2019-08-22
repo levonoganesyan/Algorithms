@@ -24,25 +24,28 @@ namespace algo
 	private:
 		std::vector<T> m_vec;
 		std::vector<T> m_tree;
+		std::vector<T> m_lazy_prop;
 		std::function<T(T, T)> m_tree_logic;
 		int m_neutral_element;
 		UpdateType m_upd_type;
 
 		void build_tree(int v, int l, int r);
-		void update(int i, T a, int v, int l, int r);
-		int query(int a, int b, int v, int l, int r) const;
+		void update(int pos, T elem, int v, int l, int r);
+		// void update(int pos_l, int pos_r, T elem, int v, int l, int r);
+		int query(int from, int to, int v, int l, int r) const;
 		static int left(int v);
 		static int right(int v);
 		static int mid(int l, int r);
 		void update_one(int& a, int b);
 	public:
-		SegmentTree(const std::vector<T>& vec, 
+		SegmentTree(const std::vector<T>& vec,
 					const std::function<T(T, T)>& tree_logic,
 					int neutral_element,
 					UpdateType upd_type = UpdateType::Assign);
 		
 		void build_tree();
 		void update(int pos, T elem);
+		// void update(int pos_l, int pos_r, T elem);
 		int query(int from, int to) const;
 		int size() const;
 	};
@@ -89,6 +92,15 @@ namespace algo
 			m_tree[v] = m_tree_logic(m_tree[left(v)], m_tree[right(v)]);
 		}
 	}
+
+	/*template<typename T>
+	inline void SegmentTree<T>::update(int pos_l, int pos_r, T elem, int v, int l, int r)
+	{
+		if (pos_l == l && pos_r == r)
+		{
+			m_lazy_prop = elem;
+		}
+	}*/
 
 	template<typename T>
 	inline int SegmentTree<T>::query(int from, int to, int v, int l, int r) const
@@ -167,10 +179,20 @@ namespace algo
 	}
 
 	template<typename T>
-	inline void SegmentTree<T>::update(int i, T a)
+	inline void SegmentTree<T>::update(int pos, T elem)
 	{
-		update(i, a, 1, 0, m_vec.size() - 1);
+		update(pos, elem, 1, 0, m_vec.size() - 1);
 	}
+
+	/*template<typename T>
+	inline void SegmentTree<T>::update(int pos_l, int pos_r, T elem)
+	{
+		if (m_lazy_prop.empty())
+		{
+			m_lazy_prop.resize(m_tree.size());
+		}
+		update(pos_l, pos_r, elem, 1, 0, m_vec.size() - 1);
+	}*/
 
 	template<typename T>
 	inline int SegmentTree<T>::query(int from, int to) const

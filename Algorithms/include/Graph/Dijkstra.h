@@ -22,8 +22,11 @@ namespace algo
 
 
     public:
-        Dijkstra(const ConnectionList & graph, 
-                 int start_vertex);
+		Dijkstra(const Graph& graph,
+			int start_vertex);
+
+		Dijkstra(const ConnectionList& graph,
+			int start_vertex);
 
         Dijkstra(const ConnectionMatrix& graph,
                 int start_vertex);

@@ -1,5 +1,6 @@
 #include<Graph/CycleChecker.h>
 #include<algorithm>
+#include "..\..\include\Graph\CycleChecker.h"
 namespace algo
 {
     bool
@@ -29,6 +30,11 @@ namespace algo
         return false;
     }
 
+	CycleChecker::CycleChecker(const Graph& graph)
+		: CycleChecker(graph.AsConnectionList())
+	{
+	}
+
     CycleChecker::CycleChecker
         (const ConnectionList & graph)
             : m_vertices_state(graph.size(), VertexState::NotVisited)
@@ -57,13 +63,13 @@ namespace algo
 
     CycleChecker::CycleChecker
         (const ConnectionMatrix & graph)
-            : CycleChecker(Graph::ConnectionMatrixToConnectionList(graph))
+            : CycleChecker(Graph::CM2CL(graph))
     {
     }
 
     CycleChecker::CycleChecker
         (const ListOfEdges & graph)
-            : CycleChecker(Graph::ListOfEdgesToConnectionList(graph))
+            : CycleChecker(Graph::LOE2CL(graph))
     {
     }
 

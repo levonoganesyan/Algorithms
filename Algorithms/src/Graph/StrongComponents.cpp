@@ -16,7 +16,11 @@ namespace algo
             }
         }
     }
-    StrongComponents::StrongComponents(const ConnectionList & graph)
+	StrongComponents::StrongComponents(const Graph& graph)
+		: StrongComponents(graph.AsConnectionList())
+	{
+	}
+	StrongComponents::StrongComponents(const ConnectionList & graph)
         : m_used(Graph::GetSize(graph))
     {
         Toposort toposort(graph);
@@ -42,12 +46,12 @@ namespace algo
     }
 
     StrongComponents::StrongComponents(const ConnectionMatrix & graph)
-        : StrongComponents(Graph::ConnectionMatrixToConnectionList(graph))
+        : StrongComponents(Graph::CM2CL(graph))
     {
     }
 
     StrongComponents::StrongComponents(const ListOfEdges & graph)
-        : StrongComponents(Graph::ListOfEdgesToConnectionList(graph))
+        : StrongComponents(Graph::LOE2CM(graph))
     {
     }
 

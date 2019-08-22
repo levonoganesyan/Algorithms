@@ -18,7 +18,8 @@ namespace algo
 
 
     public:
-        Kruskal(const ConnectionList & graph);
+		Kruskal(const Graph& graph);
+		Kruskal(const ConnectionList & graph);
         Kruskal(const ConnectionMatrix& graph);
         Kruskal(const ListOfEdges& graph);
 

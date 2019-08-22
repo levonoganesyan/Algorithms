@@ -2,12 +2,14 @@
 
 namespace algo
 {
-
-    FloydWarshall::FloydWarshall
+	FloydWarshall::FloydWarshall
+		(const Graph& graph)
+		: FloydWarshall(graph.AsConnectionMatrix())
+	{
+	}
+	FloydWarshall::FloydWarshall
         (const ConnectionList & connection_list)
-            : FloydWarshall(
-                    Graph::ConnectionListToConnectionMatrix (
-                            connection_list))
+            : FloydWarshall(Graph::CL2CM(connection_list))
     {
     }
 
@@ -60,8 +62,7 @@ namespace algo
 
     FloydWarshall::FloydWarshall
         (const ListOfEdges & list_of_edges)
-            : FloydWarshall(
-                    Graph::ListOfEdgesToConnectionMatrix(list_of_edges))
+            : FloydWarshall(Graph::LOE2CM(list_of_edges))
     {
     }
 

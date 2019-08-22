@@ -17,7 +17,12 @@ namespace algo
         }
     }
 
-    Components::Components(const ConnectionList & graph)
+	Components::Components(const Graph& graph)
+		: Components(graph.AsConnectionList())
+	{
+	}
+
+	Components::Components(const ConnectionList & graph)
         : m_used(Graph::GetSize(graph))
     {
         size_t graph_size = Graph::GetSize(graph);
@@ -37,12 +42,12 @@ namespace algo
     }
 
     Components::Components(const ConnectionMatrix & graph)
-        : Components(Graph::ConnectionMatrixToConnectionList(graph))
+        : Components(Graph::CM2CL(graph))
     {
     }
 
     Components::Components(const ListOfEdges & graph)
-        : Components(Graph::ListOfEdgesToConnectionList(graph))
+        : Components(Graph::LOE2CL(graph))
     {
     }
 

@@ -27,25 +27,31 @@ TEST(GraphConvertTest, GraphTest)
         algo::Graph::ListOfEdgesToConnectionList(edges_graph);
 
 
-    EXPECT_EQ(edges_graph,
-        algo::Graph::ConnectionMatrixToListOfEdges(matrix_graph));
+    EXPECT_EQ(edges_graph, algo::Graph::CM2LOE(matrix_graph));
+    EXPECT_EQ(edges_graph, algo::Graph::CL2LOE(list_graph));
+    
+	EXPECT_EQ(matrix_graph, algo::Graph::LOE2CM(edges_graph));
+    EXPECT_EQ(matrix_graph, algo::Graph::CL2CM(list_graph));
+    
+	EXPECT_EQ(list_graph, algo::Graph::LOE2CL(edges_graph));
+    EXPECT_EQ(list_graph, algo::Graph::CM2CL(matrix_graph));
 
-    EXPECT_EQ(edges_graph,
-        algo::Graph::ConnectionListToListOfEdges(list_graph));
+	algo::Graph graph(edges_graph);
+	EXPECT_EQ(edges_graph, graph.AsListOfEdges());
+	EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
+	EXPECT_EQ(list_graph, graph.AsConnectionList());
+
+	graph = algo::Graph(list_graph);
+	EXPECT_EQ(edges_graph, graph.AsListOfEdges());
+	EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
+	EXPECT_EQ(list_graph, graph.AsConnectionList());
+
+	graph = algo::Graph(matrix_graph);
+	EXPECT_EQ(edges_graph, graph.AsListOfEdges());
+	EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
+	EXPECT_EQ(list_graph, graph.AsConnectionList());
 
 
-    EXPECT_EQ(matrix_graph,
-        algo::Graph::ListOfEdgesToConnectionMatrix(edges_graph));
-
-    EXPECT_EQ(matrix_graph,
-        algo::Graph::ConnectionListToConnectionMatrix(list_graph));
-
-
-    EXPECT_EQ(list_graph,
-        algo::Graph::ListOfEdgesToConnectionList(edges_graph));
-
-    EXPECT_EQ(list_graph,
-        algo::Graph::ConnectionMatrixToConnectionList(matrix_graph));
 }
 
 TEST(DijkstraFloydWarshallTest, GraphTest)
@@ -62,7 +68,9 @@ TEST(DijkstraFloydWarshallTest, GraphTest)
     {
         algo::Dijkstra dikstra(edges_graph, i);
         EXPECT_EQ(dikstra.GetDistance(), floyd_warshall.GetDistance(i));
-        int number_of_path_tests = 20;
+		dikstra = algo::Dijkstra(algo::Graph(edges_graph), i);
+		EXPECT_EQ(dikstra.GetDistance(), floyd_warshall.GetDistance(i));
+		int number_of_path_tests = 20;
         while (number_of_path_tests--)
         {
             int to = (int)algo::random(0, number_of_vertices);

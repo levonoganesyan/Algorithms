@@ -81,27 +81,45 @@ namespace algo
 
         static ConnectionList
             ListOfEdgesToConnectionList
-                (ListOfEdges list_of_edges, bool oriented = true);
-
-        static ConnectionList
-            ConnectionMatrixToConnectionList
-                (const ConnectionMatrix& connection_matrix);
-
-        static ListOfEdges
-            ConnectionListToListOfEdges
-                (const ConnectionList& connection_list);
-
-        static ListOfEdges
-            ConnectionMatrixToListOfEdges
-                (const ConnectionMatrix& connection_matrix);
-
-        static ConnectionMatrix
-            ListOfEdgesToConnectionMatrix
                 (const ListOfEdges& list_of_edges, bool oriented = true);
+		static ConnectionList
+			LOE2CL
+				(const ListOfEdges& list_of_edges, bool oriented = true);
 
-        static ConnectionMatrix
-            ConnectionListToConnectionMatrix
-                (const ConnectionList& connection_list);
+		static ConnectionList
+			ConnectionMatrixToConnectionList
+				(const ConnectionMatrix& connection_matrix);
+		static ConnectionList
+			CM2CL
+				(const ConnectionMatrix& connection_matrix);
+
+		static ListOfEdges
+			ConnectionListToListOfEdges
+				(const ConnectionList& connection_list);
+		static ListOfEdges
+			CL2LOE
+				(const ConnectionList& connection_list);
+
+		static ListOfEdges
+			ConnectionMatrixToListOfEdges
+				(const ConnectionMatrix& connection_matrix);
+		static ListOfEdges
+			CM2LOE
+				(const ConnectionMatrix& connection_matrix);
+
+		static ConnectionMatrix
+			ListOfEdgesToConnectionMatrix
+				(const ListOfEdges& list_of_edges, bool oriented = true);
+		static ConnectionMatrix
+			LOE2CM
+			(const ListOfEdges& list_of_edges, bool oriented = true);
+
+		static ConnectionMatrix
+			ConnectionListToConnectionMatrix
+				(const ConnectionList& connection_list);
+		static ConnectionMatrix
+			CL2CM
+				(const ConnectionList& connection_list);
 
         static void
             MakeUndirected
@@ -135,8 +153,22 @@ namespace algo
         static void
             UniqifyListOfEdges
                 (ListOfEdges& list_of_edges);
+		
+		Graph(const ConnectionList& connection_list);
+		Graph(const ConnectionMatrix& connection_matrix);
+		Graph(const ListOfEdges& list_of_edges);
+		ConnectionList AsConnectionList() const;
+		ConnectionMatrix AsConnectionMatrix() const;
+		ListOfEdges AsListOfEdges() const;
+		/*
+		bool isBipartite() const;
+		bool isTree() const;
+		*/
 
     private:
+		mutable ConnectionList m_connection_list;
+		mutable ConnectionMatrix m_connection_matrix;
+		mutable ListOfEdges m_list_of_edges;
         /* template<typename EdgeType = int>
          class Node
          {
