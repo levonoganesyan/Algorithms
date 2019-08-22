@@ -23,32 +23,32 @@
     <ProjectGuid>{8B2C733E-3D87-4AB4-9F08-2DF9102643D7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Algorithms</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -164,6 +164,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\DataStructures\SegmentTree.h" />
     <ClInclude Include="include\Defines.h" />
     <ClInclude Include="include\Geometry\Geometry.h" />
     <ClInclude Include="include\Graph\Components.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="include\Graph\FordBellman.h" />
     <ClInclude Include="include\Graph\Graph.h" />
     <ClInclude Include="include\Graph\Kruskal.h" />
+    <ClInclude Include="include\Graph\LCA.h" />
     <ClInclude Include="include\Graph\StrongComponents.h" />
     <ClInclude Include="include\Graph\Toposort.h" />
     <ClInclude Include="include\Sortings\Sorting.h" />
@@ -189,6 +191,7 @@
     <ClCompile Include="src\Graph\FloydWarshall.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
     <ClCompile Include="src\Graph\Kruskal.cpp" />
+    <ClCompile Include="src\Graph\LCA.cpp" />
     <ClCompile Include="src\Graph\StrongComponents.cpp" />
     <ClCompile Include="src\Graph\Toposort.cpp" />
   </ItemGroup>
