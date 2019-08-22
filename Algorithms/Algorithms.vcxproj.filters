@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Sortings">
       <UniqueIdentifier>{e4694ef6-26a2-475b-befe-ccf2482c60b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DataStructures">
+      <UniqueIdentifier>{3aada30b-67a2-469a-b866-cf6051875bdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\DataStructures">
+      <UniqueIdentifier>{46835ec3-aed5-4ace-9222-8d6b4027b8c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils.hpp">
@@ -78,6 +84,12 @@
     <ClInclude Include="include\Sortings\Sorting.h">
       <Filter>Header Files\Sortings</Filter>
     </ClInclude>
+    <ClInclude Include="include\DataStructures\SegmentTree.h">
+      <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graph\LCA.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -108,6 +120,9 @@
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
     <ClCompile Include="src\Graph\StrongComponents.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\LCA.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
   </ItemGroup>
