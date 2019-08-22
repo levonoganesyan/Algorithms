@@ -161,7 +161,7 @@ TEST(CycleFindingTest, GraphTest)
         };
         algo::Graph::UniqifyListOfEdges(edges_graph);
         algo::CycleChecker cycle_checker(edges_graph);
-        EXPECT_EQ(cycle_checker.HasCycle(), false);
+        EXPECT_FALSE(cycle_checker.HasCycle());
     }
     {
         algo::Graph::ListOfEdges edges_graph = {
@@ -174,7 +174,7 @@ TEST(CycleFindingTest, GraphTest)
         };
         algo::Graph::UniqifyListOfEdges(edges_graph);
         algo::CycleChecker cycle_checker(edges_graph);
-        EXPECT_EQ(cycle_checker.HasCycle(), true);
+        EXPECT_TRUE(cycle_checker.HasCycle());
         std::vector<algo::Graph::VertexType> etalon = { 0, 1, 3 };
         EXPECT_EQ(cycle_checker.GetCycle(), etalon);
     }
@@ -215,19 +215,86 @@ TEST(ToposortTest, GraphTest)
 
 TEST(DSUTest, GraphTest)
 {
-    algo::DSU dsu(6);
-    dsu.Union(0, 1);
-    EXPECT_EQ(dsu.GetParent(0), dsu.GetParent(1));
-    dsu.Union(1, 3);
-    EXPECT_EQ(dsu.GetParent(3), dsu.GetParent(0));
-    EXPECT_NE(dsu.GetParent(2), dsu.GetParent(3));
-    dsu.Union(3, 2);
-    EXPECT_EQ(dsu.GetParent(2), dsu.GetParent(3));
-    dsu.Union(5, 2);
-    EXPECT_EQ(dsu.GetParent(4), 4);
-    dsu.Union(4, 1);
-    std::vector<algo::Graph::VertexType> etalon = { 0, 1, 2, 3, 4, 5 };
-    EXPECT_EQ(dsu.GetGroup(0), etalon);
+	algo::DSU dsu(6);
+	dsu.Union(0, 1);
+	EXPECT_EQ(dsu.GetParent(0), dsu.GetParent(1));
+	dsu.Union(1, 3);
+	EXPECT_EQ(dsu.GetParent(3), dsu.GetParent(0));
+	EXPECT_NE(dsu.GetParent(2), dsu.GetParent(3));
+	dsu.Union(3, 2);
+	EXPECT_EQ(dsu.GetParent(2), dsu.GetParent(3));
+	dsu.Union(5, 2);
+	EXPECT_EQ(dsu.GetParent(4), 4);
+	dsu.Union(4, 1);
+	std::vector<algo::Graph::VertexType> etalon = { 0, 1, 2, 3, 4, 5 };
+	EXPECT_EQ(dsu.GetGroup(0), etalon);
+}
+TEST(TreeTest, GraphTest)
+{
+	{
+		algo::Graph::ListOfEdges edges_graph = {
+			{0, 1, 1},
+			{1, 4, 1},
+			{1, 3, 1},
+			{2, 3, 1},
+			{2, 5, 1},
+		};
+		algo::Graph::UniqifyListOfEdges(edges_graph);
+		algo::Graph graph(edges_graph);
+		EXPECT_TRUE(graph.isTree());
+	}
+	{
+		algo::Graph::ListOfEdges edges_graph = {
+			{3, 0, 1},
+			{0, 1, 1},
+			{1, 4, 1},
+			{1, 3, 1},
+			{2, 3, 1},
+			{2, 5, 1},
+		};
+		algo::Graph::UniqifyListOfEdges(edges_graph);
+		algo::Graph graph(edges_graph);
+		EXPECT_FALSE(graph.isTree());
+	}
+	{
+		algo::Graph::ListOfEdges edges_graph = {
+			{0, 1, 1},
+			{1, 2, 1},
+			{2, 3, 1},
+			{3, 4, 1},
+			{4, 5, 1},
+			{5, 1, 1},
+		};
+		algo::Graph::UniqifyListOfEdges(edges_graph);
+		algo::Graph graph(edges_graph);
+		EXPECT_FALSE(graph.isTree());
+	}
+	{
+		algo::Graph::ListOfEdges edges_graph = {
+			{0, 1, 1},
+			{1, 2, 1},
+			{2, 3, 1},
+			{3, 4, 1},
+			{4, 5, 1},
+			{5, 0, 1},
+		};
+		algo::Graph::UniqifyListOfEdges(edges_graph);
+		algo::Graph graph(edges_graph);
+		EXPECT_FALSE(graph.isTree());
+	}
+	{
+		algo::Graph::ListOfEdges edges_graph = {
+			{0, 1, 1},
+			{1, 7, 1},
+			{2, 3, 1},
+			{3, 4, 1},
+			{4, 5, 1},
+			{5, 0, 1},
+		};
+		algo::Graph::UniqifyListOfEdges(edges_graph);
+		algo::Graph graph(edges_graph);
+		EXPECT_TRUE(graph.isTree());
+	}
 }
 
 TEST(KruskalTest, GraphTest)

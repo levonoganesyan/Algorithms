@@ -1,6 +1,7 @@
 #include "Graph/Graph.h"
 #include "Utils.h"
 #include "Defines.h"
+#include <Graph/CycleChecker.h>
 namespace algo
 {
 
@@ -380,6 +381,11 @@ namespace algo
 			}
 		}
 		return m_list_of_edges;
+	}
+	bool Graph::isTree() const
+	{
+		CycleChecker cc(*this);
+		return !cc.HasCycle();
 	}
 #pragma warning(pop)
 

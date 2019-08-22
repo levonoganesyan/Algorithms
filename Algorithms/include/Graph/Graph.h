@@ -162,8 +162,8 @@ namespace algo
 		ListOfEdges AsListOfEdges() const;
 		/*
 		bool isBipartite() const;
-		bool isTree() const;
 		*/
+		bool isTree() const;
 
     private:
 		mutable ConnectionList m_connection_list;
