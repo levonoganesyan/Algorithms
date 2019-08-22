@@ -135,7 +135,7 @@ namespace algo
 	template<typename Iter>
 	Iter partition(Iter first, Iter last)
 	{
-		Iter::value_type pivot = *first;
+		typename Iter::value_type pivot = *first;
 		Iter out = first;
 
 		for (Iter temp = std::next(first); temp != last; temp = std::next(temp))

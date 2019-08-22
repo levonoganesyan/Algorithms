@@ -104,7 +104,7 @@ TEST(SegmentTree, DataStructures)
 	{
 		std::vector<int> vec = getRandomVector(1000, -1111, 1111);
 		const int& (*operation)(const int&, const int&) = std::max<int>;
-		algo::SegmentTree<int> tree(vec, operation, -1111);
+		algo::SegmentTree<int> tree(vec, operation, -1111, algo::SegmentTree<int>::UpdateType::Sum);
 		tree.build_tree();
 		std::uniform_int_distribution<int> uid(0, vec.size() - 1);
 		int a = uid(rand_function);

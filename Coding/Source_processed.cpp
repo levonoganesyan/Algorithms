@@ -787,8 +787,6 @@ namespace algo
 
     };
 }
-#include "..\..\include\Graph\CycleChecker.h"
-#include "..\..\include\Graph\CycleChecker.h"
 #include<algorithm>
 namespace algo
 {
@@ -1057,89 +1055,248 @@ namespace algo
 		merge(f_v.begin(), f_v.end(), s_v.begin(), s_v.end(), first);
 	}
 
-	
-	/*template<typename itr>
-	itr partition(itr first,itr last)
-	{
-		itr pivot=first-1;
-		
-		for(itr temp = first; temp<last; temp = std::next(temp))
-		{
-			if(*temp<*last)
-			{
-
-				std::next(pivot);
-				std::swap(*pivot,*temp);
-			}
-			
-		}
-		std::swap(*(pivot+1),*last); 
-		std::next(pivot);
-		return pivot;
-	}*/
-	
-
 	template<typename Iter>
 	Iter partition(Iter first, Iter last)
 	{
-		//Iter out = std::prev(last);
-		//Iter pivot = first;
+		typename Iter::value_type pivot = *first;
+		Iter out = first;
 
-		//for (Iter temp = first; temp != last; temp = std::next(temp))
-		//{
-		//	if (*temp < *pivot)
-		//	{
-		//		std::iter_swap(out, temp);
-		//		out = std::next(out);
-		//	}
-		//}
-		//// std::iter_swap(out, first);
-		//out = std::prev(out);
-		//return out;
-		Iter pivot = first;
-		Iter head = first;
-		Iter tail = std::prev(last);
-		while (head != tail) {
-			while (*head < *pivot) {
-				if (++head == tail) {
-					return head;
-				}
-			}
-			while (*tail >= *pivot) {
-				if (--tail == head) {
-					return head;
-				}
-			}
-			std::iter_swap(head, tail);
-			if (++head == tail--) {
-				return head;
+		for (Iter temp = std::next(first); temp != last; temp = std::next(temp))
+		{
+			if (*temp < pivot)
+			{
+				out = std::next(out);
+				std::iter_swap(out, temp);
 			}
 		}
-		return head;
+		std::iter_swap(out, first);
+		return out;
 	}
 	
 	template<typename Iter>
 	void QuickSort(Iter first, Iter last)
 	{
-		std::vector<int> to_delete1(first, last);
 		if (std::distance(first, last) > 1)
 		{
 			Iter mid = partition(first, last);
-			std::vector<int> to_delete1(first, last);
-			std::vector<int> to_delete2(first, mid);
-			// std::vector<int> to_delete3(mid + 1, last);
 			QuickSort(first, mid);
 			QuickSort(std::next(mid), last);
 		}
 	}
 }
+#pragma once
+#include<vector>
+#include<functional>
+namespace algo
+{
+	template<typename T>
+	class SegmentTree
+	{
+	public:
+		static T min(T a, T b)
+		{
+			return a < b ? a : b;
+		}
+		static T max(T a, T b)
+		{
+			return a > b ? a : b;
+		}
+		enum class UpdateType
+		{
+			Assign,
+			Sum,
+			Product
+		};
+	private:
+		std::vector<T> m_vec;
+		std::vector<T> m_tree;
+		std::function<T(T, T)> m_tree_logic;
+		int m_neutral_element;
+		UpdateType m_upd_type;
+
+		void build_tree(int v, int l, int r);
+		void update(int i, T a, int v, int l, int r);
+		int query(int a, int b, int v, int l, int r) const;
+		static int left(int v);
+		static int right(int v);
+		static int mid(int l, int r);
+		void update_one(int& a, int b);
+	public:
+		SegmentTree(const std::vector<T>& vec, 
+					const std::function<T(T, T)>& tree_logic,
+					int neutral_element,
+					UpdateType upd_type = UpdateType::Assign);
+		
+		void build_tree();
+		void update(int pos, T elem);
+		int query(int from, int to) const;
+		int size() const;
+	};
+}
+
+
+namespace algo
+{
+	template<typename T>
+	inline void SegmentTree<T>::build_tree(int v, int l, int r)
+	{
+		if (l == r)
+		{
+			m_tree[v] = m_vec[l];
+		}
+		else
+		{
+			int m = mid(l, r);
+			build_tree(left(v), l, m);
+			build_tree(right(v), m + 1, r);
+			m_tree[v] = m_tree_logic(m_tree[left(v)], m_tree[right(v)]);
+		}
+	}
+
+	template<typename T>
+	inline void SegmentTree<T>::update(int pos, T elem, int v, int l, int r)
+	{
+		if (l == r)
+		{
+			update_one(m_tree[v], elem);
+			update_one(m_vec[pos], elem);
+		}
+		else
+		{
+			int m = mid(l, r);
+			if (pos <= m)
+			{
+				update(pos, elem, left(v), l, m);
+			}
+			else
+			{
+				update(pos, elem, right(v), m + 1, r);
+			}
+			m_tree[v] = m_tree_logic(m_tree[left(v)], m_tree[right(v)]);
+		}
+	}
+
+	template<typename T>
+	inline int SegmentTree<T>::query(int from, int to, int v, int l, int r) const
+	{
+		if (from > to)
+		{
+			return m_neutral_element;
+		}
+		if (from == l && to == r)
+		{
+			return m_tree[v];
+		}
+		else
+		{
+			int m = mid(l, r);
+			int left_ans = query(from, std::min(m, to), left(v), l, m);
+			int right_ans = query(std::max(from, m + 1), to, right(v), m + 1, r);
+			return m_tree_logic(left_ans, right_ans);
+		}
+	}
+
+	template<typename T>
+	inline int SegmentTree<T>::left(int v)
+	{
+		return v << 1;
+	}
+
+	template<typename T>
+	inline int SegmentTree<T>::right(int v)
+	{
+		return (v << 1) + 1;
+	}
+
+	template<typename T>
+	inline int SegmentTree<T>::mid(int l, int r)
+	{
+		return (l + r) >> 1;
+	}
+
+	template<typename T>
+	inline void SegmentTree<T>::update_one(int& a, int b)
+	{
+		switch (m_upd_type)
+		{
+		case UpdateType::Assign:
+			a = b;
+			break;
+		case UpdateType::Sum:
+			a += b;
+			break;
+		case UpdateType::Product:
+			a *= b;
+			break;
+		default:
+			break;
+		}
+	}
+
+	template<typename T>
+	SegmentTree<T>::SegmentTree(const std::vector<T>& vec,
+								const std::function<T(T, T)>& tree_logic,
+								int neutral_element,
+								UpdateType upd_type)
+		: m_vec(vec)
+		, m_tree_logic(tree_logic)
+		, m_neutral_element(neutral_element)
+		, m_upd_type(upd_type)
+	{
+		m_tree.resize(m_vec.size() << 2);
+	}
+
+	template<typename T>
+	inline void SegmentTree<T>::build_tree()
+	{
+		build_tree(1, 0, m_vec.size() - 1);
+	}
+
+	template<typename T>
+	inline void SegmentTree<T>::update(int i, T a)
+	{
+		update(i, a, 1, 0, m_vec.size() - 1);
+	}
+
+	template<typename T>
+	inline int SegmentTree<T>::query(int from, int to) const
+	{
+		return query(from, to, 1, 0, m_vec.size() - 1);
+	}
+	template<typename T>
+	inline int SegmentTree<T>::size() const
+	{
+		return m_vec.size();
+	}
+}
+
+
+
+
+
 
 using namespace std;
 
 int main()
 {
-	std::vector<int> vec{ 2,5,6,1,5,2,6,4 };
-	algo::QuickSort(vec.begin(), vec.end());
+	int n;
+	cin >> n;
+	algo::SegmentTree<int> tree(std::vector<int>(40000, 0), 
+								std::plus<int>(), 
+								0,
+								algo::SegmentTree<int>::UpdateType::Sum);
+	vector<int> ans(n);
+	for (int i = 0; i < n; i++)
+	{
+		int x, y;
+		cin >> x >> y;
+		ans[tree.query(0, x)]++;
+		tree.update(x, 1);
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cout << ans[i] << endl;
+	}
 }
 
 
