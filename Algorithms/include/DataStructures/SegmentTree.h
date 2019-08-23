@@ -32,7 +32,7 @@ namespace algo
 		void build_tree(int v, int l, int r);
 		void update(int pos, T elem, int v, int l, int r);
 		// void update(int pos_l, int pos_r, T elem, int v, int l, int r);
-		int query(int from, int to, int v, int l, int r) const;
+		T query(int from, int to, int v, int l, int r) const;
 		static int left(int v);
 		static int right(int v);
 		static int mid(int l, int r);
@@ -46,7 +46,7 @@ namespace algo
 		void build_tree();
 		void update(int pos, T elem);
 		// void update(int pos_l, int pos_r, T elem);
-		int query(int from, int to) const;
+		T query(int from, int to) const;
 		int size() const;
 	};
 }
@@ -103,7 +103,7 @@ namespace algo
 	}*/
 
 	template<typename T>
-	inline int SegmentTree<T>::query(int from, int to, int v, int l, int r) const
+	inline T SegmentTree<T>::query(int from, int to, int v, int l, int r) const
 	{
 		if (from > to)
 		{
@@ -195,7 +195,7 @@ namespace algo
 	}*/
 
 	template<typename T>
-	inline int SegmentTree<T>::query(int from, int to) const
+	inline T SegmentTree<T>::query(int from, int to) const
 	{
 		return query(from, to, 1, 0, m_vec.size() - 1);
 	}
