@@ -431,6 +431,10 @@ TEST(StrongComponentsTest, GraphTest)
     }
 }
 
+TEST(LCATest, GraphTest)
+{
+	// TODO
+}
 
 
 

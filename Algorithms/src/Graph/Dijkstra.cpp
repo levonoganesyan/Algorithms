@@ -89,9 +89,7 @@ namespace algo
 
     Dijkstra::Dijkstra
         (const Dijkstra::ListOfEdges& graph,
-         int start_vertex)
-        : Dijkstra(Graph::ListOfEdgesToConnectionList(graph),
-            start_vertex)
+         int start_vertex) : Dijkstra(Graph::LOE2CL(graph), start_vertex)
     {
     }
 

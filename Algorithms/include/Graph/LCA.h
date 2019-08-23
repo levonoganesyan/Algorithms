@@ -1,5 +1,6 @@
 #pragma once
 #include<Graph\Graph.h>
+#include<vector>
 namespace algo
 {
 
@@ -10,9 +11,15 @@ namespace algo
 		using ListOfEdges = Graph::ListOfEdges;
 		using VertexType = Graph::VertexType;
 
-		using VertexState = Graph::VertexState;
+		std::vector<int> m_time_in;
+		std::vector<int> m_time_out;
+		std::vector<std::vector<VertexType>> m_up;
 
-		void dfs(const ConnectionList& graph, int vertex);
+		int timer;
+
+		void dfs(const ConnectionList& graph, int vertex, int prev = 0);
+		bool upper(int a, int b) const;
+		static int greater_power_of_2(int n);
 
 	public:
 		LCA(const Graph& graph);
@@ -20,6 +27,7 @@ namespace algo
 		LCA(const ConnectionMatrix& graph);
 		LCA(const ListOfEdges& graph);
 
+		int Get(int a, int b) const;
 	};
 
 }
