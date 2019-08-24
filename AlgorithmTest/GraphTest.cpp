@@ -8,6 +8,7 @@
 #include"Graph/Kruskal.h"
 #include"Graph/Components.h"
 #include"Graph/StrongComponents.h"
+#include"Graph/LCA.h"
 #include<algorithm>
 
 TEST(GraphConvertTest, GraphTest)
@@ -433,7 +434,33 @@ TEST(StrongComponentsTest, GraphTest)
 
 TEST(LCATest, GraphTest)
 {
-	// TODO
+	algo::Graph graph = algo::Graph::ListOfEdges{
+		{0, 1},
+		{0, 2},
+		{0, 3},
+		{1, 4},
+		{1, 5},
+		{4, 9},
+		{9, 13},
+		{5, 10},
+		{5, 11},
+		{11, 14},
+		{11, 15},
+		{2, 6},
+		{2, 7},
+		{6, 12},
+		{12, 16},
+		{16, 17},
+		{3, 8}
+	};
+	
+	algo::LCA lca(graph);
+	EXPECT_EQ(lca.Get(13, 17), 0);
+	EXPECT_EQ(lca.Get(14, 10), 5);
+	EXPECT_EQ(lca.Get(2, 17), 2);
+	EXPECT_EQ(lca.Get(17, 2), 2);
+	EXPECT_EQ(lca.Get(9, 14), 1);
+	EXPECT_EQ(lca.Get(8, 8), 8);
 }
 
 

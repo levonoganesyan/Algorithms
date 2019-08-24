@@ -6,7 +6,7 @@ namespace algo
 	{
 		m_time_in[vertex] = ++timer;
 		m_up[vertex][0] = prev;
-		for (int i = 1; i <= m_up[vertex].size(); ++i)
+		for (int i = 1; i < m_up[vertex].size(); ++i)
 		{
 			m_up[vertex][i] = m_up[m_up[vertex][i - 1]][i - 1];
 		}
@@ -48,7 +48,7 @@ namespace algo
 		, m_time_out(graph.size())
 		, timer(0)
 	{
-
+		dfs(graph);
 	}
 
 	LCA::LCA(const ConnectionMatrix& graph)

@@ -17,7 +17,7 @@ namespace algo
 
 		int timer;
 
-		void dfs(const ConnectionList& graph, int vertex, int prev = 0);
+		void dfs(const ConnectionList& graph, int vertex = 0, int prev = 0);
 		bool upper(int a, int b) const;
 		static int greater_power_of_2(int n);
 
