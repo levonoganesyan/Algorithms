@@ -2,6 +2,7 @@
 #include "Utils.h"
 #include "Defines.h"
 #include <Graph/CycleChecker.h>
+#include <Graph/ChromaticNumber.h>
 namespace algo
 {
 
@@ -385,6 +386,14 @@ namespace algo
 			}
 		}
 		return m_list_of_edges;
+	}
+	size_t Graph::GetSize() const
+	{
+		return Graph::GetSize(this->AsConnectionList());
+	}
+	bool Graph::isBipartite() const
+	{
+		return ChromaticNumber(*this).GetNumber() <= 2;
 	}
 	bool Graph::isTree() const
 	{

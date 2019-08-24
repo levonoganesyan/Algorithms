@@ -11,6 +11,7 @@
 #include"Graph/LCA.h"
 #include"Graph/CutPoints.h"
 #include"Graph/Bridges.h"
+#include"Graph/ChromaticNumber.h"
 #include<algorithm>
 #include<numeric>
 
@@ -544,8 +545,8 @@ TEST(BridgesTest, GraphTest)
 
 		algo::Bridges br(graph);
 		std::vector<algo::Graph::Edge> etalon = edges;
-		EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()), 
-				  algo::Graph::MakeUndirected(etalon));
+		EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()),
+			algo::Graph::MakeUndirected(etalon));
 	}
 	{
 		algo::Graph graph = algo::Graph::MakeUndirected(
@@ -568,8 +569,136 @@ TEST(BridgesTest, GraphTest)
 			{4, 5},
 			{2, 7},
 		};
-		EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()), 
-				  algo::Graph::MakeUndirected(etalon));
+		EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()),
+			algo::Graph::MakeUndirected(etalon));
+	}
+}
+
+TEST(ChromaticNumberTest, GraphTest)
+{
+	{
+		algo::Graph::ListOfEdges edges{
+				{0, 1},
+				{0, 2},
+				{0, 3},
+				{1, 4},
+				{1, 5},
+				{4, 9},
+				{9, 13},
+				{5, 10},
+				{5, 11},
+				{11, 14},
+				{11, 15},
+				{2, 6},
+				{2, 7},
+				{6, 12},
+				{12, 16},
+				{16, 17},
+				{3, 8}
+		};
+		edges = algo::Graph::MakeUndirected(edges);
+		algo::Graph graph = edges;
+
+		algo::ChromaticNumber cn(graph);
+		EXPECT_EQ(cn.GetNumber(), 2);
+	}
+	{
+		algo::Graph graph = algo::Graph::MakeUndirected(
+			algo::Graph::ListOfEdges{
+			{0, 1},
+			{1, 5},
+			{2, 5},
+			{4, 5},
+			{2, 7},
+			{3, 6},
+			{3, 7},
+			{6, 7},
+			});
+		algo::ChromaticNumber cn(graph);
+		EXPECT_EQ(cn.GetNumber(), 3);
+	}
+	{
+		algo::Graph graph = algo::Graph::MakeUndirected(
+			algo::Graph::ListOfEdges{
+			{0, 1},
+			{0, 2},
+			{0, 3},
+			{1, 2},
+			{1, 3},
+			{2, 3},
+			});
+		algo::ChromaticNumber cn(graph);
+		EXPECT_EQ(cn.GetNumber(), 4);
+	}
+}
+
+
+TEST(BipartiteTest, GraphTest)
+{
+	{
+		algo::Graph::ListOfEdges edges{
+				{0, 1},
+				{0, 2},
+				{0, 3},
+				{1, 4},
+				{1, 5},
+				{4, 9},
+				{9, 13},
+				{5, 10},
+				{5, 11},
+				{11, 14},
+				{11, 15},
+				{2, 6},
+				{2, 7},
+				{6, 12},
+				{12, 16},
+				{16, 17},
+				{3, 8}
+		};
+		edges = algo::Graph::MakeUndirected(edges);
+		algo::Graph graph = edges;
+		EXPECT_TRUE(graph.isBipartite());
+	}
+	{
+		algo::Graph graph = algo::Graph::MakeUndirected(
+			algo::Graph::ListOfEdges{
+			{0, 1},
+			{1, 5},
+			{2, 5},
+			{4, 5},
+			{2, 7},
+			{3, 6},
+			{3, 7},
+			{6, 7},
+			});
+		EXPECT_FALSE(graph.isBipartite());
+	}
+	{
+		algo::Graph graph = algo::Graph::MakeUndirected(
+			algo::Graph::ListOfEdges{
+			{0, 3},
+			{0, 4},
+			{1, 3},
+			{1, 4},
+			{1, 5},
+			{2, 4},
+			{2, 5},
+			});
+		EXPECT_TRUE(graph.isBipartite());
+	}
+	{
+		algo::Graph graph = algo::Graph::MakeUndirected(
+			algo::Graph::ListOfEdges{
+			{0, 3},
+			{0, 4},
+			{0, 1},
+			{1, 3},
+			{1, 4},
+			{1, 5},
+			{2, 4},
+			{2, 5},
+			});
+		EXPECT_FALSE(graph.isBipartite());
 	}
 }
 

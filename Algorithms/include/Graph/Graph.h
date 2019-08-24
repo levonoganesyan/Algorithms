@@ -9,7 +9,8 @@ namespace algo
     {
     public:
         using VertexType = int;
-        using WeightType = int;
+		using WeightType = int;
+		using Color = int;
         struct Edge
         {
             VertexType from;
@@ -160,13 +161,8 @@ namespace algo
 		ConnectionList AsConnectionList() const;
 		ConnectionMatrix AsConnectionMatrix() const;
 		ListOfEdges AsListOfEdges() const;
-		size_t GetSize() const
-		{
-			return Graph::GetSize(this->AsConnectionList());
-		}
-		/*
+		size_t GetSize() const;
 		bool isBipartite() const;
-		*/
 		bool isTree() const;
 
     private:
