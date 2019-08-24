@@ -9,7 +9,10 @@
 #include"Graph/Components.h"
 #include"Graph/StrongComponents.h"
 #include"Graph/LCA.h"
+#include"Graph/CutPoints.h"
+#include"Graph/Bridges.h"
 #include<algorithm>
+#include<numeric>
 
 TEST(GraphConvertTest, GraphTest)
 {
@@ -453,7 +456,7 @@ TEST(LCATest, GraphTest)
 		{16, 17},
 		{3, 8}
 	};
-	
+
 	algo::LCA lca(graph);
 	EXPECT_EQ(lca.Get(13, 17), 0);
 	EXPECT_EQ(lca.Get(14, 10), 5);
@@ -461,6 +464,113 @@ TEST(LCATest, GraphTest)
 	EXPECT_EQ(lca.Get(17, 2), 2);
 	EXPECT_EQ(lca.Get(9, 14), 1);
 	EXPECT_EQ(lca.Get(8, 8), 8);
+}
+
+
+TEST(CutPointsTest, GraphTest)
+{
+	{
+		algo::Graph graph = algo::Graph::MakeUndirected(
+			algo::Graph::ListOfEdges{
+			{0, 1},
+			{0, 2},
+			{0, 3},
+			{1, 4},
+			{1, 5},
+			{4, 9},
+			{9, 13},
+			{5, 10},
+			{5, 11},
+			{11, 14},
+			{11, 15},
+			{2, 6},
+			{2, 7},
+			{6, 12},
+			{12, 16},
+			{16, 17},
+			{3, 8}
+			});
+
+		algo::CutPoints cp(graph);
+		std::vector<int> etalon = { 0, 1, 2, 3, 4, 5, 6, 9, 11, 12, 16 };
+		EXPECT_EQ(cp.Get(), etalon);
+	}
+	{
+		algo::Graph graph = algo::Graph::MakeUndirected(
+			algo::Graph::ListOfEdges{
+			{0, 1},
+			{1, 5},
+			{2, 5},
+			{4, 5},
+			{2, 7},
+			{3, 6},
+			{3, 7},
+			{6, 7},
+			});
+
+		algo::CutPoints cp(graph);
+		std::vector<int> etalon = { 1, 2, 5, 7 };
+		EXPECT_EQ(cp.Get(), etalon);
+	}
+}
+
+
+
+
+TEST(BridgesTest, GraphTest)
+{
+	{
+		algo::Graph::ListOfEdges edges{
+				{0, 1},
+				{0, 2},
+				{0, 3},
+				{1, 4},
+				{1, 5},
+				{4, 9},
+				{9, 13},
+				{5, 10},
+				{5, 11},
+				{11, 14},
+				{11, 15},
+				{2, 6},
+				{2, 7},
+				{6, 12},
+				{12, 16},
+				{16, 17},
+				{3, 8}
+		};
+		edges = algo::Graph::MakeUndirected(edges);
+		algo::Graph graph = edges;
+
+		algo::Bridges br(graph);
+		std::vector<algo::Graph::Edge> etalon = edges;
+		EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()), 
+				  algo::Graph::MakeUndirected(etalon));
+	}
+	{
+		algo::Graph graph = algo::Graph::MakeUndirected(
+			algo::Graph::ListOfEdges{
+			{0, 1},
+			{1, 5},
+			{2, 5},
+			{4, 5},
+			{2, 7},
+			{3, 6},
+			{3, 7},
+			{6, 7},
+			});
+
+		algo::Bridges br(graph);
+		std::vector<algo::Graph::Edge> etalon{
+			{0, 1},
+			{1, 5},
+			{2, 5},
+			{4, 5},
+			{2, 7},
+		};
+		EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()), 
+				  algo::Graph::MakeUndirected(etalon));
+	}
 }
 
 

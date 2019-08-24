@@ -4,7 +4,7 @@ namespace algo
 
 	void LCA::dfs(const ConnectionList& graph, int vertex, int prev)
 	{
-		m_time_in[vertex] = ++timer;
+		m_time_in[vertex] = ++m_timer;
 		m_up[vertex][0] = prev;
 		for (int i = 1; i < m_up[vertex].size(); ++i)
 		{
@@ -18,7 +18,7 @@ namespace algo
 				dfs(graph, to, vertex);
 			}
 		}
-		m_time_out[vertex] = ++timer;
+		m_time_out[vertex] = ++m_timer;
 	}
 
 	bool LCA::upper(int a, int b) const
@@ -46,7 +46,7 @@ namespace algo
 		: m_up(graph.size(),std::vector<int>(greater_power_of_2(graph.size())))
 		, m_time_in(graph.size())
 		, m_time_out(graph.size())
-		, timer(0)
+		, m_timer(0)
 	{
 		dfs(graph);
 	}

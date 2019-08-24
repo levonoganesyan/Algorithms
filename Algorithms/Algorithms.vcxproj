@@ -167,6 +167,9 @@
     <ClInclude Include="include\DataStructures\SegmentTree.h" />
     <ClInclude Include="include\Defines.h" />
     <ClInclude Include="include\Geometry\Geometry.h" />
+    <ClInclude Include="include\Graph\Bridges.h" />
+    <ClInclude Include="include\Graph\ChromaticNumber.h" />
+    <ClInclude Include="include\Graph\CutPoints.h" />
     <ClInclude Include="include\Graph\Components.h" />
     <ClInclude Include="include\Graph\CycleChecker.h" />
     <ClInclude Include="include\Graph\Dijkstra.h" />
@@ -184,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp" />
+    <ClCompile Include="src\Graph\Bridges.cpp" />
+    <ClCompile Include="src\Graph\ChromaticNumber.cpp" />
+    <ClCompile Include="src\Graph\CutPoints.cpp" />
     <ClCompile Include="src\Graph\Components.cpp" />
     <ClCompile Include="src\Graph\CycleChecker.cpp" />
     <ClCompile Include="src\Graph\Dijkstra.cpp" />

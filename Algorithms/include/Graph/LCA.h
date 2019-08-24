@@ -15,7 +15,7 @@ namespace algo
 		std::vector<int> m_time_out;
 		std::vector<std::vector<VertexType>> m_up;
 
-		int timer;
+		int m_timer;
 
 		void dfs(const ConnectionList& graph, int vertex = 0, int prev = 0);
 		bool upper(int a, int b) const;

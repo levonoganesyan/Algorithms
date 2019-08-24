@@ -211,7 +211,8 @@ namespace algo
 	{
 		return ConnectionListToConnectionMatrix(connection_list);
 	}
-    void 
+
+	Graph::ConnectionMatrix
         Graph::MakeUndirected
             (ConnectionMatrix & connection_matrix)
     {
@@ -225,8 +226,9 @@ namespace algo
                 }
             }
         }
+		return connection_matrix;
     }
-    void
+    Graph::ConnectionList
         Graph::MakeUndirected
             (ConnectionList & connection_list)
     {
@@ -254,9 +256,10 @@ namespace algo
             new_connection_list[i].erase(it, new_connection_list[i].end());
         }
         connection_list = new_connection_list;
+		return connection_list;
         
     }
-    void
+	Graph::ListOfEdges
         Graph::MakeUndirected
             (ListOfEdges & list_of_edges)
     {
@@ -269,6 +272,7 @@ namespace algo
         }
         Graph::UniqifyListOfEdges(new_list_of_edges);
         list_of_edges = new_list_of_edges;
+		return list_of_edges;
     }
     size_t Graph::GetSize(const ConnectionMatrix & connection_matrix)
     {

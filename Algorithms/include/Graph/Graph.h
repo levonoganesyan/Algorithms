@@ -121,15 +121,15 @@ namespace algo
 			CL2CM
 				(const ConnectionList& connection_list);
 
-        static void
+        static ConnectionMatrix
             MakeUndirected
             (ConnectionMatrix& connection_matrix);
 
-        static void
+        static ConnectionList
             MakeUndirected
             (ConnectionList& connection_list);
 
-        static void
+        static ListOfEdges
             MakeUndirected
             (ListOfEdges& list_of_edges);
 
@@ -160,6 +160,10 @@ namespace algo
 		ConnectionList AsConnectionList() const;
 		ConnectionMatrix AsConnectionMatrix() const;
 		ListOfEdges AsListOfEdges() const;
+		size_t GetSize() const
+		{
+			return Graph::GetSize(this->AsConnectionList());
+		}
 		/*
 		bool isBipartite() const;
 		*/

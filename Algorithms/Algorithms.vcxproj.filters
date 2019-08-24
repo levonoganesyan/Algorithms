@@ -35,7 +35,7 @@
       <UniqueIdentifier>{3aada30b-67a2-469a-b866-cf6051875bdc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\DataStructures">
-      <UniqueIdentifier>{46835ec3-aed5-4ace-9222-8d6b4027b8c1}</UniqueIdentifier>
+      <UniqueIdentifier>{28d2e31f-8a66-4db7-ae33-b46ac0a0ea1f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +90,15 @@
     <ClInclude Include="include\Graph\LCA.h">
       <Filter>Header Files\Graph</Filter>
     </ClInclude>
+    <ClInclude Include="include\Graph\CutPoints.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graph\Bridges.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graph\ChromaticNumber.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -123,6 +132,15 @@
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
     <ClCompile Include="src\Graph\LCA.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\CutPoints.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\Bridges.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\ChromaticNumber.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
   </ItemGroup>
