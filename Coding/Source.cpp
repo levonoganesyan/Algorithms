@@ -12,6 +12,9 @@
 
 using namespace std;
 
+// Test FordBellman
+// Test Euler path and cycle
+
 int main()
 {
     int n;

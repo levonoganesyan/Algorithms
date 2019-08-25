@@ -1,6 +1,5 @@
 #include<Graph/CycleChecker.h>
 #include<algorithm>
-#include "..\..\include\Graph\CycleChecker.h"
 namespace algo
 {
     bool

@@ -99,6 +99,9 @@
     <ClInclude Include="include\Graph\ChromaticNumber.h">
       <Filter>Header Files\Graph</Filter>
     </ClInclude>
+    <ClInclude Include="include\Graph\Euler.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -141,6 +144,15 @@
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
     <ClCompile Include="src\Graph\ChromaticNumber.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Graph\FordBellman.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\FordBellman.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\Euler.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
   </ItemGroup>
