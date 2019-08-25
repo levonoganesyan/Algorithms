@@ -16,8 +16,8 @@ namespace algo
         void get_path(int from, int to, std::vector<int>& path);
     public:
 
-		FloydWarshall(const Graph& graph);
-		FloydWarshall(const ConnectionList& connection_list);
+        FloydWarshall(const Graph& graph);
+        FloydWarshall(const ConnectionList& connection_list);
         FloydWarshall(const ConnectionMatrix& connection_matrix);
         FloydWarshall(const ListOfEdges& list_of_edges);
 

@@ -30,10 +30,10 @@ namespace algo
         return false;
     }
 
-	CycleChecker::CycleChecker(const Graph& graph)
-		: CycleChecker(graph.AsConnectionList())
-	{
-	}
+    CycleChecker::CycleChecker(const Graph& graph)
+        : CycleChecker(graph.AsConnectionList())
+    {
+    }
 
     CycleChecker::CycleChecker
         (const ConnectionList & graph)

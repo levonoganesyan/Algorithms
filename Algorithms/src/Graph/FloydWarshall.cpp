@@ -2,12 +2,12 @@
 
 namespace algo
 {
-	FloydWarshall::FloydWarshall
-		(const Graph& graph)
-		: FloydWarshall(graph.AsConnectionMatrix())
-	{
-	}
-	FloydWarshall::FloydWarshall
+    FloydWarshall::FloydWarshall
+        (const Graph& graph)
+        : FloydWarshall(graph.AsConnectionMatrix())
+    {
+    }
+    FloydWarshall::FloydWarshall
         (const ConnectionList & connection_list)
             : FloydWarshall(Graph::CL2CM(connection_list))
     {

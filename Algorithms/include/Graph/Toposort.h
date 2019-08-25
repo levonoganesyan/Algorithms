@@ -18,8 +18,8 @@ namespace algo
         void dfs(const ConnectionList & graph, int vertex);
 
     public:
-		Toposort(const Graph& graph);
-		Toposort(const ConnectionList& graph);
+        Toposort(const Graph& graph);
+        Toposort(const ConnectionList& graph);
         Toposort(const ConnectionMatrix& graph);
         Toposort(const ListOfEdges& graph);
 

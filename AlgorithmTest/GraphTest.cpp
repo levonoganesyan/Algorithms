@@ -35,26 +35,26 @@ TEST(GraphConvertTest, GraphTest)
     EXPECT_EQ(edges_graph, algo::Graph::CM2LOE(matrix_graph));
     EXPECT_EQ(edges_graph, algo::Graph::CL2LOE(list_graph));
     
-	EXPECT_EQ(matrix_graph, algo::Graph::LOE2CM(edges_graph));
+    EXPECT_EQ(matrix_graph, algo::Graph::LOE2CM(edges_graph));
     EXPECT_EQ(matrix_graph, algo::Graph::CL2CM(list_graph));
     
-	EXPECT_EQ(list_graph, algo::Graph::LOE2CL(edges_graph));
+    EXPECT_EQ(list_graph, algo::Graph::LOE2CL(edges_graph));
     EXPECT_EQ(list_graph, algo::Graph::CM2CL(matrix_graph));
 
-	algo::Graph graph(edges_graph);
-	EXPECT_EQ(edges_graph, graph.AsListOfEdges());
-	EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
-	EXPECT_EQ(list_graph, graph.AsConnectionList());
+    algo::Graph graph(edges_graph);
+    EXPECT_EQ(edges_graph, graph.AsListOfEdges());
+    EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
+    EXPECT_EQ(list_graph, graph.AsConnectionList());
 
-	graph = algo::Graph(list_graph);
-	EXPECT_EQ(edges_graph, graph.AsListOfEdges());
-	EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
-	EXPECT_EQ(list_graph, graph.AsConnectionList());
+    graph = algo::Graph(list_graph);
+    EXPECT_EQ(edges_graph, graph.AsListOfEdges());
+    EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
+    EXPECT_EQ(list_graph, graph.AsConnectionList());
 
-	graph = algo::Graph(matrix_graph);
-	EXPECT_EQ(edges_graph, graph.AsListOfEdges());
-	EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
-	EXPECT_EQ(list_graph, graph.AsConnectionList());
+    graph = algo::Graph(matrix_graph);
+    EXPECT_EQ(edges_graph, graph.AsListOfEdges());
+    EXPECT_EQ(matrix_graph, graph.AsConnectionMatrix());
+    EXPECT_EQ(list_graph, graph.AsConnectionList());
 
 
 }
@@ -73,9 +73,9 @@ TEST(DijkstraFloydWarshallTest, GraphTest)
     {
         algo::Dijkstra dikstra(edges_graph, i);
         EXPECT_EQ(dikstra.GetDistance(), floyd_warshall.GetDistance(i));
-		dikstra = algo::Dijkstra(algo::Graph(edges_graph), i);
-		EXPECT_EQ(dikstra.GetDistance(), floyd_warshall.GetDistance(i));
-		int number_of_path_tests = 20;
+        dikstra = algo::Dijkstra(algo::Graph(edges_graph), i);
+        EXPECT_EQ(dikstra.GetDistance(), floyd_warshall.GetDistance(i));
+        int number_of_path_tests = 20;
         while (number_of_path_tests--)
         {
             int to = (int)algo::random(0, number_of_vertices);
@@ -220,86 +220,86 @@ TEST(ToposortTest, GraphTest)
 
 TEST(DSUTest, GraphTest)
 {
-	algo::DSU dsu(6);
-	dsu.Union(0, 1);
-	EXPECT_EQ(dsu.GetParent(0), dsu.GetParent(1));
-	dsu.Union(1, 3);
-	EXPECT_EQ(dsu.GetParent(3), dsu.GetParent(0));
-	EXPECT_NE(dsu.GetParent(2), dsu.GetParent(3));
-	dsu.Union(3, 2);
-	EXPECT_EQ(dsu.GetParent(2), dsu.GetParent(3));
-	dsu.Union(5, 2);
-	EXPECT_EQ(dsu.GetParent(4), 4);
-	dsu.Union(4, 1);
-	std::vector<algo::Graph::VertexType> etalon = { 0, 1, 2, 3, 4, 5 };
-	EXPECT_EQ(dsu.GetGroup(0), etalon);
+    algo::DSU dsu(6);
+    dsu.Union(0, 1);
+    EXPECT_EQ(dsu.GetParent(0), dsu.GetParent(1));
+    dsu.Union(1, 3);
+    EXPECT_EQ(dsu.GetParent(3), dsu.GetParent(0));
+    EXPECT_NE(dsu.GetParent(2), dsu.GetParent(3));
+    dsu.Union(3, 2);
+    EXPECT_EQ(dsu.GetParent(2), dsu.GetParent(3));
+    dsu.Union(5, 2);
+    EXPECT_EQ(dsu.GetParent(4), 4);
+    dsu.Union(4, 1);
+    std::vector<algo::Graph::VertexType> etalon = { 0, 1, 2, 3, 4, 5 };
+    EXPECT_EQ(dsu.GetGroup(0), etalon);
 }
 TEST(TreeTest, GraphTest)
 {
-	{
-		algo::Graph::ListOfEdges edges_graph = {
-			{0, 1, 1},
-			{1, 4, 1},
-			{1, 3, 1},
-			{2, 3, 1},
-			{2, 5, 1},
-		};
-		algo::Graph::UniqifyListOfEdges(edges_graph);
-		algo::Graph graph(edges_graph);
-		EXPECT_TRUE(graph.isTree());
-	}
-	{
-		algo::Graph::ListOfEdges edges_graph = {
-			{3, 0, 1},
-			{0, 1, 1},
-			{1, 4, 1},
-			{1, 3, 1},
-			{2, 3, 1},
-			{2, 5, 1},
-		};
-		algo::Graph::UniqifyListOfEdges(edges_graph);
-		algo::Graph graph(edges_graph);
-		EXPECT_FALSE(graph.isTree());
-	}
-	{
-		algo::Graph::ListOfEdges edges_graph = {
-			{0, 1, 1},
-			{1, 2, 1},
-			{2, 3, 1},
-			{3, 4, 1},
-			{4, 5, 1},
-			{5, 1, 1},
-		};
-		algo::Graph::UniqifyListOfEdges(edges_graph);
-		algo::Graph graph(edges_graph);
-		EXPECT_FALSE(graph.isTree());
-	}
-	{
-		algo::Graph::ListOfEdges edges_graph = {
-			{0, 1, 1},
-			{1, 2, 1},
-			{2, 3, 1},
-			{3, 4, 1},
-			{4, 5, 1},
-			{5, 0, 1},
-		};
-		algo::Graph::UniqifyListOfEdges(edges_graph);
-		algo::Graph graph(edges_graph);
-		EXPECT_FALSE(graph.isTree());
-	}
-	{
-		algo::Graph::ListOfEdges edges_graph = {
-			{0, 1, 1},
-			{1, 7, 1},
-			{2, 3, 1},
-			{3, 4, 1},
-			{4, 5, 1},
-			{5, 0, 1},
-		};
-		algo::Graph::UniqifyListOfEdges(edges_graph);
-		algo::Graph graph(edges_graph);
-		EXPECT_TRUE(graph.isTree());
-	}
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1, 1},
+            {1, 4, 1},
+            {1, 3, 1},
+            {2, 3, 1},
+            {2, 5, 1},
+        };
+        algo::Graph::UniqifyListOfEdges(edges_graph);
+        algo::Graph graph(edges_graph);
+        EXPECT_TRUE(graph.isTree());
+    }
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {3, 0, 1},
+            {0, 1, 1},
+            {1, 4, 1},
+            {1, 3, 1},
+            {2, 3, 1},
+            {2, 5, 1},
+        };
+        algo::Graph::UniqifyListOfEdges(edges_graph);
+        algo::Graph graph(edges_graph);
+        EXPECT_FALSE(graph.isTree());
+    }
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1, 1},
+            {1, 2, 1},
+            {2, 3, 1},
+            {3, 4, 1},
+            {4, 5, 1},
+            {5, 1, 1},
+        };
+        algo::Graph::UniqifyListOfEdges(edges_graph);
+        algo::Graph graph(edges_graph);
+        EXPECT_FALSE(graph.isTree());
+    }
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1, 1},
+            {1, 2, 1},
+            {2, 3, 1},
+            {3, 4, 1},
+            {4, 5, 1},
+            {5, 0, 1},
+        };
+        algo::Graph::UniqifyListOfEdges(edges_graph);
+        algo::Graph graph(edges_graph);
+        EXPECT_FALSE(graph.isTree());
+    }
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1, 1},
+            {1, 7, 1},
+            {2, 3, 1},
+            {3, 4, 1},
+            {4, 5, 1},
+            {5, 0, 1},
+        };
+        algo::Graph::UniqifyListOfEdges(edges_graph);
+        algo::Graph graph(edges_graph);
+        EXPECT_TRUE(graph.isTree());
+    }
 }
 
 TEST(KruskalTest, GraphTest)
@@ -438,81 +438,81 @@ TEST(StrongComponentsTest, GraphTest)
 
 TEST(LCATest, GraphTest)
 {
-	algo::Graph graph = algo::Graph::ListOfEdges{
-		{0, 1},
-		{0, 2},
-		{0, 3},
-		{1, 4},
-		{1, 5},
-		{4, 9},
-		{9, 13},
-		{5, 10},
-		{5, 11},
-		{11, 14},
-		{11, 15},
-		{2, 6},
-		{2, 7},
-		{6, 12},
-		{12, 16},
-		{16, 17},
-		{3, 8}
-	};
+    algo::Graph graph = algo::Graph::ListOfEdges{
+        {0, 1},
+        {0, 2},
+        {0, 3},
+        {1, 4},
+        {1, 5},
+        {4, 9},
+        {9, 13},
+        {5, 10},
+        {5, 11},
+        {11, 14},
+        {11, 15},
+        {2, 6},
+        {2, 7},
+        {6, 12},
+        {12, 16},
+        {16, 17},
+        {3, 8}
+    };
 
-	algo::LCA lca(graph);
-	EXPECT_EQ(lca.Get(13, 17), 0);
-	EXPECT_EQ(lca.Get(14, 10), 5);
-	EXPECT_EQ(lca.Get(2, 17), 2);
-	EXPECT_EQ(lca.Get(17, 2), 2);
-	EXPECT_EQ(lca.Get(9, 14), 1);
-	EXPECT_EQ(lca.Get(8, 8), 8);
+    algo::LCA lca(graph);
+    EXPECT_EQ(lca.Get(13, 17), 0);
+    EXPECT_EQ(lca.Get(14, 10), 5);
+    EXPECT_EQ(lca.Get(2, 17), 2);
+    EXPECT_EQ(lca.Get(17, 2), 2);
+    EXPECT_EQ(lca.Get(9, 14), 1);
+    EXPECT_EQ(lca.Get(8, 8), 8);
 }
 
 
 TEST(CutPointsTest, GraphTest)
 {
-	{
-		algo::Graph graph = algo::Graph::MakeUndirected(
-			algo::Graph::ListOfEdges{
-			{0, 1},
-			{0, 2},
-			{0, 3},
-			{1, 4},
-			{1, 5},
-			{4, 9},
-			{9, 13},
-			{5, 10},
-			{5, 11},
-			{11, 14},
-			{11, 15},
-			{2, 6},
-			{2, 7},
-			{6, 12},
-			{12, 16},
-			{16, 17},
-			{3, 8}
-			});
+    {
+        algo::Graph graph = algo::Graph::MakeUndirected(
+            algo::Graph::ListOfEdges{
+            {0, 1},
+            {0, 2},
+            {0, 3},
+            {1, 4},
+            {1, 5},
+            {4, 9},
+            {9, 13},
+            {5, 10},
+            {5, 11},
+            {11, 14},
+            {11, 15},
+            {2, 6},
+            {2, 7},
+            {6, 12},
+            {12, 16},
+            {16, 17},
+            {3, 8}
+            });
 
-		algo::CutPoints cp(graph);
-		std::vector<int> etalon = { 0, 1, 2, 3, 4, 5, 6, 9, 11, 12, 16 };
-		EXPECT_EQ(cp.Get(), etalon);
-	}
-	{
-		algo::Graph graph = algo::Graph::MakeUndirected(
-			algo::Graph::ListOfEdges{
-			{0, 1},
-			{1, 5},
-			{2, 5},
-			{4, 5},
-			{2, 7},
-			{3, 6},
-			{3, 7},
-			{6, 7},
-			});
+        algo::CutPoints cp(graph);
+        std::vector<int> etalon = { 0, 1, 2, 3, 4, 5, 6, 9, 11, 12, 16 };
+        EXPECT_EQ(cp.Get(), etalon);
+    }
+    {
+        algo::Graph graph = algo::Graph::MakeUndirected(
+            algo::Graph::ListOfEdges{
+            {0, 1},
+            {1, 5},
+            {2, 5},
+            {4, 5},
+            {2, 7},
+            {3, 6},
+            {3, 7},
+            {6, 7},
+            });
 
-		algo::CutPoints cp(graph);
-		std::vector<int> etalon = { 1, 2, 5, 7 };
-		EXPECT_EQ(cp.Get(), etalon);
-	}
+        algo::CutPoints cp(graph);
+        std::vector<int> etalon = { 1, 2, 5, 7 };
+        EXPECT_EQ(cp.Get(), etalon);
+    }
 }
 
 
@@ -520,186 +520,186 @@ TEST(CutPointsTest, GraphTest)
 
 TEST(BridgesTest, GraphTest)
 {
-	{
-		algo::Graph::ListOfEdges edges{
-				{0, 1},
-				{0, 2},
-				{0, 3},
-				{1, 4},
-				{1, 5},
-				{4, 9},
-				{9, 13},
-				{5, 10},
-				{5, 11},
-				{11, 14},
-				{11, 15},
-				{2, 6},
-				{2, 7},
-				{6, 12},
-				{12, 16},
-				{16, 17},
-				{3, 8}
-		};
-		edges = algo::Graph::MakeUndirected(edges);
-		algo::Graph graph = edges;
+    {
+        algo::Graph::ListOfEdges edges{
+                {0, 1},
+                {0, 2},
+                {0, 3},
+                {1, 4},
+                {1, 5},
+                {4, 9},
+                {9, 13},
+                {5, 10},
+                {5, 11},
+                {11, 14},
+                {11, 15},
+                {2, 6},
+                {2, 7},
+                {6, 12},
+                {12, 16},
+                {16, 17},
+                {3, 8}
+        };
+        edges = algo::Graph::MakeUndirected(edges);
+        algo::Graph graph = edges;
 
-		algo::Bridges br(graph);
-		std::vector<algo::Graph::Edge> etalon = edges;
-		EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()),
-			algo::Graph::MakeUndirected(etalon));
-	}
-	{
-		algo::Graph graph = algo::Graph::MakeUndirected(
-			algo::Graph::ListOfEdges{
-			{0, 1},
-			{1, 5},
-			{2, 5},
-			{4, 5},
-			{2, 7},
-			{3, 6},
-			{3, 7},
-			{6, 7},
-			});
+        algo::Bridges br(graph);
+        std::vector<algo::Graph::Edge> etalon = edges;
+        EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()),
+            algo::Graph::MakeUndirected(etalon));
+    }
+    {
+        algo::Graph graph = algo::Graph::MakeUndirected(
+            algo::Graph::ListOfEdges{
+            {0, 1},
+            {1, 5},
+            {2, 5},
+            {4, 5},
+            {2, 7},
+            {3, 6},
+            {3, 7},
+            {6, 7},
+            });
 
-		algo::Bridges br(graph);
-		std::vector<algo::Graph::Edge> etalon{
-			{0, 1},
-			{1, 5},
-			{2, 5},
-			{4, 5},
-			{2, 7},
-		};
-		EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()),
-			algo::Graph::MakeUndirected(etalon));
-	}
+        algo::Bridges br(graph);
+        std::vector<algo::Graph::Edge> etalon{
+            {0, 1},
+            {1, 5},
+            {2, 5},
+            {4, 5},
+            {2, 7},
+        };
+        EXPECT_EQ(algo::Graph::MakeUndirected(br.Get()),
+            algo::Graph::MakeUndirected(etalon));
+    }
 }
 
 TEST(ChromaticNumberTest, GraphTest)
 {
-	{
-		algo::Graph::ListOfEdges edges{
-				{0, 1},
-				{0, 2},
-				{0, 3},
-				{1, 4},
-				{1, 5},
-				{4, 9},
-				{9, 13},
-				{5, 10},
-				{5, 11},
-				{11, 14},
-				{11, 15},
-				{2, 6},
-				{2, 7},
-				{6, 12},
-				{12, 16},
-				{16, 17},
-				{3, 8}
-		};
-		edges = algo::Graph::MakeUndirected(edges);
-		algo::Graph graph = edges;
+    {
+        algo::Graph::ListOfEdges edges{
+                {0, 1},
+                {0, 2},
+                {0, 3},
+                {1, 4},
+                {1, 5},
+                {4, 9},
+                {9, 13},
+                {5, 10},
+                {5, 11},
+                {11, 14},
+                {11, 15},
+                {2, 6},
+                {2, 7},
+                {6, 12},
+                {12, 16},
+                {16, 17},
+                {3, 8}
+        };
+        edges = algo::Graph::MakeUndirected(edges);
+        algo::Graph graph = edges;
 
-		algo::ChromaticNumber cn(graph);
-		EXPECT_EQ(cn.GetNumber(), 2);
-	}
-	{
-		algo::Graph graph = algo::Graph::MakeUndirected(
-			algo::Graph::ListOfEdges{
-			{0, 1},
-			{1, 5},
-			{2, 5},
-			{4, 5},
-			{2, 7},
-			{3, 6},
-			{3, 7},
-			{6, 7},
-			});
-		algo::ChromaticNumber cn(graph);
-		EXPECT_EQ(cn.GetNumber(), 3);
-	}
-	{
-		algo::Graph graph = algo::Graph::MakeUndirected(
-			algo::Graph::ListOfEdges{
-			{0, 1},
-			{0, 2},
-			{0, 3},
-			{1, 2},
-			{1, 3},
-			{2, 3},
-			});
-		algo::ChromaticNumber cn(graph);
-		EXPECT_EQ(cn.GetNumber(), 4);
-	}
+        algo::ChromaticNumber cn(graph);
+        EXPECT_EQ(cn.GetNumber(), 2);
+    }
+    {
+        algo::Graph graph = algo::Graph::MakeUndirected(
+            algo::Graph::ListOfEdges{
+            {0, 1},
+            {1, 5},
+            {2, 5},
+            {4, 5},
+            {2, 7},
+            {3, 6},
+            {3, 7},
+            {6, 7},
+            });
+        algo::ChromaticNumber cn(graph);
+        EXPECT_EQ(cn.GetNumber(), 3);
+    }
+    {
+        algo::Graph graph = algo::Graph::MakeUndirected(
+            algo::Graph::ListOfEdges{
+            {0, 1},
+            {0, 2},
+            {0, 3},
+            {1, 2},
+            {1, 3},
+            {2, 3},
+            });
+        algo::ChromaticNumber cn(graph);
+        EXPECT_EQ(cn.GetNumber(), 4);
+    }
 }
 
 
 TEST(BipartiteTest, GraphTest)
 {
-	{
-		algo::Graph::ListOfEdges edges{
-				{0, 1},
-				{0, 2},
-				{0, 3},
-				{1, 4},
-				{1, 5},
-				{4, 9},
-				{9, 13},
-				{5, 10},
-				{5, 11},
-				{11, 14},
-				{11, 15},
-				{2, 6},
-				{2, 7},
-				{6, 12},
-				{12, 16},
-				{16, 17},
-				{3, 8}
-		};
-		edges = algo::Graph::MakeUndirected(edges);
-		algo::Graph graph = edges;
-		EXPECT_TRUE(graph.isBipartite());
-	}
-	{
-		algo::Graph graph = algo::Graph::MakeUndirected(
-			algo::Graph::ListOfEdges{
-			{0, 1},
-			{1, 5},
-			{2, 5},
-			{4, 5},
-			{2, 7},
-			{3, 6},
-			{3, 7},
-			{6, 7},
-			});
-		EXPECT_FALSE(graph.isBipartite());
-	}
-	{
-		algo::Graph graph = algo::Graph::MakeUndirected(
-			algo::Graph::ListOfEdges{
-			{0, 3},
-			{0, 4},
-			{1, 3},
-			{1, 4},
-			{1, 5},
-			{2, 4},
-			{2, 5},
-			});
-		EXPECT_TRUE(graph.isBipartite());
-	}
-	{
-		algo::Graph graph = algo::Graph::MakeUndirected(
-			algo::Graph::ListOfEdges{
-			{0, 3},
-			{0, 4},
-			{0, 1},
-			{1, 3},
-			{1, 4},
-			{1, 5},
-			{2, 4},
-			{2, 5},
-			});
-		EXPECT_FALSE(graph.isBipartite());
-	}
+    {
+        algo::Graph::ListOfEdges edges{
+                {0, 1},
+                {0, 2},
+                {0, 3},
+                {1, 4},
+                {1, 5},
+                {4, 9},
+                {9, 13},
+                {5, 10},
+                {5, 11},
+                {11, 14},
+                {11, 15},
+                {2, 6},
+                {2, 7},
+                {6, 12},
+                {12, 16},
+                {16, 17},
+                {3, 8}
+        };
+        edges = algo::Graph::MakeUndirected(edges);
+        algo::Graph graph = edges;
+        EXPECT_TRUE(graph.isBipartite());
+    }
+    {
+        algo::Graph graph = algo::Graph::MakeUndirected(
+            algo::Graph::ListOfEdges{
+            {0, 1},
+            {1, 5},
+            {2, 5},
+            {4, 5},
+            {2, 7},
+            {3, 6},
+            {3, 7},
+            {6, 7},
+            });
+        EXPECT_FALSE(graph.isBipartite());
+    }
+    {
+        algo::Graph graph = algo::Graph::MakeUndirected(
+            algo::Graph::ListOfEdges{
+            {0, 3},
+            {0, 4},
+            {1, 3},
+            {1, 4},
+            {1, 5},
+            {2, 4},
+            {2, 5},
+            });
+        EXPECT_TRUE(graph.isBipartite());
+    }
+    {
+        algo::Graph graph = algo::Graph::MakeUndirected(
+            algo::Graph::ListOfEdges{
+            {0, 3},
+            {0, 4},
+            {0, 1},
+            {1, 3},
+            {1, 4},
+            {1, 5},
+            {2, 4},
+            {2, 5},
+            });
+        EXPECT_FALSE(graph.isBipartite());
+    }
 }
 
 

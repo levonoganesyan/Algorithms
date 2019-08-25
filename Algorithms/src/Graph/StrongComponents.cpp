@@ -16,11 +16,11 @@ namespace algo
             }
         }
     }
-	StrongComponents::StrongComponents(const Graph& graph)
-		: StrongComponents(graph.AsConnectionList())
-	{
-	}
-	StrongComponents::StrongComponents(const ConnectionList & graph)
+    StrongComponents::StrongComponents(const Graph& graph)
+        : StrongComponents(graph.AsConnectionList())
+    {
+    }
+    StrongComponents::StrongComponents(const ConnectionList & graph)
         : m_used(Graph::GetSize(graph))
     {
         Toposort toposort(graph);

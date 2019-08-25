@@ -18,12 +18,12 @@ namespace algo
         m_sorted_vertices.push_back(vertex);
     }
 
-	Toposort::Toposort(const Graph& graph)
-		: Toposort(graph.AsConnectionList())
-	{
-	}
+    Toposort::Toposort(const Graph& graph)
+        : Toposort(graph.AsConnectionList())
+    {
+    }
 
-	Toposort::Toposort(const ConnectionList & graph)
+    Toposort::Toposort(const ConnectionList & graph)
         : m_sorted_vertices(0)
         , m_used(graph.size())
     {

@@ -2,11 +2,11 @@
 #include"Defines.h"
 namespace algo
 {
-	Dijkstra::Dijkstra(const Graph& graph, int start_vertex)
-		: Dijkstra(graph.AsConnectionList(), start_vertex)
-	{
-	}
-	Dijkstra::Dijkstra
+    Dijkstra::Dijkstra(const Graph& graph, int start_vertex)
+        : Dijkstra(graph.AsConnectionList(), start_vertex)
+    {
+    }
+    Dijkstra::Dijkstra
         (const Dijkstra::ConnectionList & graph,
          int start_vertex)
             : m_start_vertex(start_vertex)

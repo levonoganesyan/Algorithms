@@ -24,8 +24,8 @@ namespace algo
     private:
         bool dfs(const ConnectionList & graph, int vertex);
     public:
-		CycleChecker(const Graph& graph);
-		CycleChecker(const ConnectionList& graph);
+        CycleChecker(const Graph& graph);
+        CycleChecker(const ConnectionList& graph);
         CycleChecker(const ConnectionMatrix& graph);
         CycleChecker(const ListOfEdges& graph);
 
