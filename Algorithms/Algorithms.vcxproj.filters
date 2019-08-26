@@ -37,6 +37,12 @@
     <Filter Include="Resource Files\DataStructures">
       <UniqueIdentifier>{28d2e31f-8a66-4db7-ae33-b46ac0a0ea1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Strings">
+      <UniqueIdentifier>{212c4917-20db-4815-afa0-9a6027dee045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Strings">
+      <UniqueIdentifier>{00eb6170-afbd-4ac7-8481-b31e2e3fdbe1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils.hpp">
@@ -102,6 +108,9 @@
     <ClInclude Include="include\Graph\Euler.h">
       <Filter>Header Files\Graph</Filter>
     </ClInclude>
+    <ClInclude Include="include\Strings\Z-Function.h">
+      <Filter>Header Files\Strings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -146,14 +155,14 @@
     <ClCompile Include="src\Graph\ChromaticNumber.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
-    <ClCompile Include="include\Graph\FordBellman.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Graph\FordBellman.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
     <ClCompile Include="src\Graph\Euler.cpp">
       <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strings\Z-Function.cpp">
+      <Filter>Resource Files\Strings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #include<Strings/Z-Function.h>
+#include<algorithm>
 namespace algo
 {
 	void Z_Function::calculate()
@@ -7,7 +8,7 @@ namespace algo
 		{
 			if (i <= r)
 			{
-				m_z[i] = min(r - i + 1, m_z[i - l]);
+				m_z[i] = std::min(r - i + 1, m_z[i - l]);
 			}
 			while (i + m_z[i] < m_str.size() && m_str[i + m_z[i]] == m_str[m_z[i]])
 			{
@@ -23,7 +24,7 @@ namespace algo
 
 	Z_Function::Z_Function(const std::string& str)
 		: m_str(str)
-		, z(str.size())
+		, m_z(str.size())
 	{
 		calculate();
 	}
