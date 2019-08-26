@@ -117,6 +117,9 @@
     <ClInclude Include="include\Graph\PruferCode.h">
       <Filter>Header Files\Graph</Filter>
     </ClInclude>
+    <ClInclude Include="include\Graph\Khun.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -174,6 +177,9 @@
       <Filter>Resource Files\DataStructures</Filter>
     </ClCompile>
     <ClCompile Include="src\Graph\PruferCode.cpp">
+      <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\Khun.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
   </ItemGroup>
