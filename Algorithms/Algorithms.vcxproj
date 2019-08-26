@@ -181,6 +181,7 @@
     <ClInclude Include="include\Graph\Graph.h" />
     <ClInclude Include="include\Graph\Kruskal.h" />
     <ClInclude Include="include\Graph\LCA.h" />
+    <ClInclude Include="include\Graph\PruferCode.h" />
     <ClInclude Include="include\Graph\StrongComponents.h" />
     <ClInclude Include="include\Graph\Toposort.h" />
     <ClInclude Include="include\Sortings\Sorting.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="src\Graph\Graph.cpp" />
     <ClCompile Include="src\Graph\Kruskal.cpp" />
     <ClCompile Include="src\Graph\LCA.cpp" />
+    <ClCompile Include="src\Graph\PruferCode.cpp" />
     <ClCompile Include="src\Graph\StrongComponents.cpp" />
     <ClCompile Include="src\Graph\Toposort.cpp" />
     <ClCompile Include="src\Strings\Z-Function.cpp" />

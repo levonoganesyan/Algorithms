@@ -154,6 +154,10 @@ namespace algo
         static void
             UniqifyListOfEdges
                 (ListOfEdges& list_of_edges);
+
+        static void
+            NormalizeListOfEdges
+                (ListOfEdges& list_of_edges);
         
         Graph(const ConnectionList& connection_list);
         Graph(const ConnectionMatrix& connection_matrix);

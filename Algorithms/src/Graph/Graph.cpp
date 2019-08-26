@@ -330,6 +330,17 @@ namespace algo
 
 
     }
+    void Graph::NormalizeListOfEdges(ListOfEdges& list_of_edges)
+    {
+        for (auto& edge : list_of_edges)
+        {
+            if (edge.from > edge.to)
+            {
+                std::swap(edge.from, edge.to);
+            }
+        }
+        UniqifyListOfEdges(list_of_edges);
+    }
     Graph::Graph(const ConnectionList& connection_list)
         : m_connection_list(connection_list)
     {
