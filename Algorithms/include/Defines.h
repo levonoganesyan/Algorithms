@@ -36,6 +36,7 @@ namespace algo
         algo::sum_container(c, s)
 
 #define all(v) v.begin(), v.end()
+#define so(v) std::sort(all(v))
 #define rall(v) v.rbegin(), v.rend()
 
 }

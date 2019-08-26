@@ -3,7 +3,7 @@
 #include<Graph/Graph.h>
 namespace algo
 {
-    class CycleChecker
+    class Euler
     {
         using ConnectionList = Graph::ConnectionList;
         using ConnectionMatrix = Graph::ConnectionMatrix;
@@ -12,23 +12,20 @@ namespace algo
 
         using VertexState = Graph::VertexState;
 
-        std::vector<VertexState> m_vertices_state;
-
-        std::vector<VertexType> m_parents;
-        int m_cycle_start, m_cycle_end;
-        
-        
-        bool m_cycle_found;
+        bool m_has_path;
+        bool m_has_cycle;
         std::vector<VertexType> m_cycle;
+        std::set<std::pair<int, int>> m_used;
 
     private:
-        bool dfs(const ConnectionList & graph, int vertex);
+        void dfs(const ConnectionList & graph, int vertex);
     public:
-        CycleChecker(const Graph& graph);
-        CycleChecker(const ConnectionList& graph);
-        CycleChecker(const ConnectionMatrix& graph);
-        CycleChecker(const ListOfEdges& graph);
+        Euler(const Graph& graph);
+        Euler(const ConnectionList& graph);
+        Euler(const ConnectionMatrix& graph);
+        Euler(const ListOfEdges& graph);
 
+        bool HasPath() const;
         bool HasCycle() const;
         std::vector<VertexType> GetCycle() const;
 

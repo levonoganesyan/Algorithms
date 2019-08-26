@@ -17,12 +17,12 @@ namespace algo
         }
     }
 
-	Components::Components(const Graph& graph)
-		: Components(graph.AsConnectionList())
-	{
-	}
+    Components::Components(const Graph& graph)
+        : Components(graph.AsConnectionList())
+    {
+    }
 
-	Components::Components(const ConnectionList & graph)
+    Components::Components(const ConnectionList & graph)
         : m_used(Graph::GetSize(graph))
     {
         size_t graph_size = Graph::GetSize(graph);

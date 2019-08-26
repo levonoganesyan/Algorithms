@@ -16,8 +16,8 @@ namespace algo
     private:
         void dfs(const ConnectionList & graph, int vertex);
     public:
-		StrongComponents(const Graph& graph);
-		StrongComponents(const ConnectionList& graph);
+        StrongComponents(const Graph& graph);
+        StrongComponents(const ConnectionList& graph);
         StrongComponents(const ConnectionMatrix& graph);
         StrongComponents(const ListOfEdges& graph);
 

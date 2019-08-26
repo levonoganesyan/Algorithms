@@ -12,26 +12,29 @@
 
 using namespace std;
 
+// Test FordBellman
+// Test Euler path and cycle
+
 int main()
 {
-	int n;
-	cin >> n;
-	algo::SegmentTree<int> tree(std::vector<int>(40000, 0), 
-								std::plus<int>(), 
-								0,
-								algo::SegmentTree<int>::UpdateType::Sum);
-	vector<int> ans(n);
-	for (int i = 0; i < n; i++)
-	{
-		int x, y;
-		cin >> x >> y;
-		ans[tree.query(0, x)]++;
-		tree.update(x, 1);
-	}
-	for (int i = 0; i < n; i++)
-	{
-		cout << ans[i] << endl;
-	}
+    int n;
+    cin >> n;
+    algo::SegmentTree<int> tree(std::vector<int>(40000, 0), 
+                                std::plus<int>(), 
+                                0,
+                                algo::SegmentTree<int>::UpdateType::Sum);
+    vector<int> ans(n);
+    for (int i = 0; i < n; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        ans[tree.query(0, x)]++;
+        tree.update(x, 1);
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << ans[i] << endl;
+    }
 }
 
 

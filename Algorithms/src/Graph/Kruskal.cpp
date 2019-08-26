@@ -2,11 +2,11 @@
 
 namespace algo
 {
-	Kruskal::Kruskal(const Graph& graph)
-		: Kruskal(graph.AsListOfEdges())
-	{
-	}
-	Kruskal::Kruskal(const ConnectionList & graph)
+    Kruskal::Kruskal(const Graph& graph)
+        : Kruskal(graph.AsListOfEdges())
+    {
+    }
+    Kruskal::Kruskal(const ConnectionList & graph)
         : Kruskal(Graph::CL2LOE(graph))
     {
     }

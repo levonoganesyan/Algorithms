@@ -23,7 +23,7 @@
     <ProjectGuid>{8B2C733E-3D87-4AB4-9F08-2DF9102643D7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Algorithms</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -167,10 +167,14 @@
     <ClInclude Include="include\DataStructures\SegmentTree.h" />
     <ClInclude Include="include\Defines.h" />
     <ClInclude Include="include\Geometry\Geometry.h" />
+    <ClInclude Include="include\Graph\Bridges.h" />
+    <ClInclude Include="include\Graph\ChromaticNumber.h" />
+    <ClInclude Include="include\Graph\CutPoints.h" />
     <ClInclude Include="include\Graph\Components.h" />
     <ClInclude Include="include\Graph\CycleChecker.h" />
     <ClInclude Include="include\Graph\Dijkstra.h" />
     <ClInclude Include="include\Graph\DSU.h" />
+    <ClInclude Include="include\Graph\Euler.h" />
     <ClInclude Include="include\Graph\FloydWarshall.h" />
     <ClInclude Include="include\Graph\FordBellman.h" />
     <ClInclude Include="include\Graph\Graph.h" />
@@ -184,12 +188,18 @@
     <ClInclude Include="include\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\Graph\FordBellman.cpp" />
     <ClCompile Include="src\Geometry\Geometry.cpp" />
+    <ClCompile Include="src\Graph\Bridges.cpp" />
+    <ClCompile Include="src\Graph\ChromaticNumber.cpp" />
+    <ClCompile Include="src\Graph\CutPoints.cpp" />
     <ClCompile Include="src\Graph\Components.cpp" />
     <ClCompile Include="src\Graph\CycleChecker.cpp" />
     <ClCompile Include="src\Graph\Dijkstra.cpp" />
     <ClCompile Include="src\Graph\DSU.cpp" />
+    <ClCompile Include="src\Graph\Euler.cpp" />
     <ClCompile Include="src\Graph\FloydWarshall.cpp" />
+    <ClCompile Include="src\Graph\FordBellman.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
     <ClCompile Include="src\Graph\Kruskal.cpp" />
     <ClCompile Include="src\Graph\LCA.cpp" />
