@@ -165,6 +165,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\DataStructures\SegmentTree.h" />
+    <ClInclude Include="include\DataStructures\Trie.h" />
     <ClInclude Include="include\Defines.h" />
     <ClInclude Include="include\Geometry\Geometry.h" />
     <ClInclude Include="include\Graph\Bridges.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="include\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\DataStructures\Trie.cpp" />
     <ClCompile Include="src\Geometry\Geometry.cpp" />
     <ClCompile Include="src\Graph\Bridges.cpp" />
     <ClCompile Include="src\Graph\ChromaticNumber.cpp" />

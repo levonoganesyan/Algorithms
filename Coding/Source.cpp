@@ -14,6 +14,7 @@ using namespace std;
 
 // Test FordBellman
 // Test Euler path and cycle
+// Test z-function
 
 int main()
 {

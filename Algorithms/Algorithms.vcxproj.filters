@@ -111,6 +111,9 @@
     <ClInclude Include="include\Strings\Z-Function.h">
       <Filter>Header Files\Strings</Filter>
     </ClInclude>
+    <ClInclude Include="include\DataStructures\Trie.h">
+      <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="src\Strings\Z-Function.cpp">
       <Filter>Resource Files\Strings</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataStructures\Trie.cpp">
+      <Filter>Resource Files\DataStructures</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
