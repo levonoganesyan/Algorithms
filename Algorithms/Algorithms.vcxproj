@@ -179,6 +179,7 @@
     <ClInclude Include="include\Graph\StrongComponents.h" />
     <ClInclude Include="include\Graph\Toposort.h" />
     <ClInclude Include="include\Sortings\Sorting.h" />
+    <ClInclude Include="include\String\Z-Function.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />
   </ItemGroup>
@@ -194,6 +195,7 @@
     <ClCompile Include="src\Graph\LCA.cpp" />
     <ClCompile Include="src\Graph\StrongComponents.cpp" />
     <ClCompile Include="src\Graph\Toposort.cpp" />
+    <ClCompile Include="src\String\Z-Function.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
