@@ -17,6 +17,6 @@ namespace algo
     }
     Graph PruferCode::Decode(const std::vector<int>& code)
     {
-        
+        return Graph(Graph::ConnectionList{ {} });
     }
 }

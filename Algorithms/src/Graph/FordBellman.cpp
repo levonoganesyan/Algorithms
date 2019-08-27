@@ -16,16 +16,17 @@ namespace algo
     }
     FordBellman::FordBellman(const ListOfEdges & graph, int start_vertex)
         : n(Graph::GetSize(graph))
-        , m_parents(n)
-        , m_distance(n)
+        , m_parents(n, -1)
+        , m_distance(n, Inf)
     {
+        m_distance[start_vertex] = 0;
         bool any = true;
         while(any)
         {
             any = false;
             for (int j = 0; j < graph.size(); ++j)
             {
-                if (m_distance[graph[j].to] < Inf)
+                if (m_distance[graph[j].from] < Inf)
                 {
                     Graph::WeightType& to_dist = m_distance[graph[j].to];
                     Graph::WeightType from_dist = m_distance[graph[j].from] +
@@ -53,6 +54,10 @@ namespace algo
         if (m_distance[to] == Inf)
             return {};
         std::vector<int> path;
+        if (m_parents[to] == -1)
+        {
+            return path;
+        }
         for (int cur = to; cur != -1; cur = m_parents[cur])
             path.push_back(cur);
         reverse(path.begin(), path.end());

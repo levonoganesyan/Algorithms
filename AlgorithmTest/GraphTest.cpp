@@ -12,6 +12,8 @@
 #include"Graph/CutPoints.h"
 #include"Graph/Bridges.h"
 #include"Graph/ChromaticNumber.h"
+#include"Graph/FordBellman.h"
+#include"Graph/Euler.h"
 #include<algorithm>
 #include<numeric>
 
@@ -467,7 +469,6 @@ TEST(LCATest, GraphTest)
     EXPECT_EQ(lca.Get(8, 8), 8);
 }
 
-
 TEST(CutPointsTest, GraphTest)
 {
     {
@@ -512,6 +513,102 @@ TEST(CutPointsTest, GraphTest)
         algo::CutPoints cp(graph);
         std::vector<int> etalon = { 1, 2, 5, 7 };
         EXPECT_EQ(cp.Get(), etalon);
+    }
+}
+
+TEST(FordBellmanTest, GraphTest)
+{
+    int number_of_vertices = 100;
+    int number_of_edges = 5000;
+    algo::Graph::WeightType weight = 10000;
+    auto edges_graph = algo::Graph::RandomGraph
+    (number_of_vertices, number_of_edges, weight);
+    algo::Graph::UniqifyListOfEdges(edges_graph);
+    // edges_graph = { {0,1,1}, {0,2,2}, {1,2,2}, {1,3,2} };
+    algo::FloydWarshall floyd_warshall(edges_graph);
+    for (int i = 0; i < number_of_vertices; ++i)
+    {
+        algo::FordBellman ford_bellman(edges_graph, i);
+        EXPECT_EQ(ford_bellman.GetDistance(), floyd_warshall.GetDistance(i));
+        ford_bellman = algo::FordBellman(algo::Graph(edges_graph), i);
+        EXPECT_EQ(ford_bellman.GetDistance(), floyd_warshall.GetDistance(i));
+        int number_of_path_tests = 20;
+        while (number_of_path_tests--)
+        {
+            int to = (int)algo::random(0, number_of_vertices);
+            EXPECT_EQ(ford_bellman.GetPath(to), floyd_warshall.GetPath(i, to));
+        }
+    }
+}
+
+TEST(EulerTest, GraphTest)
+{
+    /*algo::Graph::ConnectionList edges_graph = { 
+        {1, 6}, 
+        {0, 2, 3, 6}, 
+        {1, 3},
+        {1, 2, 4, 6},
+        {3, 5},
+        {0, 1, 3, 5},
+        {4, 6}
+    };*/
+
+
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1},
+            {0, 6},
+            {1, 2},
+            {1, 3},
+            // {1, 6},
+            // {2, 3},
+            {3, 4},
+            {3, 6},
+            {4, 5},
+            {5, 6},
+        };
+        edges_graph = algo::Graph::MakeUndirected(edges_graph);
+        algo::Euler euler(edges_graph);
+        EXPECT_FALSE(euler.HasPath());
+        EXPECT_FALSE(euler.HasCycle());
+    }
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1},
+            {0, 6},
+            {1, 2},
+            {1, 3},
+            // {1, 6},
+            {2, 3},
+            {3, 4},
+            {3, 6},
+            {4, 5},
+            {5, 6},
+        };
+        edges_graph = algo::Graph::MakeUndirected(edges_graph);
+        algo::Euler euler(edges_graph);
+        EXPECT_TRUE(euler.HasPath());
+        EXPECT_FALSE(euler.HasCycle());
+        std::vector<int> etalon = { 1, 0, 6, 3, 1, 2, 3, 4, 5, 6 };
+        EXPECT_EQ(euler.GetCycle(), etalon);
+    }
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1},
+            {0, 6},
+            {1, 2},
+            {1, 3},
+            {1, 6},
+            {2, 3},
+            {3, 4},
+            {3, 6},
+            {4, 5},
+            {5, 6},
+        };
+        edges_graph = algo::Graph::MakeUndirected(edges_graph);
+        algo::Euler euler(edges_graph);
+        EXPECT_TRUE(euler.HasPath());
+        EXPECT_TRUE(euler.HasCycle());
     }
 }
 
