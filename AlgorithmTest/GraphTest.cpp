@@ -14,6 +14,7 @@
 #include"Graph/ChromaticNumber.h"
 #include"Graph/FordBellman.h"
 #include"Graph/Euler.h"
+#include"Graph/PruferCode.h"
 #include<algorithm>
 #include<numeric>
 
@@ -612,7 +613,24 @@ TEST(EulerTest, GraphTest)
     }
 }
 
-
+TEST(PruferCodeTest, GraphTest)
+{
+    {
+        algo::Graph::ListOfEdges edges_graph = {
+            {0, 1, 1},
+            {1, 4, 1},
+            {1, 3, 1},
+            {2, 3, 1},
+            {2, 5, 1},
+        };
+        algo::Graph::UniqifyListOfEdges(edges_graph);
+        algo::Graph::MakeUndirected(edges_graph);
+        algo::Graph graph(edges_graph);
+        algo::PruferCode prufer;
+        std::vector<int> etalon = {1, 1, 3, 2};
+        EXPECT_EQ(prufer.Encode(graph), etalon);
+    }
+}
 
 
 TEST(BridgesTest, GraphTest)
