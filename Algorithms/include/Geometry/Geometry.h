@@ -30,19 +30,25 @@ namespace algo
     }
 
     template<class T = int>
-    struct Line
+    struct Line2
     {
         T A, B, C;
     };
     
     template<class T>
-    Line<T> CreateLine(Point2<T> f, Point2<T> s)
+    Line2<T> CreateLine(Point2<T> f, Point2<T> s)
     {
-        Line<T> line;
+        Line2<T> line;
         line.A = s.y - f.y;
         line.B = f.x - s.x;
         line.C = -(line.A * s.x + line.B * s.y);
         return line;
+    }
+
+    template<class T1, typename T2>
+    double DistanceToLine(Line2<T1> line, Point2<T2> point)
+    {
+        return line.A * point.x + line.B * point.y + line.C;
     }
 
 }
