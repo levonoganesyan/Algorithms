@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Strings">
       <UniqueIdentifier>{00eb6170-afbd-4ac7-8481-b31e2e3fdbe1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\FamousProblems">
+      <UniqueIdentifier>{7ea4070e-cb4e-4b86-abc7-68314d48219b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils.hpp">
@@ -119,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="include\Graph\Khun.h">
       <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FamousProblems\Sudoku.h">
+      <Filter>Header Files\FamousProblems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

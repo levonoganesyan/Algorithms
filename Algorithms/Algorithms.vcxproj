@@ -167,6 +167,7 @@
     <ClInclude Include="include\DataStructures\SegmentTree.h" />
     <ClInclude Include="include\DataStructures\Trie.h" />
     <ClInclude Include="include\Defines.h" />
+    <ClInclude Include="include\FamousProblems\Sudoku.h" />
     <ClInclude Include="include\Geometry\Geometry.h" />
     <ClInclude Include="include\Graph\Bridges.h" />
     <ClInclude Include="include\Graph\ChromaticNumber.h" />
