@@ -165,6 +165,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\DataStructures\SegmentTree.h" />
+    <ClInclude Include="include\DataStructures\SparseTable.h" />
     <ClInclude Include="include\DataStructures\Trie.h" />
     <ClInclude Include="include\Defines.h" />
     <ClInclude Include="include\FamousProblems\Sudoku.h" />

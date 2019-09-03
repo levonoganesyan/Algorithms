@@ -126,6 +126,9 @@
     <ClInclude Include="include\FamousProblems\Sudoku.h">
       <Filter>Header Files\FamousProblems</Filter>
     </ClInclude>
+    <ClInclude Include="include\DataStructures\SparseTable.h">
+      <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
