@@ -46,6 +46,12 @@
     <Filter Include="Header Files\FamousProblems">
       <UniqueIdentifier>{7ea4070e-cb4e-4b86-abc7-68314d48219b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{038c953c-6005-46ad-825c-4a515293a857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Math">
+      <UniqueIdentifier>{1f5fa0f2-d9ec-4ffe-8f7a-a491e8ea67e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils.hpp">
@@ -128,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="include\DataStructures\SparseTable.h">
       <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Math\Math.h">
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,14 +1,7 @@
-#include <iostream>
-#include <string>
-#include <cmath>
-#include <vector>
-#include <iomanip>
-#include <bitset>
-#include <algorithm>
-#include <sstream>
 #pragma once
 
 #include<iostream>
+#include<Utils.h>
 // TODO check math
 namespace algo
 {
@@ -24,7 +17,7 @@ namespace algo
         return a / gcd(a, b) * b;
     }
 
-    int EulerFunction(int n)
+    int euler_function(int n)
     {
         int ans = 0;
         for (int i = 1; i <= n; ++i)
@@ -67,27 +60,13 @@ namespace algo
         }
         return ans;
     }
+
+    template<typename T>
+    T matrix_mul
+    {
+
+    }
+
 }
-
-
-
-
-namespace algo
-{
-
-}
-
-
-using namespace std;
-
-// Test z-function
-
-int main()
-{
-    int a, n;
-    cin >> a >> n;
-    std::cout << algo::bin_pow(a, n);
-}
-
 
 

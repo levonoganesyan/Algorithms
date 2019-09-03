@@ -187,6 +187,7 @@
     <ClInclude Include="include\Graph\PruferCode.h" />
     <ClInclude Include="include\Graph\StrongComponents.h" />
     <ClInclude Include="include\Graph\Toposort.h" />
+    <ClInclude Include="include\Math\Math.h" />
     <ClInclude Include="include\Sortings\Sorting.h" />
     <ClInclude Include="include\Strings\Z-Function.h" />
     <ClInclude Include="include\Utils.h" />
