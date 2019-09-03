@@ -1,6 +1,6 @@
 
 #pragma once
-
+#include<cmath>
 namespace algo
 {
     template<class T = int>
