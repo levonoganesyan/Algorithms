@@ -62,7 +62,7 @@ namespace algo
     }
 
     template<typename T>
-    T matrix_mul
+    T matrix_mul(const algo::Matrix<T>& l, const algo::Matrix<T>& r)
     {
 
     }
