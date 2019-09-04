@@ -90,6 +90,26 @@ namespace algo
 
     }
 
+    std::vector<int> sieve_of_eratosthenes(int n)
+    {
+        std::vector<int> primes(1, 2);
+        std::vector<char> used(n, false);
+        for (int i = 2; i < used.size(); i += 2)
+            used[i] = true;
+        for (int i = 3; i < used.size(); i += 2)
+        {
+            if (!used[i])
+            {
+                primes.push_back(i);
+                for (int j = i * i; j < used.size(); j += i)
+                {
+                    used[j] = true;
+                }
+            }
+        }
+        return primes;
+    }
+
 }
 
 
