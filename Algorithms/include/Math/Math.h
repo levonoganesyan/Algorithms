@@ -2,6 +2,7 @@
 
 #include<iostream>
 #include<Utils.h>
+#include<functional>
 // TODO check math
 namespace algo
 {
@@ -26,44 +27,66 @@ namespace algo
         }
         return ans;
     }
-
-    template<typename T>
-    T bin_pow(T elem, int n)
+    
+    template<typename T, typename Func>
+    T bin_pow(T elem, int n, T neutral_element, 
+                            Func mul = std::multiplies<T>())
     {
-        T ans = 1;
+        T ans = neutral_element;
         while (n)
         {
             if (n & 1)
             {
-                ans *= elem;
+                ans = mul(ans, elem);
             }
-            elem *= elem;
-            std::cout << elem << std::endl;
+            elem = mul(elem, elem);
             n >>= 1;
         }
         return ans;
     }
-    template<typename T>
-    T bin_pow(T elem, int n, int mod)
+    template<typename T, typename Func>
+    T bin_pow(T elem, int n, int mod, T neutral_element, 
+                                      Func mul = std::multiplies<T>(),
+                                      Func modulus = std::modulus<T>())
     {
-        T ans = 1;
+        T ans = neutral_element;
         while (n)
         {
             if (n & 1)
             {
-                ans *= elem;
-                ans %= mod;
+                ans = mul(ans, elem);
+                ans = modulus(ans, mod);
             }
-            elem *= elem;
-            elem %= mod;
+            elem = mul(elem, elem);
+            elem = modulus(elem, mod);
             n >>= 1;
         }
         return ans;
     }
 
     template<typename T>
-    T matrix_mul(const algo::Matrix<T>& l, const algo::Matrix<T>& r)
+    algo::Matrix<T> matrix_mul(const algo::Matrix<T>& l, const algo::Matrix<T>& r)
     {
+        if (l[0].size() != r.size())
+        {
+            throw std::runtime_error("Matrix dimensions must be equal");
+        }
+        algo::Matrix<T> matrix = CreateMatrix(l.size(), r[0].size(), 0);
+        for (int i = 0; i < l.size(); ++i)
+            for (int j = 0; j < r.size(); ++j)
+                for (int k = 0; k < l[i].size(); ++k)
+                    matrix[i][j] += l[i][k] * r[k][j];
+        return matrix;
+
+    }
+
+    template<typename T>
+    algo::Matrix<T> matrix_mod(algo::Matrix<T> matrix, int mod)
+    {
+        for (int i = 0; i < matrix.size(); ++i)
+            for (int j = 0; j < matrix[i].size(); ++j)
+                matrix[i][j] %= mod;
+        return matrix;
 
     }
 

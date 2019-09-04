@@ -13,9 +13,11 @@ using namespace std;
 
 int main()
 {
-    int a, n;
-    cin >> a >> n;
-    std::cout << algo::bin_pow(a, n);
+    algo::Matrix<int> mat{ {1, 1}, { 1, 0 } };
+    algo::Matrix<int> neutral{ {1, 0}, { 0, 1 } };
+    algo::Matrix<int> fib { {1, 1} };
+    mat = algo::bin_pow(mat, 7, neutral, algo::matrix_mul<int>);
+    fib = algo::matrix_mul(fib, mat);
 }
 
 
