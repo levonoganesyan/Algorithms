@@ -3,6 +3,7 @@
 #include"DataStructures/SegmentTree.h"
 #include"DataStructures/Trie.h"
 #include"DataStructures/SparseTable.h"
+#include"DataStructures/FenwickTree.h"
 #include<numeric>
 #include<cmath>
 
@@ -132,6 +133,24 @@ TEST(SegmentTreeTest, DataStructures)
     }
 }
 
+TEST(FenwickTreeTest, DataStructures)
+{
+    std::mt19937 rand_function(time(0));
+    // sum
+    for (int i = 0; i < 10; ++i)
+    {
+        std::vector<int> vec = getRandomVector(1000, 1, 100);
+        algo::FenwickTree<int> tree(vec);
+        tree.build_tree();
+        std::uniform_int_distribution<int> uid(0, vec.size() - 1);
+        int a = uid(rand_function);
+        int b = uid(rand_function);
+        if (a > b)
+            std::swap(a, b);
+        EXPECT_EQ(tree.query(a, b), sum_on_vector(vec, a, b));
+        tree.update(a, vec[a] + 1);
+    }
+}
 
 
 TEST(TrieTest, DataStructures)

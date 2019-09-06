@@ -10,6 +10,7 @@
 using namespace std;
 
 // Test z-function
+// Test Khun
 
 int main()
 {
