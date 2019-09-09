@@ -3,8 +3,6 @@
 #include"Sortings/Sorting.h"
 
 
-
-
 TEST(SortingTest, SortingTest)
 {
     auto origin = getRandomVector(6, 0, 9);
