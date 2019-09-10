@@ -44,7 +44,8 @@ namespace algo
             int cur_length = 1 << i;
             for (int j = 0; j + cur_length <= m_arr.size(); ++j)
             {
-                m_table[i][j] = std::min(m_table[i - 1][j], m_table[i - 1][j + (cur_length >> 1)]);
+                m_table[i][j] = std::min(m_table[i - 1][j], 
+                                        m_table[i - 1][j + (cur_length >> 1)]);
             }
         }
     }

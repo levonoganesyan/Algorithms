@@ -60,12 +60,14 @@ namespace algo
         return m_components.size();
     }
 
-    std::vector<Graph::VertexType> StrongComponents::GetComponent(int index) const
+    std::vector<Graph::VertexType> 
+            StrongComponents::GetComponent(int index) const
     {
         return m_components[index];
     }
 
-    Matrix<Graph::VertexType> StrongComponents::GetComponents() const
+    Matrix<Graph::VertexType> 
+            StrongComponents::GetComponents() const
     {
         return m_components;
     }

@@ -103,7 +103,8 @@ namespace algo
     {
         while (first_begin < first_end && second_begin < second_end)
         {
-            *out_begin++ = *first_begin < *second_begin ? *first_begin++ : *second_begin++;
+            *out_begin++ = *first_begin < *second_begin ? *first_begin++ 
+                                                        : *second_begin++;
         }
         while (first_begin < first_end)
         {
@@ -138,7 +139,7 @@ namespace algo
         typename Iter::value_type pivot = *first;
         Iter out = first;
 
-        for (Iter temp = std::next(first); temp != last; temp = std::next(temp))
+        for (Iter temp = std::next(first); temp != last; temp=std::next(temp))  
         {
             if (*temp < pivot)
             {

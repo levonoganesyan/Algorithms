@@ -30,7 +30,9 @@ namespace algo
         ConnectionList new_graph(GetSize(graph));
         for (auto& vertices : graph)
             for (auto& neighbour : vertices)
-                new_graph[neighbour.to].emplace_back(neighbour.to, neighbour.from, neighbour.weight);
+                new_graph[neighbour.to].emplace_back(neighbour.to, 
+                                                    neighbour.from, 
+                                                    neighbour.weight);
         return new_graph;
     }
 
@@ -39,7 +41,9 @@ namespace algo
         ListOfEdges new_graph; 
         for (size_t i = 0; i < graph.size(); ++i)
         {
-            new_graph.emplace_back(graph[i].to, graph[i].from, graph[i].weight);
+            new_graph.emplace_back(graph[i].to, 
+                                    graph[i].from, 
+                                    graph[i].weight);
         }
         return new_graph;
     }
