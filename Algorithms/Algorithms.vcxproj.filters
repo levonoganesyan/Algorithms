@@ -147,6 +147,9 @@
     <ClInclude Include="include\DataStructures\RedBlackTree.h">
       <Filter>Header Files\DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="include\FamousProblems\AllProblems.h">
+      <Filter>Header Files\FamousProblems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">

@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructuresTest.cpp" />
+    <ClCompile Include="FamousProblemsTest.cpp" />
     <ClCompile Include="GraphTest.cpp" />
     <ClCompile Include="MathTest.cpp" />
     <ClCompile Include="SortingTest.cpp" />

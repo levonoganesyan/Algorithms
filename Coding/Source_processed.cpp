@@ -253,6 +253,38 @@ namespace algo
 
     }
 
+    std::vector<int> sieve_of_eratosthenes(int n)
+    {
+        std::vector<int> primes(1, 2);
+        std::vector<char> used(n, false);
+        for (int i = 2; i < used.size(); i += 2)
+            used[i] = true;
+        for (int i = 3; i < used.size(); i += 2)
+        {
+            if (!used[i])
+            {
+                primes.push_back(i);
+                for (int j = i * i; j < used.size(); j += i)
+                {
+                    used[j] = true;
+                }
+            }
+        }
+        return primes;
+    }
+    int extended_euclidean(int a, int b, int& x, int& y)
+    {
+        if (a == 0)
+        {
+            x = 0, y = 1;
+            return b;
+        }
+        int x1, y1;
+        int gcd = extended_euclidean(b % a, a, x1, y1);
+        x = y1 - b / a * x1;
+        y = x1;
+        return gcd;
+    }
 }
 
 
@@ -275,6 +307,7 @@ namespace algo
 using namespace std;
 
 // Test z-function
+// Test Khun
 
 int main()
 {
