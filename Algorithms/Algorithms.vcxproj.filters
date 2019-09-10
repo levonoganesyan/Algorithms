@@ -141,6 +141,12 @@
     <ClInclude Include="include\Strings\StringHashing.h">
       <Filter>Header Files\Strings</Filter>
     </ClInclude>
+    <ClInclude Include="include\DataStructures\FenwickTree.h">
+      <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataStructures\RedBlackTree.h">
+      <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
