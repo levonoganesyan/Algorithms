@@ -18,8 +18,7 @@ namespace algo
     using MatrixSize = std::pair<int, int>;
     using MatricesSize = std::vector<MatrixSize>;
     int MatrixMultProblem(const MatricesSize& sizes);
-    int NQueenProblem(int n); // TODO
-    int KnightsTour(int n); // TODO
+    int NQueenProblem(int n);
 }
 
 
@@ -124,5 +123,35 @@ namespace algo
     int algo::MatrixMultProblem(const MatricesSize& sizes)
     {
         return private_MatrixMultProblem(sizes, 0, sizes.size() - 1);
+    }
+
+    int private_NQueenProblem(int i,
+        std::vector<int> col,
+        std::vector<int> diag1,
+        std::vector<int> diag2)
+    {
+        const int n = col.size();
+        if (i == n)
+        {
+            return 1;
+        }
+        int ans = 0;
+        for (int j = 0; j < n; ++j)
+        {
+            if (!col[j] && !diag1[i + j] && !diag2[i - j + n])
+            {
+                col[j] = diag1[i + j] = diag2[i - j + n] = true;
+                ans += private_NQueenProblem(i + 1, col, diag1, diag2);
+                col[j] = diag1[i + j] = diag2[i - j + n] = false;
+            }
+        }
+        return ans;
+    }
+    int NQueenProblem(int n)
+    {
+        std::vector<int> col(n);
+        std::vector<int> diag1(2 * n + 1);
+        std::vector<int> diag2(2 * n + 1);
+        return private_NQueenProblem(0, col, diag1, diag2);
     }
 }

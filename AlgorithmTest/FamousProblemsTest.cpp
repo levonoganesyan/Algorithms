@@ -113,6 +113,16 @@ TEST(LCSTest, FamousProblemsTest)
             5
         );
     }
+
+}
+TEST(NQueenTest, FamousProblemsTest)
+{
+    std::vector<int> test{ 1, 0, 0, 2, 10, 4, 40, 92, 352, 724 };
+    for (int i = 0; i < test.size(); i++)
+    {
+        EXPECT_EQ(algo::NQueenProblem(i + 1), test[i]);
+    }
     
+
 }
 
