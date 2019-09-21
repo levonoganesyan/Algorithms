@@ -10,7 +10,8 @@ namespace algo
             {
                 m_z[i] = std::min(r - i + 1, m_z[i - l]);
             }
-            while (i + m_z[i] < m_str.size() && m_str[i + m_z[i]] == m_str[m_z[i]])
+            while (i + m_z[i] < m_str.size() && 
+                        m_str[i + m_z[i]] == m_str[m_z[i]])
             {
                 ++m_z[i];
             }

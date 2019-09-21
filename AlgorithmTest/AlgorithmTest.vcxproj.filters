@@ -17,6 +17,12 @@
     <ClCompile Include="MathTest.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="StringTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="FamousProblemsTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

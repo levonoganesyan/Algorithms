@@ -94,7 +94,12 @@ namespace algo
     }
 
     /*template<typename T>
-    inline void SegmentTree<T>::update(int pos_l, int pos_r, T elem, int v, int l, int r)
+    inline void SegmentTree<T>::update(int pos_l, 
+                                        int pos_r, 
+                                        T elem, 
+                                        int v, 
+                                        int l, 
+                                        int r)
     {
         if (pos_l == l && pos_r == r)
         {
@@ -117,7 +122,7 @@ namespace algo
         {
             int m = mid(l, r);
             int left_ans = query(from, std::min(m, to), left(v), l, m);
-            int right_ans = query(std::max(from, m + 1), to, right(v), m + 1, r);
+            int right_ans = query(std::max(from, m+1), to, right(v), m + 1, r);
             return m_tree_logic(left_ans, right_ans);
         }
     }

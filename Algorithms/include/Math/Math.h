@@ -65,7 +65,8 @@ namespace algo
     }
 
     template<typename T>
-    algo::Matrix<T> matrix_mul(const algo::Matrix<T>& l, const algo::Matrix<T>& r)
+    algo::Matrix<T> matrix_mul(const algo::Matrix<T>& l, 
+                                const algo::Matrix<T>& r)
     {
         if (l[0].size() != r.size())
         {

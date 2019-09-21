@@ -164,10 +164,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\DataStructures\FenwickTree.h" />
+    <ClInclude Include="include\DataStructures\RedBlackTree.h" />
     <ClInclude Include="include\DataStructures\SegmentTree.h" />
     <ClInclude Include="include\DataStructures\SparseTable.h" />
     <ClInclude Include="include\DataStructures\Trie.h" />
     <ClInclude Include="include\Defines.h" />
+    <ClInclude Include="include\FamousProblems\AllProblems.h" />
     <ClInclude Include="include\FamousProblems\Sudoku.h" />
     <ClInclude Include="include\Geometry\Geometry.h" />
     <ClInclude Include="include\Graph\Bridges.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="include\Math\Math.h" />
     <ClInclude Include="include\Sortings\Sorting.h" />
     <ClInclude Include="include\Strings\Prefix-function.h" />
+    <ClInclude Include="include\Strings\StringHashing.h" />
     <ClInclude Include="include\Strings\Z-Function.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />
@@ -214,7 +218,6 @@
     <ClCompile Include="src\Graph\PruferCode.cpp" />
     <ClCompile Include="src\Graph\StrongComponents.cpp" />
     <ClCompile Include="src\Graph\Toposort.cpp" />
-    <ClCompile Include="src\Strings\Prefix-function.cpp" />
     <ClCompile Include="src\Strings\Z-Function.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

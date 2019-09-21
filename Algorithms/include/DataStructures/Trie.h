@@ -25,7 +25,9 @@ namespace algo
         };
         static int index_of_char(char ch);
         void add_word(Node*& curr_node, const std::string& word, int index);
-        bool find_word(Node* const& curr_node, const std::string& word, int index) const;
+        bool find_word(Node* const& curr_node, 
+                        const std::string& word, 
+                        int index) const;
 
         //TrieType m_type;
         static const int AlphabetSize = 26;

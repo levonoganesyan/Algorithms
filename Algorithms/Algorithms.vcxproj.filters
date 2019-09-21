@@ -138,8 +138,17 @@
     <ClInclude Include="include\Math\Math.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="include\Strings\Prefix-function.h">
+    <ClInclude Include="include\Strings\StringHashing.h">
       <Filter>Header Files\Strings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataStructures\FenwickTree.h">
+      <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataStructures\RedBlackTree.h">
+      <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FamousProblems\AllProblems.h">
+      <Filter>Header Files\FamousProblems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,9 +211,6 @@
     </ClCompile>
     <ClCompile Include="src\Graph\Khun.cpp">
       <Filter>Resource Files\Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Strings\Prefix-function.cpp">
-      <Filter>Resource Files\Strings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
