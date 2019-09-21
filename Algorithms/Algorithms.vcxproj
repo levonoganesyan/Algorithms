@@ -189,6 +189,7 @@
     <ClInclude Include="include\Graph\Toposort.h" />
     <ClInclude Include="include\Math\Math.h" />
     <ClInclude Include="include\Sortings\Sorting.h" />
+    <ClInclude Include="include\Strings\Prefix-function.h" />
     <ClInclude Include="include\Strings\Z-Function.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />
@@ -213,6 +214,7 @@
     <ClCompile Include="src\Graph\PruferCode.cpp" />
     <ClCompile Include="src\Graph\StrongComponents.cpp" />
     <ClCompile Include="src\Graph\Toposort.cpp" />
+    <ClCompile Include="src\Strings\Prefix-function.cpp" />
     <ClCompile Include="src\Strings\Z-Function.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -138,6 +138,9 @@
     <ClInclude Include="include\Math\Math.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="include\Strings\Prefix-function.h">
+      <Filter>Header Files\Strings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -199,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="src\Graph\Khun.cpp">
       <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strings\Prefix-function.cpp">
+      <Filter>Resource Files\Strings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

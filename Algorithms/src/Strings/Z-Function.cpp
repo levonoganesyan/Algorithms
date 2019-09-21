@@ -29,7 +29,7 @@ namespace algo
         calculate();
     }
 
-    std::vector<int> Z_Function::GetZ() const
+    std::vector<int> Z_Function::Get() const
     {
         return m_z;
     }
