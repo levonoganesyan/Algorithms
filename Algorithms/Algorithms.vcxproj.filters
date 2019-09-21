@@ -117,9 +117,6 @@
     <ClInclude Include="include\Graph\Euler.h">
       <Filter>Header Files\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="include\Strings\Z-Function.h">
-      <Filter>Header Files\Strings</Filter>
-    </ClInclude>
     <ClInclude Include="include\DataStructures\Trie.h">
       <Filter>Header Files\DataStructures</Filter>
     </ClInclude>
@@ -149,6 +146,15 @@
     </ClInclude>
     <ClInclude Include="include\FamousProblems\AllProblems.h">
       <Filter>Header Files\FamousProblems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Strings\PrefixFunction.h">
+      <Filter>Header Files\Strings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Strings\KnuthMorrisPratt.h">
+      <Filter>Header Files\Strings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Strings\ZFunction.h">
+      <Filter>Header Files\Strings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +206,6 @@
     <ClCompile Include="src\Graph\Euler.cpp">
       <Filter>Resource Files\Graph</Filter>
     </ClCompile>
-    <ClCompile Include="src\Strings\Z-Function.cpp">
-      <Filter>Resource Files\Strings</Filter>
-    </ClCompile>
     <ClCompile Include="src\DataStructures\Trie.cpp">
       <Filter>Resource Files\DataStructures</Filter>
     </ClCompile>
@@ -211,6 +214,18 @@
     </ClCompile>
     <ClCompile Include="src\Graph\Khun.cpp">
       <Filter>Resource Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strings\StringHashing.cpp">
+      <Filter>Resource Files\Strings</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strings\PrefixFunction.cpp">
+      <Filter>Resource Files\Strings</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strings\KnuthMorrisPratt.cpp">
+      <Filter>Resource Files\Strings</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strings\ZFunction.cpp">
+      <Filter>Resource Files\Strings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

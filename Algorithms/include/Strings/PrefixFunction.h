@@ -5,14 +5,14 @@
 
 namespace algo
 {
-    class Prefix_Function
+    class PrefixFunction
     {
     private:
         std::string m_str;
         std::vector<int> m_prefix;
         void calculate();
     public:
-        Prefix_Function(const std::string& str);
+        PrefixFunction(const std::string& str);
         std::vector<int> Get() const;
     };
 }

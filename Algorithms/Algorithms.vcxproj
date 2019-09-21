@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -192,9 +192,10 @@
     <ClInclude Include="include\Graph\Toposort.h" />
     <ClInclude Include="include\Math\Math.h" />
     <ClInclude Include="include\Sortings\Sorting.h" />
-    <ClInclude Include="include\Strings\Prefix-function.h" />
+    <ClInclude Include="include\Strings\KnuthMorrisPratt.h" />
+    <ClInclude Include="include\Strings\PrefixFunction.h" />
     <ClInclude Include="include\Strings\StringHashing.h" />
-    <ClInclude Include="include\Strings\Z-Function.h" />
+    <ClInclude Include="include\Strings\ZFunction.h" />
     <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\Utils.hpp" />
   </ItemGroup>
@@ -218,7 +219,10 @@
     <ClCompile Include="src\Graph\PruferCode.cpp" />
     <ClCompile Include="src\Graph\StrongComponents.cpp" />
     <ClCompile Include="src\Graph\Toposort.cpp" />
-    <ClCompile Include="src\Strings\Z-Function.cpp" />
+    <ClCompile Include="src\Strings\KnuthMorrisPratt.cpp" />
+    <ClCompile Include="src\Strings\PrefixFunction.cpp" />
+    <ClCompile Include="src\Strings\StringHashing.cpp" />
+    <ClCompile Include="src\Strings\ZFunction.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

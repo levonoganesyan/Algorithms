@@ -1,17 +1,17 @@
-#include<Strings/Prefix-Function.h>
+#include<Strings/PrefixFunction.h>
 #include<algorithm>
 namespace algo
 {
-    void Prefix_Function::calculate()
+    void PrefixFunction::calculate()
     {
         for (int i = 1; i < m_str.size(); ++i)
         {
             int j = m_prefix[i - 1];
-            while (j > 0 && s[i] != s[j])
+            while (j > 0 && m_str[i] != m_str[j])
             {
                 j = m_prefix[j - 1];
             }
-            if (s[i] == s[j])
+            if (m_str[i] == m_str[j])
             {
                 ++j;
             }
@@ -19,14 +19,14 @@ namespace algo
         }
     }
 
-    Prefix_Function::Prefix_Function(const std::string& str)
+    PrefixFunction::PrefixFunction(const std::string& str)
         : m_str(str)
         , m_prefix(str.size())
     {
         calculate();
     }
 
-    std::vector<int> Prefix_Function::Get() const
+    std::vector<int> PrefixFunction::Get() const
     {
         return m_prefix;
     }

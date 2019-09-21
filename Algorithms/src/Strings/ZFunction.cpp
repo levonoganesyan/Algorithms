@@ -1,4 +1,4 @@
-#include<Strings/Z-Function.h>
+#include<Strings/ZFunction.h>
 #include<algorithm>
 namespace algo
 {

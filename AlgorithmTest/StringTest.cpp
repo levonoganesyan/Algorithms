@@ -1,7 +1,8 @@
 #include"pch.h"
 
 #include"Strings/StringHashing.h"
-#include"Strings/Z-Function.h"
+#include"Strings/ZFunction.h"
+#include"Strings/PrefixFunction.h"
 #include<string>
 #include<algorithm>
 
@@ -22,5 +23,51 @@ TEST(HashingTest, StringTest)
         EXPECT_EQ(hash1.Get(2, 2), 'a');
         EXPECT_EQ(hash1.Get(4, 4), 'a');
         EXPECT_EQ(hash1.Get(6, 6), 'a');
+    }
+}
+
+TEST(PrefixFunctionTest, StringTest)
+{
+    {
+        algo::PrefixFunction p("abcabcd");
+        std::vector<int> etalon{ 0, 0, 0, 1, 2, 3, 0 };
+        EXPECT_EQ(p.Get(), etalon);
+    }
+    {
+        algo::PrefixFunction p("aabaaab");
+        std::vector<int> etalon{ 0, 1, 0, 1, 2, 2, 3 };
+        EXPECT_EQ(p.Get(), etalon);
+    }
+    {
+        algo::PrefixFunction p("abaabaabababaaabbbabababab");
+        std::vector<int> etalon{ 0, 0, 1, 1, 2, 3, 4,
+                                 5, 6, 2, 3, 2, 3, 4,
+                                 1, 2, 0, 0, 1, 2, 3,
+                                 2, 3, 2, 3, 2 };
+        EXPECT_EQ(p.Get(), etalon);
+    }
+
+
+}
+
+TEST(KnuthMorrisPrattTest, StringTest)
+{
+    {
+        algo::PrefixFunction p("abcabcd");
+        std::vector<int> etalon{ 0, 0, 0, 1, 2, 3, 0 };
+        EXPECT_EQ(p.Get(), etalon);
+    }
+    {
+        algo::PrefixFunction p("aabaaab");
+        std::vector<int> etalon{ 0, 1, 0, 1, 2, 2, 3 };
+        EXPECT_EQ(p.Get(), etalon);
+    }
+    {
+        algo::PrefixFunction p("abaabaabababaaabbbabababab");
+        std::vector<int> etalon{ 0, 0, 1, 1, 2, 3, 4,
+                                 5, 6, 2, 3, 2, 3, 4,
+                                 1, 2, 0, 0, 1, 2, 3,
+                                 2, 3, 2, 3, 2 };
+        EXPECT_EQ(p.Get(), etalon);
     }
 }
