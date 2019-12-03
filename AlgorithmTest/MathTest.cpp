@@ -16,3 +16,8 @@ TEST(BinPowMatrixMulTest, MathTest)
     algo::Matrix<int> etalon{ {34, 21} };
     EXPECT_EQ(fib, etalon);
 }
+TEST(EulerFunctionTest, MathTest)
+{ 
+    for(int i = 2; i < 1000; ++i)
+        EXPECT_EQ(algo::euler(i), algo::fast_euler(i));
+}

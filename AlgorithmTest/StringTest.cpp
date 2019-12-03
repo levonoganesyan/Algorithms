@@ -63,11 +63,11 @@ TEST(KnuthMorrisPrattTest, StringTest)
         EXPECT_EQ(p.Get(), etalon);
     }
     {
-        algo::PrefixFunction p("abaabaabababaaabbbabababab");
+        algo::PrefixFunction p("abaabaabababaaabbbababababcd");
         std::vector<int> etalon{ 0, 0, 1, 1, 2, 3, 4,
                                  5, 6, 2, 3, 2, 3, 4,
                                  1, 2, 0, 0, 1, 2, 3,
-                                 2, 3, 2, 3, 2 };
+                                 2, 3, 2, 3, 2, 0, 0 };
         EXPECT_EQ(p.Get(), etalon);
     }
 }

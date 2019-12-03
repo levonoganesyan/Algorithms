@@ -9,7 +9,7 @@ namespace algo
     template<typename T>
     T gcd(T a, T b)
     {
-        return b ? a : gcd(b, a % b);
+        return b ? gcd(b, a % b) : a;
     }
 
     template<typename T>
@@ -18,13 +18,31 @@ namespace algo
         return a / gcd(a, b) * b;
     }
 
-    int euler_function(int n)
+    int euler(int n)
     {
         int ans = 0;
         for (int i = 1; i <= n; ++i)
         {
             ans += gcd(i, n) == 1;
         }
+        return ans;
+    }
+    long long fast_euler(long long n)
+    {
+        long long ans = n;
+        long long prime = 2;
+        while (n >= prime * prime)
+        {
+            if (n % prime == 0)
+            {
+                ans = ans / prime * (prime - 1);
+                while (n % prime == 0)
+                    n /= prime;
+            }
+            ++prime;
+        }
+        if (n != 1)
+            ans = ans / n * (n - 1);
         return ans;
     }
     
