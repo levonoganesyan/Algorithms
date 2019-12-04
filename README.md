@@ -9,3 +9,6 @@ All algorithms is tested and all the tests you can find in "AlgorithmTests" fold
 Also here is "CodePreprocessor" folder, that simulates C++ preprocessor job, but only for headers of this repo. This preprocessor is works during code compilation and generates postprocessed source, located near original source, that doesn't contain any include of this repo, and it can be submitted to the any online judge.
 
 I use this repo to learn, remember, and easily use algorithms and I will be very happy if it would help someone too! Do not hesitate to contribute or open new issues! 
+
+
+[![HitCount](http://hits.dwyl.io/levonoganesyan/Algorithms.svg)](http://hits.dwyl.io/levonoganesyan/Algorithms)
