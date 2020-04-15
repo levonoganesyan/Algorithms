@@ -65,7 +65,7 @@ namespace algo
         {
             for (int j = 1; j <= seq2.size(); ++j)
             {
-                if (seq1[i] == seq2[j])
+                if (seq1[i - 1] == seq2[j - 1])
                 {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                 }
