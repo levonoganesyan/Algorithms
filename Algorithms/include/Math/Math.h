@@ -115,12 +115,12 @@ namespace algo
         std::vector<char> used(n, false);
         for (int i = 2; i < used.size(); i += 2)
             used[i] = true;
-        for (int i = 3; i < used.size(); i += 2)
+        for (long long i = 3; i < used.size(); i += 2)
         {
             if (!used[i])
             {
                 primes.push_back(i);
-                for (int j = i * i; j < used.size(); j += i)
+                for (long long j = i * i; j < used.size(); j += i)
                 {
                     used[j] = true;
                 }
