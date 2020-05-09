@@ -4,7 +4,6 @@ namespace algo
 {
     void Euler::dfs (const ConnectionList & graph, int vertex)
     {
-        m_cycle.push_back(vertex);
         for (size_t i = 0; i < graph[vertex].size(); ++i)
         {
             int to = graph[vertex][i].to;
@@ -16,6 +15,7 @@ namespace algo
             m_used.insert({ to, vertex });
             dfs(graph, to);
         }
+        m_cycle.push_back(vertex);
     }
 
     Euler::Euler(const Graph& graph)
