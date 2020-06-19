@@ -26,7 +26,7 @@ namespace algo
         std::vector<T> m_tree;
         std::vector<T> m_lazy_prop;
         std::function<T(T, T)> m_tree_logic;
-        int m_neutral_element;
+        T m_neutral_element;
         UpdateType m_upd_type;
 
         void build_tree(int v, int l, int r);
@@ -40,7 +40,7 @@ namespace algo
     public:
         SegmentTree(const std::vector<T>& vec,
                     const std::function<T(T, T)>& tree_logic,
-                    int neutral_element,
+                    T neutral_element,
                     UpdateType upd_type = UpdateType::Assign);
         
         void build_tree();
@@ -121,8 +121,8 @@ namespace algo
         else
         {
             int m = mid(l, r);
-            int left_ans = query(from, std::min(m, to), left(v), l, m);
-            int right_ans = query(std::max(from, m+1), to, right(v), m + 1, r);
+            T left_ans = query(from, std::min(m, to), left(v), l, m);
+            T right_ans = query(std::max(from, m+1), to, right(v), m + 1, r);
             return m_tree_logic(left_ans, right_ans);
         }
     }
@@ -167,7 +167,7 @@ namespace algo
     template<typename T>
     SegmentTree<T>::SegmentTree(const std::vector<T>& vec,
                                 const std::function<T(T, T)>& tree_logic,
-                                int neutral_element,
+                                T neutral_element,
                                 UpdateType upd_type)
         : m_vec(vec)
         , m_tree_logic(tree_logic)
