@@ -590,7 +590,7 @@ TEST(EulerTest, GraphTest)
         algo::Euler euler(edges_graph);
         EXPECT_TRUE(euler.HasPath());
         EXPECT_FALSE(euler.HasCycle());
-        std::vector<int> etalon = { 1, 0, 6, 3, 1, 2, 3, 4, 5, 6 };
+        std::vector<int> etalon = { 6, 5, 4, 3, 2, 1, 3, 6, 0, 1 };
         EXPECT_EQ(euler.GetCycle(), etalon);
     }
     {

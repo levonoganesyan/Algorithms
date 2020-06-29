@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Algorithms", "Algorithms\Algorithms.vcxproj", "{8B2C733E-3D87-4AB4-9F08-2DF9102643D7}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -18,6 +18,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Coding", "Coding\Coding.vcxproj", "{4BB0180F-DDE9-4172-8518-58FDE5F49D2C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8B2C733E-3D87-4AB4-9F08-2DF9102643D7} = {8B2C733E-3D87-4AB4-9F08-2DF9102643D7}
+		{CCB2C8E4-44A5-4731-9556-79CF4A514A06} = {CCB2C8E4-44A5-4731-9556-79CF4A514A06}
 	EndProjectSection
 EndProject
 Global

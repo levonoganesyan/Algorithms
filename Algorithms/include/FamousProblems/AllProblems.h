@@ -53,11 +53,11 @@ namespace algo
     {
         std::vector<std::vector<int>> dp(seq1.size() + 1,
             std::vector<int>(seq2.size() + 1, Inf));
-        for (int i = 0; i < seq1.size(); ++i)
+        for (int i = 0; i <= seq1.size(); ++i)
         {
             dp[i][0] = 0;
         }
-        for (int i = 0; i < seq2.size(); ++i)
+        for (int i = 0; i <= seq2.size(); ++i)
         {
             dp[0][i] = 0;
         }

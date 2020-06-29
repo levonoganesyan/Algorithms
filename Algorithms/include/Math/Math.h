@@ -7,18 +7,18 @@
 namespace algo
 {
     template<typename T>
-    T gcd(T a, T b)
+    inline T gcd(T a, T b)
     {
         return b ? gcd(b, a % b) : a;
     }
 
     template<typename T>
-    T lcm(T a, T b)
+    inline T lcm(T a, T b)
     {
         return a / gcd(a, b) * b;
     }
 
-    int euler(int n)
+    inline int euler(int n)
     {
         int ans = 0;
         for (int i = 1; i <= n; ++i)
@@ -27,7 +27,7 @@ namespace algo
         }
         return ans;
     }
-    long long fast_euler(long long n)
+    inline long long fast_euler(long long n)
     {
         long long ans = n;
         long long prime = 2;
@@ -46,8 +46,24 @@ namespace algo
         return ans;
     }
     
+    template<typename T>
+    inline T bin_pow(T elem, int n)
+    {
+        T ans = 0;
+        while (n)
+        {
+            if (n & 1)
+            {
+                ans = ans * elem;
+            }
+            elem = elem * elem;
+            n >>= 1;
+        }
+        return ans;
+    }
+
     template<typename T, typename Func>
-    T bin_pow(T elem, int n, T neutral_element, 
+    inline T bin_pow(T elem, int n, T neutral_element,
                             Func mul = std::multiplies<T>())
     {
         T ans = neutral_element;
@@ -63,7 +79,7 @@ namespace algo
         return ans;
     }
     template<typename T, typename Func>
-    T bin_pow(T elem, int n, int mod, T neutral_element, 
+    inline T bin_pow(T elem, int n, int mod, T neutral_element,
                                       Func mul = std::multiplies<T>(),
                                       Func modulus = std::modulus<T>())
     {
@@ -83,7 +99,7 @@ namespace algo
     }
 
     template<typename T>
-    algo::Matrix<T> matrix_mul(const algo::Matrix<T>& l, 
+    inline algo::Matrix<T> matrix_mul(const algo::Matrix<T>& l,
                                 const algo::Matrix<T>& r)
     {
         if (l[0].size() != r.size())
@@ -100,7 +116,7 @@ namespace algo
     }
 
     template<typename T>
-    algo::Matrix<T> matrix_mod(algo::Matrix<T> matrix, int mod)
+    inline algo::Matrix<T> matrix_mod(algo::Matrix<T> matrix, int mod)
     {
         for (int i = 0; i < matrix.size(); ++i)
             for (int j = 0; j < matrix[i].size(); ++j)
@@ -109,7 +125,7 @@ namespace algo
 
     }
 
-    std::vector<int> sieve_of_eratosthenes(int n)
+    inline std::vector<int> sieve_of_eratosthenes(int n)
     {
         std::vector<int> primes(1, 2);
         std::vector<char> used(n, false);
@@ -128,7 +144,7 @@ namespace algo
         }
         return primes;
     }
-    int extended_euclidean(int a, int b, int& x, int& y)
+    inline int extended_euclidean(int a, int b, int& x, int& y)
     {
         if (a == 0)
         {

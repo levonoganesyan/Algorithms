@@ -156,6 +156,9 @@
     <ClInclude Include="include\Strings\ZFunction.h">
       <Filter>Header Files\Strings</Filter>
     </ClInclude>
+    <ClInclude Include="include\DataStructures\LazySegmentTree.h">
+      <Filter>Header Files\DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Geometry\Geometry.cpp">
@@ -226,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="src\Strings\ZFunction.cpp">
       <Filter>Resource Files\Strings</Filter>
+    </ClCompile>
+    <ClCompile Include="include\DataStructures\SkipList.h">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

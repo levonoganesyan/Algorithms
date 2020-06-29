@@ -133,6 +133,30 @@ TEST(SegmentTreeTest, DataStructures)
     }
 }
 
+
+TEST(LazySegmentTreeTest, DataStructures)
+{
+    std::mt19937 rand_function(time(0));
+    // sum
+    for (int i = 0; i < 10; ++i)
+    {
+        std::vector<int> vec = getRandomVector(1000, 1, 100);
+        algo::SegmentTree<int> tree(vec, std::plus<int>(), 0, algo::SegmentTree<int>::UpdateType::Sum);
+        std::uniform_int_distribution<int> uid(0, vec.size() - 1);
+        int a = uid(rand_function);
+        int b = uid(rand_function);
+        if (a > b)
+            std::swap(a, b);
+        int value = uid(rand_function);
+        tree.update(a, b, value);
+        for (int i = a; i <= b; ++i)
+        {
+            vec[i] += value;
+        }
+        EXPECT_EQ(tree.query(a, b), sum_on_vector(vec, a, b));
+    }
+}
+
 TEST(FenwickTreeTest, DataStructures)
 {
     std::mt19937 rand_function(time(0));

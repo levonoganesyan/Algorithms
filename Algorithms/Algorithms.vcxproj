@@ -164,7 +164,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\DataStructures\SkipList.h" />
     <ClInclude Include="include\DataStructures\FenwickTree.h" />
+    <ClInclude Include="include\DataStructures\LazySegmentTree.h" />
     <ClInclude Include="include\DataStructures\RedBlackTree.h" />
     <ClInclude Include="include\DataStructures\SegmentTree.h" />
     <ClInclude Include="include\DataStructures\SparseTable.h" />

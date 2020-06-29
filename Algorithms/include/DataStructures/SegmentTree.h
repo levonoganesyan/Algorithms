@@ -15,6 +15,10 @@ namespace algo
         {
             return a > b ? a : b;
         }
+        static T sum(T a, T b)
+        {
+            return a + b;
+        }
         enum class UpdateType
         {
             Assign,
@@ -24,19 +28,17 @@ namespace algo
     private:
         std::vector<T> m_vec;
         std::vector<T> m_tree;
-        std::vector<T> m_lazy_prop;
         std::function<T(T, T)> m_tree_logic;
         T m_neutral_element;
         UpdateType m_upd_type;
 
         void build_tree(int v, int l, int r);
         void update(int pos, T elem, int v, int l, int r);
-        // void update(int pos_l, int pos_r, T elem, int v, int l, int r);
         T query(int from, int to, int v, int l, int r) const;
         static int left(int v);
         static int right(int v);
         static int mid(int l, int r);
-        void update_one(int& a, int b);
+        void update_one(T& a, T b);
     public:
         SegmentTree(const std::vector<T>& vec,
                     const std::function<T(T, T)>& tree_logic,
@@ -45,8 +47,8 @@ namespace algo
         
         void build_tree();
         void update(int pos, T elem);
-        // void update(int pos_l, int pos_r, T elem);
         T query(int from, int to) const;
+        T query(int pos) const;
         int size() const;
     };
 }
@@ -93,20 +95,6 @@ namespace algo
         }
     }
 
-    /*template<typename T>
-    inline void SegmentTree<T>::update(int pos_l, 
-                                        int pos_r, 
-                                        T elem, 
-                                        int v, 
-                                        int l, 
-                                        int r)
-    {
-        if (pos_l == l && pos_r == r)
-        {
-            m_lazy_prop = elem;
-        }
-    }*/
-
     template<typename T>
     inline T SegmentTree<T>::query(int from, int to, int v, int l, int r) const
     {
@@ -146,7 +134,7 @@ namespace algo
     }
 
     template<typename T>
-    inline void SegmentTree<T>::update_one(int& a, int b)
+    inline void SegmentTree<T>::update_one(T& a, T b)
     {
         switch (m_upd_type)
         {
@@ -163,7 +151,7 @@ namespace algo
             break;
         }
     }
-
+    
     template<typename T>
     SegmentTree<T>::SegmentTree(const std::vector<T>& vec,
                                 const std::function<T(T, T)>& tree_logic,
@@ -175,6 +163,7 @@ namespace algo
         , m_upd_type(upd_type)
     {
         m_tree.resize(m_vec.size() << 2);
+        build_tree();
     }
 
     template<typename T>
@@ -189,21 +178,18 @@ namespace algo
         update(pos, elem, 1, 0, m_vec.size() - 1);
     }
 
-    /*template<typename T>
-    inline void SegmentTree<T>::update(int pos_l, int pos_r, T elem)
-    {
-        if (m_lazy_prop.empty())
-        {
-            m_lazy_prop.resize(m_tree.size());
-        }
-        update(pos_l, pos_r, elem, 1, 0, m_vec.size() - 1);
-    }*/
-
     template<typename T>
     inline T SegmentTree<T>::query(int from, int to) const
     {
         return query(from, to, 1, 0, m_vec.size() - 1);
     }
+
+    template<typename T>
+    inline T SegmentTree<T>::query(int pos) const
+    {
+        return query(pos, pos, 1, 0, m_vec.size() - 1);
+    }
+
     template<typename T>
     inline int SegmentTree<T>::size() const
     {
