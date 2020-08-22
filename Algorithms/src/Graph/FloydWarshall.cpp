@@ -74,7 +74,7 @@ namespace algo
         return m_distances[from][to];
     }
 
-    std::vector<int>
+    std::vector<Graph::WeightType>
         FloydWarshall::GetDistance
             (int from) const
     {

@@ -9,7 +9,7 @@ namespace algo
     {
     public:
         using VertexType = int;
-        using WeightType = int;
+        using WeightType = double;
         using Color = int;
         struct Edge
         {

@@ -24,8 +24,8 @@ namespace algo
         FordBellman(const ConnectionMatrix& graph, int start_vertex);
         FordBellman(const ListOfEdges& graph, int start_vertex);
 
-        int GetDistance(int to) const;
-        std::vector<int> GetDistance() const;
+        Graph::WeightType GetDistance(int to) const;
+        std::vector<Graph::WeightType> GetDistance() const;
         std::vector<int> GetPath(int to) const;
 
     };

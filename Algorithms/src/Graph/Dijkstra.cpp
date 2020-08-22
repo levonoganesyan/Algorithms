@@ -93,7 +93,7 @@ namespace algo
     {
     }
 
-    int
+    Graph::WeightType
         Dijkstra::GetDistance
             (int to) const
     {
@@ -101,7 +101,7 @@ namespace algo
         return m_distance[to];
     }
 
-    std::vector<int>
+    std::vector<Graph::WeightType>
         Dijkstra::GetDistance
             () const
     {

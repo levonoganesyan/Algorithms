@@ -33,4 +33,8 @@ namespace algo
             hash += m_mod;
         return hash;
     }
+    std::size_t StringHashing::Size() const
+    {
+        return m_str.size();
+    }
 }

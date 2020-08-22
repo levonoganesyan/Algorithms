@@ -7,6 +7,7 @@
 #include<queue>
 #include<set>
 #include<map>
+#include<limits.h>
 
 namespace algo
 {

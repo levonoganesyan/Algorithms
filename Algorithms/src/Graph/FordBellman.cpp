@@ -41,11 +41,11 @@ namespace algo
             }
         }
     }
-    int FordBellman::GetDistance(int to) const
+    Graph::WeightType FordBellman::GetDistance(int to) const
     {
         return m_distance[to];
     }
-    std::vector<int> FordBellman::GetDistance() const
+    std::vector<Graph::WeightType> FordBellman::GetDistance() const
     {
         return m_distance;
     }

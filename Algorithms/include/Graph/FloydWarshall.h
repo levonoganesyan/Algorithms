@@ -22,7 +22,7 @@ namespace algo
         FloydWarshall(const ListOfEdges& list_of_edges);
 
         WeightType GetDistance(int from, int to) const;
-        std::vector<int> GetDistance(int from) const;
+        std::vector<Graph::WeightType> GetDistance(int from) const;
         std::vector<int> GetPath(int from, int to) const;
 
     };

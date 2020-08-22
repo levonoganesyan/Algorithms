@@ -1,6 +1,6 @@
 #pragma once
 #include<vector>
-#include"Graph.h"
+#include<Graph/Graph.h>
 #include"Utils.h"
 namespace algo
 {
@@ -27,8 +27,8 @@ namespace algo
         Dijkstra(const ConnectionMatrix& graph, int start_vertex);
         Dijkstra(const ListOfEdges& graph, int start_vertex);
 
-        int GetDistance(int to) const;
-        std::vector<int> GetDistance() const;
+        Graph::WeightType GetDistance(int to) const;
+        std::vector<Graph::WeightType> GetDistance() const;
         std::vector<int> GetPath(int to) const;
 
     };

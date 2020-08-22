@@ -21,5 +21,7 @@ namespace algo
 
         long long Get() const;
         long long Get(int i, int j) const;
+        std::size_t Size() const;
+
     };
 }
