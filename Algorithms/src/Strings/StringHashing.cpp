@@ -13,7 +13,7 @@ namespace algo
             m_primes[i + 1] %= m_mod;
         }
     }
-    StringHashing::StringHashing(const std::string& str, long long mod)
+    StringHashing::StringHashing(const std::string& str, StringHashing::HashType mod)
         : m_str(str)
         , m_hashes(str.size() + 1)
         , m_primes(str.size() + 1)
@@ -21,13 +21,13 @@ namespace algo
     {
         build_hash();
     }
-    long long StringHashing::Get() const
+    StringHashing::HashType StringHashing::Get() const
     {
         return Get(0, m_str.size() - 1);
     }
-    long long StringHashing::Get(int i, int j) const
+    StringHashing::HashType StringHashing::Get(int i, int j) const
     {
-        long long hash = m_hashes[j + 1];
+        HashType hash = m_hashes[j + 1];
         hash -= (m_hashes[i] * m_primes[j - i + 1]) % m_mod;
         if (hash < 0)
             hash += m_mod;

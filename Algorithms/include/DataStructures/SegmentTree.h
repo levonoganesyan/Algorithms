@@ -162,6 +162,8 @@ namespace algo
         , m_neutral_element(neutral_element)
         , m_upd_type(upd_type)
     {
+        if (m_vec.size() == 0)
+            return;
         m_tree.resize(m_vec.size() << 2);
         build_tree();
     }

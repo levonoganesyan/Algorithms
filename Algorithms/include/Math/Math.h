@@ -49,7 +49,7 @@ namespace algo
     template<typename T>
     inline T bin_pow(T elem, int n)
     {
-        T ans = 0;
+        T ans = 1;
         while (n)
         {
             if (n & 1)
